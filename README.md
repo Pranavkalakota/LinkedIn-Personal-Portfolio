@@ -1,6 +1,5 @@
 # Pranav Kalakota - Personal Portfolio
 
-A professional, modern portfolio website showcasing my work, research, and achievements as a Computer Science student at Purdue University.
 
 ## 🌟 Features
 
