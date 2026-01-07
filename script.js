@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Intersection Observer for fade-in animations
     const observerOptions = {
-        threshold: 0.1,
+        threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
     };
     
@@ -69,6 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                // Trigger animations for child elements
+                const children = entry.target.querySelectorAll('.experience-card, .research-card');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('visible');
+                    }, index * 100);
+                });
             }
         });
     }, observerOptions);
@@ -78,6 +85,21 @@ document.addEventListener('DOMContentLoaded', function() {
     sections.forEach(section => {
         section.classList.add('section-fade-in');
         observer.observe(section);
+    });
+    
+    // Observe project cards individually for staggered effect
+    const projectCards = document.querySelectorAll('.project-card');
+    const cardObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    projectCards.forEach(card => {
+        cardObserver.observe(card);
     });
     
     // Add active state to navigation links based on scroll position
