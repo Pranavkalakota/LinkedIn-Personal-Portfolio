@@ -95,6 +95,19 @@ html {
     }
 }
 
+/* Floating animation for profile photo */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.fade-in img {
+    animation: fadeIn 1.2s ease 0.3s both, float 3s ease-in-out 1.5s infinite;
+}
 
 /* Hero CTA Button Animation */
 .fade-in a[href="#projects"] {
