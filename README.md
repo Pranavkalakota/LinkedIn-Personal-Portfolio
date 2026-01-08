@@ -1,6 +1,5 @@
 # Pranav Kalakota - Personal Portfolio
 
-A professional, modern portfolio website showcasing my work, research, and achievements as a Computer Science student at Purdue University.
 
 ## 🌟 Features
 
@@ -11,35 +10,8 @@ A professional, modern portfolio website showcasing my work, research, and achie
 - **Fast Performance**: Optimized for speed with lazy loading and efficient assets
 - **Smooth Scrolling**: Enhanced navigation with animated section transitions
 
-## 📁 Project Structure
-
-```
-├── index.html          # Main HTML file
-├── styles.css          # Custom CSS styles
-├── script.js           # JavaScript for interactivity
-├── README.md           # This file
-├── robots.txt          # SEO robots file
-├── sitemap.xml         # SEO sitemap
-└── assets/             # Assets folder
-    ├── profile-photo.jpg    # Professional headshot
-    ├── resume.pdf           # Downloadable resume
-    └── favicon.ico          # Site favicon
-```
 
 ## 🚀 Getting Started
-
-### Local Development
-
-1. Clone or download this repository
-2. Open `index.html` in your web browser
-3. Or use a local server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   
-   # Using Node.js (if you have http-server installed)
-   npx http-server
-   ```
 
 ### Deployment
 
@@ -129,6 +101,9 @@ This portfolio is personal work. Feel free to use it as inspiration for your own
 - Tailwind CSS (via CDN)
 - Google Fonts
 
+**Website:**
+pranavkalakota-portfolio.vercel.app
+
+
 ---
 
-Built with ❤️ by Pranav Kalakota
