@@ -98,6 +98,9 @@ This portfolio is personal work. Feel free to use it as inspiration for your own
 - Tailwind CSS (via CDN)
 - Google Fonts
 
+## Contact Me Form
+- Accomplished by connecting Formspree to website
+
 **Website:**
 pranavkalakota-portfolio.vercel.app
 
