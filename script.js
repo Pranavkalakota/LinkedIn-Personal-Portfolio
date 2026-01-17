@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Allowed email domains
     const ALLOWED_EMAIL_DOMAINS = [
         'gmail.com', 'yahoo.com', 'yahoo.co.uk', 'yahoo.ca', 'yahoo.in',
-        'outlook.com', 'hotmail.com', 'live.com', 'msn.com',
+        'outlook.com', 'hotmail.com', 'live.com', 'msn.com', 'bing.com',
         'icloud.com', 'me.com', 'mac.com',
         'aol.com', 'protonmail.com', 'proton.me',
         'zoho.com', 'yandex.com', 'mail.com',
@@ -360,16 +360,24 @@ document.addEventListener('DOMContentLoaded', function () {
         'purdue.edu', 'edu' // Allow .edu domains
     ];
 
-    // Helper function to show error
-    function showError(element, message) {
-        element.textContent = message;
-        element.classList.remove('hidden');
+    // Helper function to show error and highlight field
+    function showError(inputElement, errorElement, message) {
+        errorElement.textContent = message;
+        errorElement.classList.remove('hidden');
+        if (inputElement) {
+            inputElement.classList.add('border-red-500', 'ring-2', 'ring-red-200');
+            inputElement.classList.remove('border-gray-300');
+        }
     }
 
-    // Helper function to hide error
-    function hideError(element) {
-        element.textContent = '';
-        element.classList.add('hidden');
+    // Helper function to hide error and reset field
+    function hideError(inputElement, errorElement) {
+        errorElement.textContent = '';
+        errorElement.classList.add('hidden');
+        if (inputElement) {
+            inputElement.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
+            inputElement.classList.add('border-gray-300');
+        }
     }
 
     // Helper function to validate email format and domain
@@ -399,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isAllowed) {
             return {
                 valid: false,
-                message: 'Please use a valid email provider (Gmail, Yahoo, Outlook, iCloud, ProtonMail, or .edu email).'
+                message: 'Please use a valid email provider (Gmail, Yahoo, Outlook, etc.) or .edu email.'
             };
         }
 
@@ -416,14 +424,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (currentLength >= MAX_MESSAGE_LENGTH) {
                 charCounter.className = 'text-sm text-red-400';
             } else if (currentLength >= MAX_MESSAGE_LENGTH * 0.9) {
-                charCounter.className = 'text-sm text-yellow-400';
+                charCounter.className = 'text-sm text-yellow-500';
             } else {
                 charCounter.className = 'text-sm text-gray-400';
             }
 
             // Hide error if user is fixing it
             if (currentLength > 0 && currentLength <= MAX_MESSAGE_LENGTH) {
-                hideError(messageError);
+                hideError(messageField, messageError);
             }
         });
     }
@@ -432,9 +440,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (nameField) {
         nameField.addEventListener('input', function () {
             if (this.value.length > MAX_NAME_LENGTH) {
-                showError(nameError, `Name must be ${MAX_NAME_LENGTH} characters or less.`);
+                showError(nameField, nameError, `Name must be ${MAX_NAME_LENGTH} characters or less.`);
             } else {
-                hideError(nameError);
+                hideError(nameField, nameError);
             }
         });
     }
@@ -444,24 +452,24 @@ document.addEventListener('DOMContentLoaded', function () {
             if (this.value.trim()) {
                 const result = validateEmail(this.value.trim());
                 if (!result.valid) {
-                    showError(emailError, result.message);
+                    showError(emailField, emailError, result.message);
                 } else {
-                    hideError(emailError);
+                    hideError(emailField, emailError);
                 }
             }
         });
 
         emailField.addEventListener('input', function () {
-            hideError(emailError);
+            hideError(emailField, emailError);
         });
     }
 
     if (subjectField) {
         subjectField.addEventListener('input', function () {
             if (this.value.length > MAX_SUBJECT_LENGTH) {
-                showError(subjectError, `Subject must be ${MAX_SUBJECT_LENGTH} characters or less.`);
+                showError(subjectField, subjectError, `Subject must be ${MAX_SUBJECT_LENGTH} characters or less.`);
             } else {
-                hideError(subjectError);
+                hideError(subjectField, subjectError);
             }
         });
     }
@@ -471,11 +479,11 @@ document.addEventListener('DOMContentLoaded', function () {
         contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            // Clear all previous errors
-            hideError(nameError);
-            hideError(emailError);
-            hideError(subjectError);
-            hideError(messageError);
+            // Clear all previous errors visually first
+            hideError(nameField, nameError);
+            hideError(emailField, emailError);
+            hideError(subjectField, subjectError);
+            hideError(messageField, messageError);
             formStatus.classList.add('hidden');
 
             let hasErrors = false;
@@ -483,22 +491,22 @@ document.addEventListener('DOMContentLoaded', function () {
             // Validate name
             const name = nameField.value.trim();
             if (!name) {
-                showError(nameError, 'Name is required.');
+                showError(nameField, nameError, 'Name is required.');
                 hasErrors = true;
             } else if (name.length > MAX_NAME_LENGTH) {
-                showError(nameError, `Name must be ${MAX_NAME_LENGTH} characters or less.`);
+                showError(nameField, nameError, `Name must be ${MAX_NAME_LENGTH} characters or less.`);
                 hasErrors = true;
             }
 
             // Validate email
             const email = emailField.value.trim();
             if (!email) {
-                showError(emailError, 'Email is required.');
+                showError(emailField, emailError, 'Email is required.');
                 hasErrors = true;
             } else {
                 const emailResult = validateEmail(email);
                 if (!emailResult.valid) {
-                    showError(emailError, emailResult.message);
+                    showError(emailField, emailError, emailResult.message);
                     hasErrors = true;
                 }
             }
@@ -506,24 +514,24 @@ document.addEventListener('DOMContentLoaded', function () {
             // Validate subject (optional but check length)
             const subject = subjectField.value.trim();
             if (subject.length > MAX_SUBJECT_LENGTH) {
-                showError(subjectError, `Subject must be ${MAX_SUBJECT_LENGTH} characters or less.`);
+                showError(subjectField, subjectError, `Subject must be ${MAX_SUBJECT_LENGTH} characters or less.`);
                 hasErrors = true;
             }
 
             // Validate message
             const message = messageField.value.trim();
             if (!message) {
-                showError(messageError, 'Message is required.');
+                showError(messageField, messageError, 'Message is required.');
                 hasErrors = true;
             } else if (message.length > MAX_MESSAGE_LENGTH) {
-                showError(messageError, `Message must be ${MAX_MESSAGE_LENGTH} characters or less.`);
+                showError(messageField, messageError, `Message must be ${MAX_MESSAGE_LENGTH} characters or less.`);
                 hasErrors = true;
             }
 
             // Don't submit if there are errors
             if (hasErrors) {
-                formStatus.textContent = '⚠ Please fix the errors above before submitting.';
-                formStatus.className = 'text-center text-sm mt-4 text-red-400';
+                formStatus.textContent = '⚠ Please fix the highlighted errors above before submitting.';
+                formStatus.className = 'text-center text-sm mt-4 text-red-500 font-medium';
                 formStatus.classList.remove('hidden');
                 return;
             }
@@ -547,11 +555,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (response.ok) {
                     // Success
                     formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
-                    formStatus.className = 'text-center text-sm mt-4 text-green-400';
+                    formStatus.className = 'text-center text-sm mt-4 text-green-400 font-medium';
                     formStatus.classList.remove('hidden');
                     contactForm.reset();
                     charCounter.textContent = '0/1000';
                     charCounter.className = 'text-sm text-gray-400';
+
+                    // Removing success highlight if any remain (shouldn't happen on success but good practice)
+                    hideError(nameField, nameError);
+                    hideError(emailField, emailError);
+                    hideError(subjectField, subjectError);
+                    hideError(messageField, messageError);
 
                     // Hide success message after 5 seconds
                     setTimeout(() => {
@@ -559,11 +573,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, 5000);
                 } else {
                     // Error from server
+                    const data = await response.json();
+                    if (data.errors) {
+                        // Formspree validation errors
+                        throw new Error(data.errors.map(err => err.message).join(", "));
+                    }
                     throw new Error('Server error');
                 }
             } catch (error) {
                 // Show error message
-                formStatus.textContent = '✗ Something went wrong. Please try emailing me directly.';
+                console.error("Form error:", error);
+                formStatus.textContent = '✗ Something went wrong. Please try again later.';
                 formStatus.className = 'text-center text-sm mt-4 text-red-400';
                 formStatus.classList.remove('hidden');
             } finally {
