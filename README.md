@@ -5,9 +5,6 @@
 
 - **Responsive Design**: Mobile-first approach that works seamlessly on all devices
 - **Modern UI**: Clean, professional design with smooth animations
-- **SEO Optimized**: Complete meta tags, structured data, and semantic HTML
-- **Accessible**: WCAG AA compliant with keyboard navigation support
-- **Fast Performance**: Optimized for speed with lazy loading and efficient assets
 - **Smooth Scrolling**: Enhanced navigation with animated section transitions
 
 
