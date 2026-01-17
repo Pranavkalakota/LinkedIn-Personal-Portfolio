@@ -794,30 +794,38 @@
                 <!-- Contact Form -->
                 <div class="bg-white rounded-lg shadow-xl p-8">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Send Me a Message</h3>
-                    <form id="contact-form" action="https://formspree.io/f/mykkkvvb" method="POST" class="space-y-6">
+                    <form id="contact-form" action="https://formspree.io/f/mykkkvvb" method="POST" class="space-y-6"
+                        novalidate>
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
-                            <input type="text" id="name" name="name" required
+                            <input type="text" id="name" name="name" required maxlength="100"
                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan-400 focus:border-transparent bg-gray-900/5 text-gray-900 placeholder-gray-500 transition-all"
                                 placeholder="John Doe">
+                            <p id="name-error" class="text-red-400 text-sm mt-1 hidden"></p>
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Your Email *</label>
-                            <input type="email" id="email" name="email" required
+                            <input type="email" id="email" name="email" required maxlength="254"
                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan-400 focus:border-transparent bg-gray-900/5 text-gray-900 placeholder-gray-500 transition-all"
-                                placeholder="john@example.com">
+                                placeholder="john@gmail.com">
+                            <p id="email-error" class="text-red-400 text-sm mt-1 hidden"></p>
                         </div>
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject"
+                            <input type="text" id="subject" name="subject" maxlength="200"
                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan-400 focus:border-transparent bg-gray-900/5 text-gray-900 placeholder-gray-500 transition-all"
                                 placeholder="Internship Opportunity">
+                            <p id="subject-error" class="text-red-400 text-sm mt-1 hidden"></p>
                         </div>
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                            <textarea id="message" name="message" rows="5" required
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="message" class="block text-sm font-medium text-gray-700">Message *</label>
+                                <span id="char-counter" class="text-sm text-gray-400">0/1000</span>
+                            </div>
+                            <textarea id="message" name="message" rows="5" required maxlength="1000"
                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan-400 focus:border-transparent bg-gray-900/5 text-gray-900 placeholder-gray-500 transition-all resize-none"
                                 placeholder="Tell me about your opportunity or project..."></textarea>
+                            <p id="message-error" class="text-red-400 text-sm mt-1 hidden"></p>
                         </div>
                         <!-- Honeypot field for spam protection -->
                         <input type="text" name="_gotcha" style="display:none">
