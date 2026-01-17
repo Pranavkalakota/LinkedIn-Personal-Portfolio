@@ -483,6 +483,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 hideError(subjectField, subjectError);
             }
         });
+
+        // Add blur listener for required check
+        subjectField.addEventListener('blur', function () {
+            if (!this.value.trim()) {
+                showError(subjectField, subjectError, 'Subject is required.');
+            }
+        });
     }
 
     // Add validation for message field on blur
@@ -540,9 +547,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Validate subject (optional but check length)
+            // Validate subject (Required)
             const subject = subjectField.value.trim();
-            if (subject.length > MAX_SUBJECT_LENGTH) {
+            if (!subject) {
+                showError(subjectField, subjectError, 'Subject is required.');
+                hasErrors = true;
+            } else if (subject.length > MAX_SUBJECT_LENGTH) {
                 showError(subjectField, subjectError, `Subject must be ${MAX_SUBJECT_LENGTH} characters or less.`);
                 hasErrors = true;
             }
