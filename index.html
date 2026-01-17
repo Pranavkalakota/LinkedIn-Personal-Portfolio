@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pranav Kalakota - Computer Science Student @ Purdue University. Building software solutions at the intersection of AI, research, and impact.">
-    <meta name="keywords" content="Pranav Kalakota, Purdue University, Computer Science, Software Developer, AI/ML, Research">
+    <meta name="description"
+        content="Pranav Kalakota - Computer Science Student @ Purdue University. Building software solutions at the intersection of AI, research, and impact.">
+    <meta name="keywords"
+        content="Pranav Kalakota, Purdue University, Computer Science, Software Developer, AI/ML, Research">
     <meta name="author" content="Pranav Kalakota">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Pranav Kalakota - Portfolio">
-    <meta property="og:description" content="Computer Science Student @ Purdue University. Building software solutions at the intersection of AI, research, and impact.">
+    <meta property="og:description"
+        content="Computer Science Student @ Purdue University. Building software solutions at the intersection of AI, research, and impact.">
     <meta property="og:image" content="https://pranavkalakota.com/og-image.jpg">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Pranav Kalakota - Portfolio">
-    <meta property="twitter:description" content="Computer Science Student @ Purdue University. Building software solutions at the intersection of AI, research, and impact.">
-    
+    <meta property="twitter:description"
+        content="Computer Science Student @ Purdue University. Building software solutions at the intersection of AI, research, and impact.">
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -37,27 +42,39 @@
       ]
     }
     </script>
-    
+
     <title>Pranav Kalakota - Portfolio</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="bg-gray-50 text-gray-900 font-sans antialiased">
+    <!-- Animated Network Background -->
+    <div id="animated-background" class="fixed inset-0 z-0">
+        <canvas id="network-canvas"></canvas>
+        <div class="pk-initials">PK</div>
+    </div>
+
     <!-- Skip to main content link for accessibility -->
-    <a href="#hero" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-indigo-600 text-white px-4 py-2 rounded-lg z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Skip to main content</a>
-    
+    <a href="#hero"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-indigo-600 text-white px-4 py-2 rounded-lg z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Skip
+        to main content</a>
+
     <!-- Navigation Bar -->
-    <nav id="navbar" class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+    <nav id="navbar" class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300"
+        style="z-index: 100;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 font-bold text-xl text-indigo-600">
@@ -65,20 +82,28 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">About</a>
-                        <a href="#experience" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Experience</a>
-                        <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Projects</a>
-                        <a href="#research" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Research</a>
-                        <a href="#skills" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Skills</a>
-                        <a href="#education" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Education</a>
-                        <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
+                        <a href="#about"
+                            class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">About</a>
+                        <a href="#experience"
+                            class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Experience</a>
+                        <a href="#projects"
+                            class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Projects</a>
+                        <a href="#research"
+                            class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Research</a>
+                        <a href="#skills"
+                            class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Skills</a>
+                        <a href="#education"
+                            class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Education</a>
+                        <a href="#contact"
+                            class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
                     </div>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-btn" class="text-gray-700 hover:text-indigo-600 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
@@ -99,40 +124,55 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 pt-16">
+    <section id="hero"
+        class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 pt-16"
+        style="position: relative; z-index: 10; background: transparent;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center fade-in">
                 <div class="mb-8">
-                    <img src="assets/profile-photo.jpg" alt="Pranav Kalakota" class="w-48 h-48 rounded-full mx-auto object-cover shadow-2xl border-4 border-white" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Crect fill=%27%23e5e7eb%27 width=%27200%27 height=%27200%27/%3E%3Ctext fill=%27%239ca3af%27 font-family=%27sans-serif%27 font-size=%2718%27 dy=%2710.5%27 font-weight=%27bold%27 x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27%3EPK%3C/text%3E%3C/svg%3E'">
+                    <img src="assets/profile-photo.jpg" alt="Pranav Kalakota"
+                        class="w-48 h-48 rounded-full mx-auto object-cover shadow-2xl border-4 border-white"
+                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Crect fill=%27%23e5e7eb%27 width=%27200%27 height=%27200%27/%3E%3Ctext fill=%27%239ca3af%27 font-family=%27sans-serif%27 font-size=%2718%27 dy=%2710.5%27 font-weight=%27bold%27 x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27%3EPK%3C/text%3E%3C/svg%3E'">
                 </div>
                 <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4">Pranav Kalakota</h1>
                 <p class="text-xl md:text-2xl text-gray-700 mb-2">Computer Science Student @ Purdue University</p>
-                <p class="text-lg md:text-xl text-indigo-600 mb-8 font-medium">Building software solutions at the intersection of AI, research, and impact</p>
-                
+                <p class="text-lg md:text-xl text-indigo-600 mb-8 font-medium">Building software solutions at the
+                    intersection of AI, research, and impact</p>
+
                 <div class="flex justify-center items-center space-x-6 mb-8 flex-wrap gap-4">
-                    <a href="https://www.linkedin.com/in/pranav-kalakota" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link text-gray-700 hover:text-indigo-600 transition-colors">
+                    <a href="https://www.linkedin.com/in/pranav-kalakota" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn" class="social-link text-gray-700 hover:text-indigo-600 transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
                     </a>
-                    <a href="https://github.com/pranavkalakota" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link text-gray-700 hover:text-gray-900 transition-colors">
+                    <a href="https://github.com/pranavkalakota" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub" class="social-link text-gray-700 hover:text-gray-900 transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd" />
                         </svg>
                     </a>
-                    <a href="mailto:pkalakot@purdue.edu" aria-label="Email" class="social-link text-gray-700 hover:text-indigo-600 transition-colors">
+                    <a href="mailto:pkalakot@purdue.edu" aria-label="Email"
+                        class="social-link text-gray-700 hover:text-indigo-600 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                     </a>
-                    <a href="assets/resume.pdf" target="_blank" download aria-label="Download Resume" class="social-link text-gray-700 hover:text-indigo-600 transition-colors">
+                    <a href="assets/resume.pdf" target="_blank" download aria-label="Download Resume"
+                        class="social-link text-gray-700 hover:text-indigo-600 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </a>
                 </div>
-                
-                <a href="#projects" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+
+                <a href="#projects"
+                    class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                     View My Work
                 </a>
             </div>
@@ -146,30 +186,43 @@
             <div class="max-w-4xl mx-auto">
                 <div class="prose prose-lg mx-auto mb-12">
                     <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                        I'm a Computer Science student at Purdue University with a passion for building meaningful software solutions that bridge the gap between cutting-edge technology and real-world impact. My journey spans software development, data systems, AI/ML research, and interdisciplinary collaboration.
+                        I'm a Computer Science student at Purdue University with a passion for building meaningful
+                        software solutions that bridge the gap between cutting-edge technology and real-world impact. My
+                        journey spans software development, data systems, AI/ML research, and interdisciplinary
+                        collaboration.
                     </p>
                     <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                        Currently, I'm leading research initiatives, developing AI-powered applications, and working on security-focused projects that address real challenges. As the only Computer Science student on a 10+ member engineering research team, I've learned to translate complex computational problems into actionable solutions while collaborating across disciplines.
+                        Currently, I'm leading research initiatives, developing AI-powered applications, and working on
+                        security-focused projects that address real challenges. As the only Computer Science student on
+                        a 10+ member engineering research team, I've learned to translate complex computational problems
+                        into actionable solutions while collaborating across disciplines.
                     </p>
                     <p class="text-gray-700 text-lg leading-relaxed">
-                        What drives me is the opportunity to leverage technology to solve problems that matter—whether that's improving healthcare outcomes through data analysis, enhancing team productivity with AI tools, or securing applications against vulnerabilities. I'm always eager to take on new challenges and contribute to projects that make a difference.
+                        What drives me is the opportunity to leverage technology to solve problems that matter—whether
+                        that's improving healthcare outcomes through data analysis, enhancing team productivity with AI
+                        tools, or securing applications against vulnerabilities. I'm always eager to take on new
+                        challenges and contribute to projects that make a difference.
                     </p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-                    <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div
+                        class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                         <div class="text-3xl font-bold text-indigo-600 mb-2">Purdue CS</div>
                         <div class="text-gray-700">Class of 2029</div>
                     </div>
-                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div
+                        class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                         <div class="text-3xl font-bold text-purple-600 mb-2">Research Lead</div>
                         <div class="text-gray-700">Purdue VIP Program</div>
                     </div>
-                    <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div
+                        class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                         <div class="text-3xl font-bold text-pink-600 mb-2">Claude Builder</div>
                         <div class="text-gray-700">35% Acceptance Rate</div>
                     </div>
-                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div
+                        class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                         <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
                         <div class="text-gray-700">Event Attendees</div>
                     </div>
@@ -188,7 +241,8 @@
             <div class="max-w-4xl mx-auto">
                 <div class="space-y-8">
                     <!-- Experience Item 1 -->
-                    <div class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-indigo-600 transform hover:-translate-y-1 hover:scale-[1.01]">
+                    <div
+                        class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-indigo-600 transform hover:-translate-y-1 hover:scale-[1.01]">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Research Team Lead</h3>
@@ -197,14 +251,16 @@
                             <span class="text-gray-600 font-medium mt-2 md:mt-0">Sep 2025 - Dec 2025</span>
                         </div>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
-                            <li>Led research team in developing CFD models for equine airway particulate matter analysis</li>
+                            <li>Led research team in developing CFD models for equine airway particulate matter analysis
+                            </li>
                             <li>Managed project timeline and coordinated with 10+ engineering team members</li>
                             <li>Presented findings at Purdue OUR Undergraduate Research EXPO</li>
                         </ul>
                     </div>
 
                     <!-- Experience Item 2 -->
-                    <div class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-purple-600 transform hover:-translate-y-1 hover:scale-[1.01]">
+                    <div
+                        class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-purple-600 transform hover:-translate-y-1 hover:scale-[1.01]">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Software Developer</h3>
@@ -220,7 +276,8 @@
                     </div>
 
                     <!-- Experience Item 3 -->
-                    <div class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-pink-600 transform hover:-translate-y-1 hover:scale-[1.01]">
+                    <div
+                        class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-pink-600 transform hover:-translate-y-1 hover:scale-[1.01]">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Event Manager</h3>
@@ -236,7 +293,8 @@
                     </div>
 
                     <!-- Experience Item 4 -->
-                    <div class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-blue-600 transform hover:-translate-y-1 hover:scale-[1.01]">
+                    <div
+                        class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-blue-600 transform hover:-translate-y-1 hover:scale-[1.01]">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Claude Builder Club Member</h3>
@@ -252,7 +310,8 @@
                     </div>
 
                     <!-- Experience Item 5 -->
-                    <div class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-green-600 transform hover:-translate-y-1 hover:scale-[1.01]">
+                    <div
+                        class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-green-600 transform hover:-translate-y-1 hover:scale-[1.01]">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Summer Business Institute Intern</h3>
@@ -268,7 +327,8 @@
                     </div>
 
                     <!-- Experience Item 6 -->
-                    <div class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-yellow-600 transform hover:-translate-y-1 hover:scale-[1.01]">
+                    <div
+                        class="experience-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 border-l-4 border-yellow-600 transform hover:-translate-y-1 hover:scale-[1.01]">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Center Assistant</h3>
@@ -295,92 +355,137 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-                
+
                 <!-- Project 1: MeetMind -->
-                <div class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-indigo-100 transform hover:-translate-y-2">
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-indigo-100 transform hover:-translate-y-2">
                     <div class="relative h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
                     <div class="p-8">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">MeetMind</h3>
-                            <span class="tech-badge bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md animate-pulse-slow">In Progress</span>
+                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                                MeetMind</h3>
+                            <span
+                                class="tech-badge bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md animate-pulse-slow">In
+                                Progress</span>
                         </div>
-                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">AI meeting companion app with real-time transcription, sentiment analysis, and actionable summaries.</p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">AI meeting companion app with real-time
+                            transcription, sentiment analysis, and actionable summaries.</p>
                         <div class="mb-6">
                             <p class="text-sm text-gray-700 mb-3 font-semibold">Tech Stack:</p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium border border-indigo-200 hover:bg-indigo-100 hover:scale-110 transition-transform">AI/ML</span>
-                                <span class="tech-tag bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium border border-purple-200 hover:bg-purple-100 hover:scale-110 transition-transform">NLP</span>
-                                <span class="tech-tag bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium border border-blue-200 hover:bg-blue-100 hover:scale-110 transition-transform">Slack API</span>
-                                <span class="tech-tag bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium border border-green-200 hover:bg-green-100 hover:scale-110 transition-transform">Trello</span>
+                                <span
+                                    class="tech-tag bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium border border-indigo-200 hover:bg-indigo-100 hover:scale-110 transition-transform">AI/ML</span>
+                                <span
+                                    class="tech-tag bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium border border-purple-200 hover:bg-purple-100 hover:scale-110 transition-transform">NLP</span>
+                                <span
+                                    class="tech-tag bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium border border-blue-200 hover:bg-blue-100 hover:scale-110 transition-transform">Slack
+                                    API</span>
+                                <span
+                                    class="tech-tag bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium border border-green-200 hover:bg-green-100 hover:scale-110 transition-transform">Trello</span>
                             </div>
                         </div>
-                        <p class="text-sm text-gray-600 leading-relaxed">Working with 8 team members and project manager. Integrates with Slack, Trello, and Google Calendar for seamless workflow automation.</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Working with 8 team members and project
+                            manager. Integrates with Slack, Trello, and Google Calendar for seamless workflow
+                            automation.</p>
                     </div>
                 </div>
 
                 <!-- Project 2: VibeCheck -->
-                <div class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-red-100 transform hover:-translate-y-2">
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-red-100 transform hover:-translate-y-2">
                     <div class="relative h-2 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500"></div>
                     <div class="p-8">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">VibeCheck</h3>
-                            <span class="tech-badge bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md animate-pulse-slow">In Progress</span>
+                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
+                                VibeCheck</h3>
+                            <span
+                                class="tech-badge bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md animate-pulse-slow">In
+                                Progress</span>
                         </div>
-                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">Security vulnerability scanner that automatically detects insecure patterns and exposed secrets in source code.</p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">Security vulnerability scanner that
+                            automatically detects insecure patterns and exposed secrets in source code.</p>
                         <div class="mb-6">
                             <p class="text-sm text-gray-700 mb-3 font-semibold">Tech Stack:</p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag bg-red-50 text-red-700 px-4 py-2 rounded-full text-sm font-medium border border-red-200 hover:bg-red-100 hover:scale-110 transition-transform">Security</span>
-                                <span class="tech-tag bg-orange-50 text-orange-700 px-4 py-2 rounded-full text-sm font-medium border border-orange-200 hover:bg-orange-100 hover:scale-110 transition-transform">Static Analysis</span>
-                                <span class="tech-tag bg-yellow-50 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium border border-yellow-200 hover:bg-yellow-100 hover:scale-110 transition-transform">Python</span>
-                                <span class="tech-tag bg-amber-50 text-amber-700 px-4 py-2 rounded-full text-sm font-medium border border-amber-200 hover:bg-amber-100 hover:scale-110 transition-transform">Regex</span>
+                                <span
+                                    class="tech-tag bg-red-50 text-red-700 px-4 py-2 rounded-full text-sm font-medium border border-red-200 hover:bg-red-100 hover:scale-110 transition-transform">Security</span>
+                                <span
+                                    class="tech-tag bg-orange-50 text-orange-700 px-4 py-2 rounded-full text-sm font-medium border border-orange-200 hover:bg-orange-100 hover:scale-110 transition-transform">Static
+                                    Analysis</span>
+                                <span
+                                    class="tech-tag bg-yellow-50 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium border border-yellow-200 hover:bg-yellow-100 hover:scale-110 transition-transform">Python</span>
+                                <span
+                                    class="tech-tag bg-amber-50 text-amber-700 px-4 py-2 rounded-full text-sm font-medium border border-amber-200 hover:bg-amber-100 hover:scale-110 transition-transform">Regex</span>
                             </div>
                         </div>
-                        <p class="text-sm text-gray-600 leading-relaxed">Co-founder working with peers. Custom-built library detecting insecure patterns, exposed secrets, unsafe functions, and weak configurations.</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Co-founder working with peers. Custom-built
+                            library detecting insecure patterns, exposed secrets, unsafe functions, and weak
+                            configurations.</p>
                     </div>
                 </div>
 
                 <!-- Project 3: BoilerHub -->
-                <div class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-yellow-100 transform hover:-translate-y-2">
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-yellow-100 transform hover:-translate-y-2">
                     <div class="relative h-2 bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500"></div>
                     <div class="p-8">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-amber-600 transition-colors">BoilerHub</h3>
-                            <span class="tech-badge bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Completed</span>
+                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-amber-600 transition-colors">
+                                BoilerHub</h3>
+                            <span
+                                class="tech-badge bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Completed</span>
                         </div>
-                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">React Native mobile app MVP for Purdue students featuring campus transit tracking, event discovery, and marketplace.</p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">React Native mobile app MVP for Purdue
+                            students featuring campus transit tracking, event discovery, and marketplace.</p>
                         <div class="mb-6">
                             <p class="text-sm text-gray-700 mb-3 font-semibold">Tech Stack:</p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag bg-yellow-50 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium border border-yellow-200 hover:bg-yellow-100 hover:scale-110 transition-transform">React Native</span>
-                                <span class="tech-tag bg-amber-50 text-amber-700 px-4 py-2 rounded-full text-sm font-medium border border-amber-200 hover:bg-amber-100 hover:scale-110 transition-transform">JavaScript</span>
-                                <span class="tech-tag bg-orange-50 text-orange-700 px-4 py-2 rounded-full text-sm font-medium border border-orange-200 hover:bg-orange-100 hover:scale-110 transition-transform">Mobile</span>
-                                <span class="tech-tag bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium border border-green-200 hover:bg-green-100 hover:scale-110 transition-transform">API Integration</span>
+                                <span
+                                    class="tech-tag bg-yellow-50 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium border border-yellow-200 hover:bg-yellow-100 hover:scale-110 transition-transform">React
+                                    Native</span>
+                                <span
+                                    class="tech-tag bg-amber-50 text-amber-700 px-4 py-2 rounded-full text-sm font-medium border border-amber-200 hover:bg-amber-100 hover:scale-110 transition-transform">JavaScript</span>
+                                <span
+                                    class="tech-tag bg-orange-50 text-orange-700 px-4 py-2 rounded-full text-sm font-medium border border-orange-200 hover:bg-orange-100 hover:scale-110 transition-transform">Mobile</span>
+                                <span
+                                    class="tech-tag bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium border border-green-200 hover:bg-green-100 hover:scale-110 transition-transform">API
+                                    Integration</span>
                             </div>
                         </div>
-                        <p class="text-sm text-gray-600 leading-relaxed">Comprehensive solution for campus life including real-time transit data, event discovery, and student marketplace functionality.</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Comprehensive solution for campus life
+                            including real-time transit data, event discovery, and student marketplace functionality.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Project 4: Restaurant Management System -->
-                <div class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-purple-100 transform hover:-translate-y-2">
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-purple-100 transform hover:-translate-y-2">
                     <div class="relative h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500"></div>
                     <div class="p-8">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">Restaurant Management System</h3>
-                            <span class="tech-badge bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Completed</span>
+                            <h3 class="text-3xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+                                Restaurant Management System</h3>
+                            <span
+                                class="tech-badge bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Completed</span>
                         </div>
-                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">Full-stack application for restaurant operations including order processing, inventory tracking, and customer management.</p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">Full-stack application for restaurant
+                            operations including order processing, inventory tracking, and customer management.</p>
                         <div class="mb-6">
                             <p class="text-sm text-gray-700 mb-3 font-semibold">Tech Stack:</p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium border border-purple-200 hover:bg-purple-100 hover:scale-110 transition-transform">Full-Stack</span>
-                                <span class="tech-tag bg-pink-50 text-pink-700 px-4 py-2 rounded-full text-sm font-medium border border-pink-200 hover:bg-pink-100 hover:scale-110 transition-transform">Database</span>
-                                <span class="tech-tag bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium border border-indigo-200 hover:bg-indigo-100 hover:scale-110 transition-transform">Java</span>
-                                <span class="tech-tag bg-rose-50 text-rose-700 px-4 py-2 rounded-full text-sm font-medium border border-rose-200 hover:bg-rose-100 hover:scale-110 transition-transform">SQL</span>
+                                <span
+                                    class="tech-tag bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium border border-purple-200 hover:bg-purple-100 hover:scale-110 transition-transform">Full-Stack</span>
+                                <span
+                                    class="tech-tag bg-pink-50 text-pink-700 px-4 py-2 rounded-full text-sm font-medium border border-pink-200 hover:bg-pink-100 hover:scale-110 transition-transform">Database</span>
+                                <span
+                                    class="tech-tag bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium border border-indigo-200 hover:bg-indigo-100 hover:scale-110 transition-transform">Java</span>
+                                <span
+                                    class="tech-tag bg-rose-50 text-rose-700 px-4 py-2 rounded-full text-sm font-medium border border-rose-200 hover:bg-rose-100 hover:scale-110 transition-transform">SQL</span>
                             </div>
                         </div>
-                        <p class="text-sm text-gray-600 leading-relaxed">Complete restaurant operations solution with order management, inventory tracking, and comprehensive customer relationship features.</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Complete restaurant operations solution with
+                            order management, inventory tracking, and comprehensive customer relationship features.</p>
                     </div>
                 </div>
             </div>
@@ -395,22 +500,27 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
             </div>
             <div class="max-w-4xl mx-auto space-y-8">
-                
+
                 <!-- Research 1: Equine Airway -->
-                <div class="research-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border-l-4 border-indigo-600 transform hover:-translate-x-2 hover:scale-[1.02]">
+                <div
+                    class="research-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border-l-4 border-indigo-600 transform hover:-translate-x-2 hover:scale-[1.02]">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Experimental Equine Airway Dust Research</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Experimental Equine Airway Dust Research
+                            </h3>
                             <p class="text-indigo-600 font-semibold">Team Lead, Purdue VIP Program</p>
                         </div>
                         <span class="text-gray-600 font-medium mt-2 md:mt-0">Aug 2025 - Present</span>
                     </div>
                     <div class="prose max-w-none">
                         <p class="text-gray-700 mb-4">
-                            Leading a multidisciplinary research team as the only Computer Science student among 10+ engineering-focused peers. Developing computational fluid dynamics (CFD) models to map particulate matter inhalation patterns in equine lungs.
+                            Leading a multidisciplinary research team as the only Computer Science student among 10+
+                            engineering-focused peers. Developing computational fluid dynamics (CFD) models to map
+                            particulate matter inhalation patterns in equine lungs.
                         </p>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
-                            <li>Identifying particles that lead to Recurrent Airway Obstruction (RAO) and Inflammatory Airway Disease (IAD) development</li>
+                            <li>Identifying particles that lead to Recurrent Airway Obstruction (RAO) and Inflammatory
+                                Airway Disease (IAD) development</li>
                             <li>Using ANSYS Fluent for advanced CFD simulations and 3D modeling</li>
                             <li>Presented initial findings at Purdue OUR Undergraduate Research EXPO</li>
                             <li>Bridging the gap between computational methods and biological research applications</li>
@@ -419,17 +529,20 @@
                 </div>
 
                 <!-- Research 2: UNLV Data Mining -->
-                <div class="research-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border-l-4 border-purple-600 transform hover:-translate-x-2 hover:scale-[1.02]">
+                <div
+                    class="research-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border-l-4 border-purple-600 transform hover:-translate-x-2 hover:scale-[1.02]">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-2">UNLV Data Mining Research</h3>
-                            <p class="text-purple-600 font-semibold">Researcher, UNLV Office of Undergraduate Research</p>
+                            <p class="text-purple-600 font-semibold">Researcher, UNLV Office of Undergraduate Research
+                            </p>
                         </div>
                         <span class="text-gray-600 font-medium mt-2 md:mt-0">Oct 2023 - Apr 2024</span>
                     </div>
                     <div class="prose max-w-none">
                         <p class="text-gray-700 mb-4">
-                            Conducted data mining and statistical analysis on GABA and Glutamate neurotransmitter levels in Autistic versus Allistic patient populations.
+                            Conducted data mining and statistical analysis on GABA and Glutamate neurotransmitter levels
+                            in Autistic versus Allistic patient populations.
                         </p>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
                             <li>Worked with PhD mentor and undergraduate researchers under strict deadlines</li>
@@ -449,17 +562,24 @@
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Skills</h2>
             <div class="max-w-5xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
+
                     <!-- Languages -->
                     <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow-md">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Languages</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Java</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">R</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">SQL (SQLite)</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">C</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Python</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">JavaScript</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Java</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">R</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">SQL
+                                (SQLite)</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">C</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Python</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">JavaScript</span>
                         </div>
                     </div>
 
@@ -467,12 +587,21 @@
                     <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg shadow-md">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Technologies</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Git</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Jupyter Notebook</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">ANsys Fluent</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">React Native</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">JSON</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">HTML/CSS</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Git</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Jupyter
+                                Notebook</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">ANsys
+                                Fluent</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">React
+                                Native</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">JSON</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">HTML/CSS</span>
                         </div>
                     </div>
 
@@ -480,13 +609,23 @@
                     <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg shadow-md">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Concepts & Methodologies</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">AI/ML</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">NLP</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">CFD</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Database Design</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Prompt Engineering</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">OOP</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Data Mining</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">AI/ML</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">NLP</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">CFD</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Database
+                                Design</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Prompt
+                                Engineering</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">OOP</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Data
+                                Mining</span>
                         </div>
                     </div>
 
@@ -494,20 +633,35 @@
                     <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-lg shadow-md">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Tools & Practices</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Rapid Prototyping</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Computational Simulations</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Version Control</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Agile Development</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Rapid
+                                Prototyping</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Computational
+                                Simulations</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Version
+                                Control</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Agile
+                                Development</span>
                         </div>
                     </div>
 
                     <!-- Currently Learning -->
-                    <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-lg shadow-md md:col-span-2 lg:col-span-1">
+                    <div
+                        class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-lg shadow-md md:col-span-2 lg:col-span-1">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Currently Learning</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Advanced React Native</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Advanced CFD</span>
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Security Vulnerability Detection</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Advanced
+                                React Native</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Advanced
+                                CFD</span>
+                            <span
+                                class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm">Security
+                                Vulnerability Detection</span>
                         </div>
                     </div>
                 </div>
@@ -520,7 +674,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Education & Achievements</h2>
             <div class="max-w-4xl mx-auto space-y-8">
-                
+
                 <!-- Purdue University -->
                 <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
@@ -533,12 +687,17 @@
                     <div class="mt-4">
                         <p class="text-gray-700 font-semibold mb-2">Relevant Coursework:</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Programming in C</span>
-                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Data Mine Seminar II</span>
+                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Programming in
+                                C</span>
+                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Data Mine Seminar
+                                II</span>
                             <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Statistics</span>
-                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Linear Algebra</span>
-                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Object-Oriented Programming</span>
-                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Discrete Mathematics</span>
+                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Linear
+                                Algebra</span>
+                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Object-Oriented
+                                Programming</span>
+                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">Discrete
+                                Mathematics</span>
                         </div>
                     </div>
                 </div>
@@ -561,11 +720,13 @@
                         <div class="bg-white p-4 rounded-lg shadow-sm">
                             <h4 class="font-bold text-gray-900 mb-1">Harvard Book Prize Nominee</h4>
                             <p class="text-sm text-gray-600 mb-2">February 2024</p>
-                            <p class="text-gray-700">Recognized for excellence in scholarship, high character, and achievement across fields</p>
+                            <p class="text-gray-700">Recognized for excellence in scholarship, high character, and
+                                achievement across fields</p>
                         </div>
                         <div class="bg-white p-4 rounded-lg shadow-sm">
                             <h4 class="font-bold text-gray-900 mb-1">Science Olympiad - Astronomy</h4>
-                            <p class="text-sm text-gray-600 mb-2">3rd Place, Nevada State Tournament Division C - April 2023</p>
+                            <p class="text-sm text-gray-600 mb-2">3rd Place, Nevada State Tournament Division C - April
+                                2023</p>
                         </div>
                         <div class="bg-white p-4 rounded-lg shadow-sm">
                             <h4 class="font-bold text-gray-900 mb-1">Science Olympiad - Ornithology</h4>
@@ -586,8 +747,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Volunteering & Leadership</h2>
             <div class="max-w-4xl mx-auto space-y-6">
-                
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+
+                <div
+                    class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-gray-900">Medical Assistant Volunteer</h3>
@@ -602,7 +764,8 @@
                     </ul>
                 </div>
 
-                <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div
+                    class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-gray-900">Student Volunteer</h3>
@@ -627,53 +790,69 @@
             <p class="text-center text-gray-700 mb-12 text-lg">
                 Open to summer 2026 internship opportunities and research collaborations
             </p>
-            
+
             <div class="bg-white rounded-lg shadow-xl p-8 md:p-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div>
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Contact Information</h3>
                         <div class="space-y-4">
-                            <a href="mailto:pkalakot@purdue.edu" class="flex items-center text-gray-700 hover:text-indigo-600 transition-colors group">
-                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            <a href="mailto:pkalakot@purdue.edu"
+                                class="flex items-center text-gray-700 hover:text-indigo-600 transition-colors group">
+                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                                 <span>pkalakot@purdue.edu</span>
                             </a>
                             <div class="flex items-center text-gray-700">
                                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                                 <span>West Lafayette, IN / Henderson, NV</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div>
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Connect With Me</h3>
                         <div class="space-y-4">
-                            <a href="https://www.linkedin.com/in/pranav-kalakota" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-indigo-600 transition-colors group">
-                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            <a href="https://www.linkedin.com/in/pranav-kalakota" target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center text-gray-700 hover:text-indigo-600 transition-colors group">
+                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                 </svg>
                                 <span>LinkedIn Profile</span>
                             </a>
-                            <a href="https://github.com/pranavkalakota" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-gray-900 transition-colors group">
-                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+                            <a href="https://github.com/pranavkalakota" target="_blank" rel="noopener noreferrer"
+                                class="flex items-center text-gray-700 hover:text-gray-900 transition-colors group">
+                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>GitHub Profile</span>
                             </a>
-                            <a href="assets/resume.pdf" target="_blank" download class="flex items-center text-gray-700 hover:text-indigo-600 transition-colors group">
-                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            <a href="assets/resume.pdf" target="_blank" download
+                                class="flex items-center text-gray-700 hover:text-indigo-600 transition-colors group">
+                                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                                 <span>Download Resume</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="text-center pt-8 border-t border-gray-200">
                     <p class="text-gray-600">Let's build something amazing together!</p>
                 </div>
@@ -692,4 +871,5 @@
     <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
+
 </html>

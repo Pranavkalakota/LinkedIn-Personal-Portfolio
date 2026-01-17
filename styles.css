@@ -49,6 +49,136 @@ html {
     scroll-behavior: smooth;
 }
 
+/* ===== ANIMATED NETWORK BACKGROUND ===== */
+/* Black background with network visualization */
+#animated-background {
+    background: #000000;
+    overflow: hidden;
+}
+
+#network-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* PK Initials in top left corner */
+.pk-initials {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(0, 255, 200, 0.2);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    z-index: 2;
+    user-select: none;
+    pointer-events: none;
+    text-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+}
+
+/* Make all sections have relative positioning and appear above background */
+section {
+    position: relative;
+    z-index: 10;
+}
+
+/* Update section backgrounds to be semi-transparent or solid to scroll over network */
+#hero {
+    background: transparent !important;
+}
+
+#about {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#experience {
+    background: rgba(249, 250, 251, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#projects {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#research {
+    background: rgba(249, 250, 251, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#skills {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#education {
+    background: rgba(249, 250, 251, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#volunteering {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#contact {
+    background: rgba(249, 250, 251, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+footer {
+    position: relative;
+    z-index: 10;
+    background: rgba(17, 24, 39, 0.98) !important;
+}
+
+/* Hero section text color adjustments for dark background */
+#hero h1 {
+    color: #ffffff !important;
+}
+
+#hero p {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#hero .text-indigo-600 {
+    color: #00ffc8 !important;
+}
+
+#hero .text-gray-700 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#hero .social-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#hero .social-link:hover {
+    color: #00ffc8 !important;
+}
+
+/* Hero profile image on dark background */
+#hero img {
+    border-color: rgba(0, 255, 200, 0.3) !important;
+    box-shadow: 0 0 40px rgba(0, 255, 200, 0.3) !important;
+}
+
+/* Hero CTA button styling for dark background */
+#hero a[href="#projects"] {
+    background: linear-gradient(135deg, #00c9a7 0%, #00ffc8 100%) !important;
+    color: #000 !important;
+}
+
+#hero a[href="#projects"]:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 200, 0.5) !important;
+}
+
+
 /* Navigation Styles */
 #navbar {
     transition: all 0.3s ease;
