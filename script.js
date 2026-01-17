@@ -436,8 +436,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Real-time validation on input
+    // Real-time validation on input and blur
     if (nameField) {
+        // Clear error on input
         nameField.addEventListener('input', function () {
             if (this.value.length > MAX_NAME_LENGTH) {
                 showError(nameField, nameError, `Name must be ${MAX_NAME_LENGTH} characters or less.`);
@@ -445,12 +446,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 hideError(nameField, nameError);
             }
         });
+
+        // specific check on blur
+        nameField.addEventListener('blur', function () {
+            if (!this.value.trim()) {
+                showError(nameField, nameError, 'Name is required.');
+            }
+        });
     }
 
     if (emailField) {
         emailField.addEventListener('blur', function () {
-            if (this.value.trim()) {
-                const result = validateEmail(this.value.trim());
+            const emailVal = this.value.trim();
+            if (!emailVal) {
+                showError(emailField, emailError, 'Email is required.');
+            } else {
+                const result = validateEmail(emailVal);
                 if (!result.valid) {
                     showError(emailField, emailError, result.message);
                 } else {
@@ -470,6 +481,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 showError(subjectField, subjectError, `Subject must be ${MAX_SUBJECT_LENGTH} characters or less.`);
             } else {
                 hideError(subjectField, subjectError);
+            }
+        });
+    }
+
+    // Add validation for message field on blur
+    if (messageField) {
+        messageField.addEventListener('blur', function () {
+            if (!this.value.trim()) {
+                showError(messageField, messageError, 'Message is required.');
+            }
+        });
+
+        // Note: Input listener for message is already handled in the character counter block above
+        // We need to ensure it also hides the "required" error if user starts typing
+        const existingInputHandler = messageField.oninput; // This might not capture addEventListener, but we can just add another listener
+        messageField.addEventListener('input', function () {
+            if (this.value.trim().length > 0 && this.value.length <= MAX_MESSAGE_LENGTH) {
+                hideError(messageField, messageError);
             }
         });
     }
