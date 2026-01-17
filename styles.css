@@ -842,6 +842,8 @@ a,
 .project-title,
 .skills-title,
 .education-title,
+.volunteering-title,
+.contact-title,
 .gradient-text {
     background: linear-gradient(135deg, #1f2937 0%, #4f46e5 25%, #7c3aed 50%, #ec4899 75%, #4f46e5 100%);
     -webkit-background-clip: text;
@@ -857,7 +859,9 @@ a,
 .research-title::after,
 .project-title::after,
 .skills-title::after,
-.education-title::after {
+.education-title::after,
+.volunteering-title::after,
+.contact-title::after {
     display: none;
 }
 
