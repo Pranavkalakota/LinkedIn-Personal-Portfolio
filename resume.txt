@@ -1,0 +1,81 @@
+Pranav Kalakota
+West Lafayette, IN| +1 702-858-4117| pkalakot@purdue.edu|www.linkedin.com/in/pranav-kalakota
+EDUCATION
+Purdue University West Lafayette, IN
+Bachelor of Science Expected May 2029
+Major in Computer Science
+Relevant Coursework: Programming in C, The Data Mine Seminar II, Introduction to Statistics, Linear Algebra, Object-Oriented
+Programming, Discrete Mathematics
+WORK EXPERIENCE
+Southern Hills Hospital
+Las Vegas, NV
+Volunteer Medical Assistant August 2023– January 2025
+●
+Supported 50+ patients weekly by streamlining intake and assisting medical staff during peak hours.
+●
+Collaborated on community outreach initiatives, including child-centered health education events.
+Summer Business Institute Program (SBI) Las Vegas, NV
+Intern / Team Member June 2024– August 2024
+●
+Resolved 25+ IT issues for the City of Henderson across multiple departments, improving operational uptime.
+●
+Automated and organized datasets for Police & Fire Departments, improving data accessibility and efficiency.
+●
+Collaborated in daily stand-ups with a 10-member agile-style team, boosting productivity by 5%.
+Kumon North America Las Vegas, NV
+Center Assistant May 2025 – August 2025
+●
+Automated the grading system using database queries, increasing workflow efficiency by 10%.
+●
+Tutored 100+ students across math and reading, contributing to 5% higher progression rates.
+RESEARCH PROJECTS
+Experimental Equine Airway Dust Research Project - Vertically Integrated Projects August 2025 - Present
+Team Lead
+●
+Only Computer Science student selected from 10+ peers, bringing programming expertise to an engineering-focused fluid
+mechanics team.
+●
+Contributed to the design and development of a wind tunnel replicating equine respiratory pathways, integrating
+computational thinking into a mechanical engineering challenge.
+●
+Collaborated on aerodynamic data acquisition and analysis, ensuring results aligned with physiological accuracy and research
+standards.
+●
+Demonstrated ability to bridge CS with applied engineering, cross-disciplinary teamwork, and problem-solving in real-world
+research.
+UNLV Office Of Undergraduate Research Education Program
+October 2023– April 2024
+Researcher
+●
+●
+●
+Partnered with undergraduate researchers and a PhD mentor to perform data mining and analysis under strict deadlines.
+Conducted research about levels of GABA and Glutamate in Autistic vs. Allistic patients.
+Ensured research validity by applying computational methods to maintain academic rigor.
+PROJECTS
+MeetMind August 2025– Present
+Member
+●
+●
+Currently working under a project manager and 8 other groupmates to build an AI meeting companion app using AI/ML
+and Natural Language Processing (NLPs).
+Using and learning JSON to send data between the backend and frontend.
+VibeCheck
+Co-Founder
+August 2025– Present
+●
+Working to develop a software platform with peers that automatically scans source code for security vulnerabilities by
+integrating a custom-built library to detect insecure patterns, exposed secrets, unsafe functions, and weak configurations.
+HONORS & ACHIEVEMENTS
+●
+●
+●
+Harvard Book Prize Nominee – recognized for academic excellence, leadership, and intellectual curiosity across disciplines.
+Science Olympiad, Astronomy – 3rd Place (State, Division C) – applied data analysis and critical problem-solving under
+competitive, time-constrained conditions.
+Science Olympiad, Ornithology – 5th Place (State, Division C) – demonstrated strong research, memory, and application
+skills in scientific domains.
+ADDITIONAL
+Technical Skills: Java, SQLite, R, Rapid Prototyping, Prompt Engineering
+Tools & Platforms: Git, Jupyter Notebook (basic)
+Concepts: Databases, Object-oriented programming, Simulations
