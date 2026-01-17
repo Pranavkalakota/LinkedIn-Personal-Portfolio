@@ -839,7 +839,10 @@ a,
 /* Section Titles - Enhanced Gradient Animation */
 .experience-title,
 .research-title,
-.project-title {
+.project-title,
+.skills-title,
+.education-title,
+.gradient-text {
     background: linear-gradient(135deg, #1f2937 0%, #4f46e5 25%, #7c3aed 50%, #ec4899 75%, #4f46e5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -849,19 +852,13 @@ a,
     position: relative;
 }
 
+/* Remove underline effect */
 .experience-title::after,
 .research-title::after,
-.project-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #4f46e5, #7c3aed);
-    border-radius: 2px;
-    animation: underlineGrow 1.2s ease-out 0.5s forwards;
+.project-title::after,
+.skills-title::after,
+.education-title::after {
+    display: none;
 }
 
 @keyframes underlineGrow {
