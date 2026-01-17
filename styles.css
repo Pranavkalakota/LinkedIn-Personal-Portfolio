@@ -64,77 +64,307 @@ html {
     height: 100%;
 }
 
-/* PK Initials in top left corner */
-.pk-initials {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    font-size: 4rem;
-    font-weight: 900;
-    color: rgba(0, 255, 200, 0.2);
-    font-family: 'Inter', sans-serif;
-    letter-spacing: -0.05em;
-    z-index: 2;
-    user-select: none;
-    pointer-events: none;
-    text-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
-}
-
 /* Make all sections have relative positioning and appear above background */
 section {
     position: relative;
     z-index: 10;
 }
 
-/* Update section backgrounds to be semi-transparent or solid to scroll over network */
+/* Update section backgrounds to blend with network background */
 #hero {
     background: transparent !important;
 }
 
 #about {
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(0, 10, 20, 0.85) !important;
     backdrop-filter: blur(10px);
 }
 
 #experience {
-    background: rgba(249, 250, 251, 0.95) !important;
+    background: rgba(0, 15, 25, 0.9) !important;
     backdrop-filter: blur(10px);
 }
 
 #projects {
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(0, 10, 20, 0.85) !important;
     backdrop-filter: blur(10px);
 }
 
 #research {
-    background: rgba(249, 250, 251, 0.95) !important;
+    background: rgba(0, 15, 25, 0.9) !important;
     backdrop-filter: blur(10px);
 }
 
 #skills {
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(0, 10, 20, 0.85) !important;
     backdrop-filter: blur(10px);
 }
 
 #education {
-    background: rgba(249, 250, 251, 0.95) !important;
+    background: rgba(0, 15, 25, 0.9) !important;
     backdrop-filter: blur(10px);
 }
 
 #volunteering {
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(0, 10, 20, 0.85) !important;
     backdrop-filter: blur(10px);
 }
 
 #contact {
-    background: rgba(249, 250, 251, 0.95) !important;
+    background: rgba(0, 15, 25, 0.9) !important;
     backdrop-filter: blur(10px);
 }
 
 footer {
     position: relative;
     z-index: 10;
-    background: rgba(17, 24, 39, 0.98) !important;
+    background: rgba(0, 5, 15, 0.95) !important;
+}
+
+/* ===== DARK THEME TEXT COLORS FOR ALL SECTIONS ===== */
+
+/* About Section Dark Theme */
+#about h2,
+#about h3 {
+    color: #ffffff !important;
+}
+
+#about p,
+#about .text-gray-700 {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#about .text-gray-600 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#about .grid>div {
+    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#about .text-indigo-600,
+#about .text-purple-600,
+#about .text-pink-600,
+#about .text-blue-600 {
+    color: #00ffc8 !important;
+}
+
+/* Experience Section Dark Theme */
+#experience h2,
+#experience h3 {
+    color: #ffffff !important;
+}
+
+#experience p,
+#experience li,
+#experience .text-gray-700 {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#experience .text-gray-600 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#experience .experience-card {
+    background: rgba(0, 20, 40, 0.6) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#experience .text-indigo-600,
+#experience .text-purple-600,
+#experience .text-pink-600,
+#experience .text-blue-600,
+#experience .text-green-600,
+#experience .text-yellow-600 {
+    color: #00ffc8 !important;
+}
+
+/* Projects Section Dark Theme */
+#projects h2,
+#projects h3 {
+    color: #ffffff !important;
+}
+
+#projects p,
+#projects .text-gray-600,
+#projects .text-gray-700 {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#projects .project-card {
+    background: rgba(0, 20, 40, 0.7) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2) !important;
+}
+
+#projects .tech-tag {
+    background: rgba(0, 150, 200, 0.2) !important;
+    color: #00ffc8 !important;
+    border-color: rgba(0, 200, 200, 0.3) !important;
+}
+
+/* Research Section Dark Theme */
+#research h2,
+#research h3 {
+    color: #ffffff !important;
+}
+
+#research p,
+#research li,
+#research .text-gray-700 {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#research .text-gray-600 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#research .research-card {
+    background: rgba(0, 20, 40, 0.6) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#research .text-indigo-600,
+#research .text-purple-600 {
+    color: #00ffc8 !important;
+}
+
+/* Skills Section Dark Theme */
+#skills h2,
+#skills h3 {
+    color: #ffffff !important;
+}
+
+#skills>div>div>div>div {
+    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#skills span {
+    background: rgba(0, 20, 40, 0.8) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Education Section Dark Theme */
+#education h2,
+#education h3,
+#education h4 {
+    color: #ffffff !important;
+}
+
+#education p,
+#education .text-gray-700,
+#education .text-gray-600 {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#education .bg-white {
+    background: rgba(0, 20, 40, 0.6) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#education .bg-gradient-to-br {
+    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#education .text-indigo-600,
+#education .text-purple-600 {
+    color: #00ffc8 !important;
+}
+
+#education .bg-indigo-50 {
+    background: rgba(0, 150, 200, 0.2) !important;
+    color: #00ffc8 !important;
+}
+
+/* Volunteering Section Dark Theme */
+#volunteering h2,
+#volunteering h3 {
+    color: #ffffff !important;
+}
+
+#volunteering p,
+#volunteering li,
+#volunteering .text-gray-700 {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#volunteering .text-gray-600 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#volunteering .bg-gradient-to-br {
+    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#volunteering .text-blue-600,
+#volunteering .text-red-600 {
+    color: #00ffc8 !important;
+}
+
+/* Contact Section Dark Theme */
+#contact h2,
+#contact h3 {
+    color: #ffffff !important;
+}
+
+#contact p,
+#contact span,
+#contact .text-gray-700,
+#contact .text-gray-600 {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#contact .bg-white {
+    background: rgba(0, 20, 40, 0.7) !important;
+    border: 1px solid rgba(0, 200, 200, 0.2);
+}
+
+#contact a {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#contact a:hover {
+    color: #00ffc8 !important;
+}
+
+/* Contact Form Dark Theme */
+#contact form label {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+#contact form input,
+#contact form textarea {
+    background: rgba(0, 30, 50, 0.8) !important;
+    border-color: rgba(0, 200, 200, 0.3) !important;
+    color: #ffffff !important;
+}
+
+#contact form input::placeholder,
+#contact form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+#contact form input:focus,
+#contact form textarea:focus {
+    border-color: #00ffc8 !important;
+    box-shadow: 0 0 0 3px rgba(0, 255, 200, 0.2) !important;
+}
+
+#contact form button[type="submit"] {
+    background: linear-gradient(135deg, #00c9a7 0%, #00ffc8 100%) !important;
+    color: #000 !important;
+}
+
+#contact form button[type="submit"]:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 200, 0.4) !important;
+}
+
+/* Footer Dark Theme */
+footer p {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* Hero section text color adjustments for dark background */

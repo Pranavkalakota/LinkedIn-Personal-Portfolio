@@ -327,13 +327,57 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Form validation (if contact form is added later)
+    // Contact Form Submission with Formspree
     const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formStatus = document.getElementById('form-status');
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
-            // Add form submission logic here
-            console.log('Form submitted');
+
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success
+                    formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+                    formStatus.className = 'text-center text-sm mt-4 text-green-400';
+                    formStatus.classList.remove('hidden');
+                    contactForm.reset();
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formStatus.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    // Error from server
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                // Show error message
+                formStatus.textContent = '✗ Something went wrong. Please try emailing me directly.';
+                formStatus.className = 'text-center text-sm mt-4 text-red-400';
+                formStatus.classList.remove('hidden');
+            } finally {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            }
         });
     }
 
