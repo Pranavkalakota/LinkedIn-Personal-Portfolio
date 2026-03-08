@@ -8,28 +8,6 @@
 - **Smooth Scrolling**: Enhanced navigation with animated section transitions
 
 
-## 🚀 Getting Started
-
-### Deployment
-
-This portfolio can be deployed to:
-- **GitHub Pages**: Free hosting for static sites
-- **Vercel**: Excellent performance and easy deployment
-- **Netlify**: Great for static sites with continuous deployment
-
-#### Deploying to GitHub Pages:
-
-1. Push your code to a GitHub repository
-2. Go to repository Settings > Pages
-3. Select your branch and folder (usually `main` and `/root`)
-4. Your site will be live at `https://yourusername.github.io/repository-name`
-
-#### Deploying to Vercel:
-
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run `vercel` in the project directory
-3. Follow the prompts
-
 ## 📝 Customization
 
 ### Updating Content
