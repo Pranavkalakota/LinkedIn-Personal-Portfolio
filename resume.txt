@@ -71,7 +71,7 @@ August 2025– Present
 Working to develop a software platform with peers that automatically scans source code for security vulnerabilities by
 integrating a custom-built library to detect insecure patterns, exposed secrets, unsafe functions, and weak configurations.
 HONORS & ACHIEVEMENTS
-Claude Builder Hackathon – 1st Place (Healthcare Track) – Won top honors for developing an innovative AI solution.
+Claude Builder Hackathon – 1st Place (Healthcare Track) – February 2026 – Won top honors for developing an innovative AI solution.
 Harvard Book Prize Nominee – recognized for academic excellence, leadership, and intellectual curiosity across disciplines.
 Science Olympiad, Astronomy – 3rd Place (State, Division C) – applied data analysis and critical problem-solving under
 competitive, time-constrained conditions.
