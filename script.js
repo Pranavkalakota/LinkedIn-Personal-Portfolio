@@ -208,29 +208,53 @@ document.addEventListener('DOMContentLoaded', function () {
         lastScroll = currentScroll;
     });
 
-    // Smooth scrolling for navigation links
+    // SPA Tab Switching for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');
+
+    function switchTab(targetId) {
+        if (targetId === '#') return;
+        
+        // Hide all sections
+        document.querySelectorAll('.tab-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Show target section
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+            // Scroll to the top of the newly activated section
+            targetSection.scrollTo(0, 0);
+        }
+
+        // Update active class on nav links
+        navLinks.forEach(l => l.classList.remove('active'));
+        document.querySelectorAll(`a[href="${targetId}"]`).forEach(link => {
+            link.classList.add('active');
+        });
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
+            e.preventDefault();
             const href = this.getAttribute('href');
-
-            // Skip if it's just "#"
-            if (href === '#') return;
-
-            const target = document.querySelector(href);
-
-            if (target) {
-                e.preventDefault();
-                const offsetTop = target.offsetTop - 64; // Account for fixed navbar
-
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+            switchTab(href);
+            
+            // Close mobile menu if open
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
             }
         });
     });
+
+    // Make PK logo link act as home (hero section)
+    const logoLink = document.querySelector('a[href="index.html"]');
+    if (logoLink) {
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchTab('#hero');
+        });
+    }
 
     // Enhanced Intersection Observer for fade-in animations with better timing
     const observerOptions = {
@@ -283,28 +307,10 @@ document.addEventListener('DOMContentLoaded', function () {
         cardObserver.observe(card);
     });
 
-    // Add active state to navigation links based on scroll position
-    window.addEventListener('scroll', function () {
-        const scrollPosition = window.pageYOffset + 100;
-
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                const target = document.querySelector(href);
-                if (target) {
-                    const targetTop = target.offsetTop;
-                    const targetBottom = targetTop + target.offsetHeight;
-
-                    if (scrollPosition >= targetTop && scrollPosition < targetBottom) {
-                        // Remove active from all links
-                        navLinks.forEach(l => l.classList.remove('active'));
-                        // Add active to current link
-                        link.classList.add('active');
-                    }
-                }
-            }
-        });
-    });
+    // Initialize first tab as active
+    setTimeout(() => {
+        document.querySelector('.tab-section#hero').classList.add('active');
+    }, 100);
 
     // Handle resume download tracking (optional)
     const resumeLinks = document.querySelectorAll('a[href*="resume"]');

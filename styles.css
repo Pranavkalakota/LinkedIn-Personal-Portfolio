@@ -1,4 +1,5 @@
 /* Custom CSS for Portfolio Website */
+/* Inspired by pranavseelam.com — Executive Dark Theme with Copper/Gold Accents */
 
 /* Screen reader only class */
 .sr-only {
@@ -25,10 +26,22 @@
 }
 
 :root {
-    --primary-color: #4f46e5;
-    --secondary-color: #1f2937;
-    --accent-color: #f9fafb;
+    --primary-color: #c9956b;
+    --secondary-color: #1a1a1a;
+    --accent-color: #f5e6d3;
     --purdue-gold: #cfb991;
+    --copper: #c9956b;
+    --copper-light: #d4a574;
+    --copper-dark: #a07850;
+    --bg-dark: #0a0a0a;
+    --bg-card: rgba(20, 20, 25, 0.8);
+    --bg-card-hover: rgba(30, 30, 35, 0.9);
+    --text-primary: #f0f0f0;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --border-subtle: rgba(201, 149, 107, 0.15);
+    --border-hover: rgba(201, 149, 107, 0.3);
+    --glow-copper: rgba(201, 149, 107, 0.3);
 }
 
 * {
@@ -40,19 +53,19 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #1f2937;
-    scroll-behavior: smooth;
+    color: var(--text-primary);
+    background: var(--bg-dark);
+    overflow: hidden; /* Prevent page scrolling, force SPA tab mode */
 }
 
 /* Smooth scrolling */
 html {
-    scroll-behavior: smooth;
+    font-size: 18px; /* Boost global text scale for a cleaner, larger look */
 }
 
 /* ===== ANIMATED NETWORK BACKGROUND ===== */
-/* Black background with network visualization */
 #animated-background {
-    background: #000000;
+    background: var(--bg-dark);
     overflow: hidden;
 }
 
@@ -64,61 +77,103 @@ html {
     height: 100%;
 }
 
+/* Ambient edge glow — inspired by reference site */
+#animated-background::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(100, 80, 160, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 0%, rgba(60, 80, 180, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 0% 100%, rgba(60, 80, 180, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 100%, rgba(100, 80, 160, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
 /* Make all sections have relative positioning and appear above background */
 section {
     position: relative;
     z-index: 10;
+    min-height: 100vh;
 }
 
-/* Update section backgrounds to blend with network background */
+/* Tab Navigation Styles */
+section.tab-section {
+    position: absolute;
+    top: 64px; /* Default navbar height */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    padding-bottom: 3rem;
+    animation: fadeInTab 0.4s ease-out forwards;
+}
+
+section.tab-section.active {
+    display: block;
+    z-index: 20;
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section backgrounds — unified dark with subtle variation */
 #hero {
     background: transparent !important;
 }
 
 #about {
-    background: rgba(0, 10, 20, 0.85) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(8, 8, 12, 0.88) !important;
+    backdrop-filter: blur(12px);
 }
 
 #experience {
-    background: rgba(0, 15, 25, 0.9) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 14, 0.9) !important;
+    backdrop-filter: blur(12px);
 }
 
 #projects {
-    background: rgba(0, 10, 20, 0.85) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(8, 8, 12, 0.88) !important;
+    backdrop-filter: blur(12px);
 }
 
 #research {
-    background: rgba(0, 15, 25, 0.9) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 14, 0.9) !important;
+    backdrop-filter: blur(12px);
 }
 
 #skills {
-    background: rgba(0, 10, 20, 0.85) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(8, 8, 12, 0.88) !important;
+    backdrop-filter: blur(12px);
 }
 
 #education {
-    background: rgba(0, 15, 25, 0.9) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 14, 0.9) !important;
+    backdrop-filter: blur(12px);
 }
 
 #volunteering {
-    background: rgba(0, 10, 20, 0.85) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(8, 8, 12, 0.88) !important;
+    backdrop-filter: blur(12px);
 }
 
 #contact {
-    background: rgba(0, 15, 25, 0.9) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 14, 0.9) !important;
+    backdrop-filter: blur(12px);
 }
 
 footer {
     position: relative;
     z-index: 10;
-    background: rgba(0, 5, 15, 0.95) !important;
+    background: rgba(5, 5, 8, 0.95) !important;
 }
 
 /* ===== DARK THEME TEXT COLORS FOR ALL SECTIONS ===== */
@@ -131,23 +186,24 @@ footer {
 
 #about p,
 #about .text-gray-700 {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #about .text-gray-600 {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-muted) !important;
 }
 
 #about .grid>div {
-    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
 }
 
 #about .text-indigo-600,
 #about .text-purple-600,
 #about .text-pink-600,
 #about .text-blue-600 {
-    color: #00ffc8 !important;
+    color: var(--copper) !important;
 }
 
 /* Experience Section Dark Theme */
@@ -159,16 +215,17 @@ footer {
 #experience p,
 #experience li,
 #experience .text-gray-700 {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #experience .text-gray-600 {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-muted) !important;
 }
 
 #experience .experience-card {
-    background: rgba(0, 20, 40, 0.6) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-left: 4px solid var(--copper) !important;
 }
 
 #experience .text-indigo-600,
@@ -177,7 +234,7 @@ footer {
 #experience .text-blue-600,
 #experience .text-green-600,
 #experience .text-yellow-600 {
-    color: #00ffc8 !important;
+    color: var(--copper-light) !important;
 }
 
 /* Projects Section Dark Theme */
@@ -189,18 +246,18 @@ footer {
 #projects p,
 #projects .text-gray-600,
 #projects .text-gray-700 {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: var(--text-secondary) !important;
 }
 
 #projects .project-card {
-    background: rgba(0, 20, 40, 0.7) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2) !important;
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
 }
 
 #projects .tech-tag {
-    background: rgba(0, 150, 200, 0.2) !important;
-    color: #00ffc8 !important;
-    border-color: rgba(0, 200, 200, 0.3) !important;
+    background: rgba(201, 149, 107, 0.1) !important;
+    color: var(--copper-light) !important;
+    border-color: var(--border-subtle) !important;
 }
 
 /* Research Section Dark Theme */
@@ -212,21 +269,22 @@ footer {
 #research p,
 #research li,
 #research .text-gray-700 {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #research .text-gray-600 {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-muted) !important;
 }
 
 #research .research-card {
-    background: rgba(0, 20, 40, 0.6) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-left: 4px solid var(--copper) !important;
 }
 
 #research .text-indigo-600,
 #research .text-purple-600 {
-    color: #00ffc8 !important;
+    color: var(--copper-light) !important;
 }
 
 /* Skills Section Dark Theme */
@@ -236,13 +294,15 @@ footer {
 }
 
 #skills>div>div>div>div {
-    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
 }
 
 #skills span {
-    background: rgba(0, 20, 40, 0.8) !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(201, 149, 107, 0.08) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-subtle);
 }
 
 /* Education Section Dark Theme */
@@ -255,27 +315,27 @@ footer {
 #education p,
 #education .text-gray-700,
 #education .text-gray-600 {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #education .bg-white {
-    background: rgba(0, 20, 40, 0.6) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle);
 }
 
 #education .bg-gradient-to-br {
-    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle);
 }
 
 #education .text-indigo-600,
 #education .text-purple-600 {
-    color: #00ffc8 !important;
+    color: var(--copper-light) !important;
 }
 
 #education .bg-indigo-50 {
-    background: rgba(0, 150, 200, 0.2) !important;
-    color: #00ffc8 !important;
+    background: rgba(201, 149, 107, 0.1) !important;
+    color: var(--copper-light) !important;
 }
 
 /* Volunteering Section Dark Theme */
@@ -287,21 +347,21 @@ footer {
 #volunteering p,
 #volunteering li,
 #volunteering .text-gray-700 {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #volunteering .text-gray-600 {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-muted) !important;
 }
 
 #volunteering .bg-gradient-to-br {
-    background: linear-gradient(135deg, rgba(0, 100, 150, 0.2), rgba(0, 150, 200, 0.1)) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle);
 }
 
 #volunteering .text-blue-600,
 #volunteering .text-red-600 {
-    color: #00ffc8 !important;
+    color: var(--copper-light) !important;
 }
 
 /* Contact Section Dark Theme */
@@ -314,57 +374,58 @@ footer {
 #contact span,
 #contact .text-gray-700,
 #contact .text-gray-600 {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #contact .bg-white {
-    background: rgba(0, 20, 40, 0.7) !important;
-    border: 1px solid rgba(0, 200, 200, 0.2);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle);
 }
 
 #contact a {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #contact a:hover {
-    color: #00ffc8 !important;
+    color: var(--copper) !important;
 }
 
 /* Contact Form Dark Theme */
 #contact form label {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: var(--text-primary) !important;
 }
 
 #contact form input,
 #contact form textarea {
-    background: rgba(0, 30, 50, 0.8) !important;
-    border-color: rgba(0, 200, 200, 0.3) !important;
+    background: rgba(15, 15, 20, 0.9) !important;
+    border-color: var(--border-subtle) !important;
     color: #ffffff !important;
 }
 
 #contact form input::placeholder,
 #contact form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.4) !important;
+    color: var(--text-muted) !important;
 }
 
 #contact form input:focus,
 #contact form textarea:focus {
-    border-color: #00ffc8 !important;
-    box-shadow: 0 0 0 3px rgba(0, 255, 200, 0.2) !important;
+    border-color: var(--copper) !important;
+    box-shadow: 0 0 0 3px rgba(201, 149, 107, 0.15) !important;
 }
 
 #contact form button[type="submit"] {
-    background: linear-gradient(135deg, #00c9a7 0%, #00ffc8 100%) !important;
-    color: #000 !important;
+    background: linear-gradient(135deg, var(--copper-dark) 0%, var(--copper) 50%, var(--copper-light) 100%) !important;
+    color: #fff !important;
+    font-weight: 600;
 }
 
 #contact form button[type="submit"]:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 200, 0.4) !important;
+    box-shadow: 0 0 30px rgba(201, 149, 107, 0.3) !important;
 }
 
 /* Footer Dark Theme */
 footer p {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-muted) !important;
 }
 
 /* Hero section text color adjustments for dark background */
@@ -373,39 +434,39 @@ footer p {
 }
 
 #hero p {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 #hero .text-indigo-600 {
-    color: #00ffc8 !important;
+    color: var(--copper) !important;
 }
 
 #hero .text-gray-700 {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-muted) !important;
 }
 
 #hero .social-link {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-muted) !important;
 }
 
 #hero .social-link:hover {
-    color: #00ffc8 !important;
+    color: var(--copper) !important;
 }
 
 /* Hero profile image on dark background */
 #hero img {
-    border-color: rgba(0, 255, 200, 0.3) !important;
-    box-shadow: 0 0 40px rgba(0, 255, 200, 0.3) !important;
+    border-color: var(--border-hover) !important;
+    box-shadow: 0 0 40px rgba(201, 149, 107, 0.2) !important;
 }
 
-/* Hero CTA button styling for dark background */
+/* Hero CTA button — copper gradient */
 #hero a[href="#projects"] {
-    background: linear-gradient(135deg, #00c9a7 0%, #00ffc8 100%) !important;
-    color: #000 !important;
+    background: linear-gradient(135deg, var(--copper-dark) 0%, var(--copper) 50%, var(--copper-light) 100%) !important;
+    color: #fff !important;
 }
 
 #hero a[href="#projects"]:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 200, 0.5) !important;
+    box-shadow: 0 0 30px rgba(201, 149, 107, 0.4) !important;
 }
 
 
@@ -415,7 +476,7 @@ footer p {
 }
 
 #navbar.scrolled {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link {
@@ -431,7 +492,7 @@ footer p {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: var(--copper);
     transition: width 0.3s ease;
 }
 
@@ -484,11 +545,11 @@ footer p {
 
     0%,
     100% {
-        box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.2);
+        box-shadow: 0 10px 15px -3px rgba(201, 149, 107, 0.3), 0 4px 6px -2px rgba(201, 149, 107, 0.15);
     }
 
     50% {
-        box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4), 0 10px 10px -5px rgba(79, 70, 229, 0.2);
+        box-shadow: 0 20px 25px -5px rgba(201, 149, 107, 0.4), 0 10px 10px -5px rgba(201, 149, 107, 0.2);
     }
 }
 
@@ -577,7 +638,7 @@ footer p {
     }
 }
 
-/* Project Cards - Enhanced Animations with 3D */
+/* Project Cards - Enhanced Animations */
 .project-card {
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0;
@@ -617,7 +678,8 @@ footer p {
 
 .project-card:hover {
     transform: translateY(-16px) scale(1.03) rotateX(2deg);
-    box-shadow: 0 30px 60px -15px rgba(79, 70, 229, 0.4), 0 10px 25px -10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 30px 60px -15px rgba(201, 149, 107, 0.2), 0 10px 25px -10px rgba(0, 0, 0, 0.3);
+    border-color: var(--border-hover) !important;
 }
 
 .project-card::before {
@@ -629,7 +691,7 @@ footer p {
     bottom: 0;
     border-radius: 0.75rem;
     padding: 2px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+    background: linear-gradient(135deg, rgba(201, 149, 107, 0.1), rgba(201, 149, 107, 0.05));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -650,7 +712,7 @@ footer p {
 
 .tech-tag:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
 /* Tech Badge Pulse Animation */
@@ -664,12 +726,12 @@ footer p {
     0%,
     100% {
         opacity: 1;
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+        box-shadow: 0 0 0 0 rgba(201, 149, 107, 0.5);
     }
 
     50% {
         opacity: 0.95;
-        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+        box-shadow: 0 0 0 8px rgba(201, 149, 107, 0);
     }
 }
 
@@ -677,50 +739,63 @@ footer p {
     animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Project Title Animation */
-.project-title {
-    background: linear-gradient(135deg, #1f2937 0%, #4f46e5 50%, #7c3aed 100%);
+/* Section Title — Warm Gradient Animation */
+.experience-title,
+.research-title,
+.project-title,
+.skills-title,
+.education-title,
+.volunteering-title,
+.contact-title,
+.gradient-text {
+    background: linear-gradient(135deg, #f0f0f0 0%, var(--copper-light) 25%, var(--copper) 50%, var(--copper-dark) 75%, var(--copper-light) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradientShift 3s ease infinite;
-    background-size: 200% auto;
+    animation: gradientShift 8s ease infinite;
+    background-size: 300% 300%;
+    position: relative;
 }
 
-@keyframes gradientShift {
+/* Remove underline effect */
+.experience-title::after,
+.research-title::after,
+.project-title::after,
+.skills-title::after,
+.education-title::after,
+.volunteering-title::after,
+.contact-title::after {
+    display: none;
+}
 
-    0%,
-    100% {
-        background-position: 0% center;
-    }
-
-    50% {
-        background-position: 100% center;
+@keyframes underlineGrow {
+    to {
+        width: 80px;
     }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — Dark Theme */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--bg-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
+    background: rgba(201, 149, 107, 0.3);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgba(201, 149, 107, 0.5);
 }
 
 /* Focus Styles for Accessibility */
 a:focus,
 button:focus {
-    outline: 2px solid var(--primary-color);
+    outline: 2px solid var(--copper);
     outline-offset: 2px;
 }
 
@@ -785,7 +860,7 @@ a,
 
 /* Gradient text effect */
 .gradient-text {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--copper-light) 0%, var(--copper) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -793,12 +868,12 @@ a,
 
 /* Custom selection color */
 ::selection {
-    background-color: var(--primary-color);
+    background-color: var(--copper);
     color: white;
 }
 
 ::-moz-selection {
-    background-color: var(--primary-color);
+    background-color: var(--copper);
     color: white;
 }
 
@@ -836,41 +911,6 @@ a,
     transform: translateY(0);
 }
 
-/* Section Titles - Enhanced Gradient Animation */
-.experience-title,
-.research-title,
-.project-title,
-.skills-title,
-.education-title,
-.volunteering-title,
-.contact-title,
-.gradient-text {
-    background: linear-gradient(135deg, #1f2937 0%, #4f46e5 25%, #7c3aed 50%, #ec4899 75%, #4f46e5 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 8s ease infinite;
-    background-size: 300% 300%;
-    position: relative;
-}
-
-/* Remove underline effect */
-.experience-title::after,
-.research-title::after,
-.project-title::after,
-.skills-title::after,
-.education-title::after,
-.volunteering-title::after,
-.contact-title::after {
-    display: none;
-}
-
-@keyframes underlineGrow {
-    to {
-        width: 80px;
-    }
-}
-
 /* Enhanced border animations */
 .experience-card,
 .research-card {
@@ -886,7 +926,7 @@ a,
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(201, 149, 107, 0.1), transparent);
     transition: left 0.5s ease;
 }
 
@@ -947,8 +987,8 @@ a,
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 70% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+    background: radial-gradient(circle at 30% 50%, rgba(201, 149, 107, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(100, 80, 160, 0.04) 0%, transparent 50%);
     animation: floatBubbles 20s ease-in-out infinite;
     pointer-events: none;
 }
@@ -988,7 +1028,7 @@ a,
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     transform: translate(-50%, -50%);
     transition: width 0.6s ease, height 0.6s ease;
 }
@@ -1000,7 +1040,7 @@ a,
 
 .fade-in a[href="#projects"]:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.5);
+    box-shadow: 0 20px 40px -10px rgba(201, 149, 107, 0.4);
 }
 
 /* About section stats cards - Enhanced */
@@ -1017,7 +1057,7 @@ a,
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(201, 149, 107, 0.15) 50%, transparent 70%);
     transform: rotate(45deg);
     transition: all 0.6s ease;
     opacity: 0;
@@ -1030,7 +1070,8 @@ a,
 
 #about .grid>div:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 20px 40px -10px rgba(201, 149, 107, 0.15);
+    border-color: var(--border-hover);
 }
 
 /* Smooth gradient animations */
@@ -1052,7 +1093,8 @@ a,
 .experience-card:hover,
 .research-card:hover {
     transform: translateY(-6px) translateX(8px) scale(1.02);
-    box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.25);
+    box-shadow: 0 20px 40px -10px rgba(201, 149, 107, 0.15);
+    border-color: var(--border-hover) !important;
 }
 
 /* Skill tags with stagger animation */
@@ -1112,7 +1154,8 @@ a,
 
 #skills>div>div>div>div:hover {
     transform: translateY(-10px) rotate(-2deg);
-    box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 25px 50px -12px rgba(201, 149, 107, 0.15);
+    border-color: var(--border-hover);
 }
 
 #skills>div>div>div>div:hover span {
@@ -1132,7 +1175,7 @@ a,
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, #4f46e5, #7c3aed, #ec4899, #4f46e5);
+    background: linear-gradient(45deg, var(--copper-dark), var(--copper), var(--copper-light), var(--copper-dark));
     background-size: 300% 300%;
     border-radius: inherit;
     z-index: -1;
@@ -1142,7 +1185,7 @@ a,
 }
 
 #contact .bg-white:hover::before {
-    opacity: 0.15;
+    opacity: 0.1;
 }
 
 /* Smooth link transitions with underline effect */
@@ -1157,7 +1200,7 @@ a,
     left: 0;
     width: 0;
     height: 2px;
-    background: currentColor;
+    background: var(--copper);
     transition: width 0.3s ease;
 }
 
@@ -1167,8 +1210,8 @@ a,
 
 /* Navbar enhancement */
 #navbar {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 /* Improved mobile menu animation */
@@ -1195,7 +1238,7 @@ a,
 
 /* Profile image glow effect */
 .fade-in img {
-    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+    box-shadow: 0 0 0 0 rgba(201, 149, 107, 0.3);
     animation: fadeIn 1.2s ease 0.3s both, float 3s ease-in-out 1.5s infinite, pulseGlow 3s ease-in-out 2s infinite;
 }
 
@@ -1203,18 +1246,18 @@ a,
 
     0%,
     100% {
-        box-shadow: 0 0 20px 0 rgba(79, 70, 229, 0.3);
+        box-shadow: 0 0 20px 0 rgba(201, 149, 107, 0.2);
     }
 
     50% {
-        box-shadow: 0 0 40px 10px rgba(79, 70, 229, 0.5);
+        box-shadow: 0 0 40px 10px rgba(201, 149, 107, 0.35);
     }
 }
 
 /* Enhanced tech tag hover */
 .tech-tag:hover {
     transform: translateY(-4px) rotate(2deg);
-    box-shadow: 0 8px 16px -4px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 8px 16px -4px rgba(201, 149, 107, 0.2);
 }
 
 /* Improved scroll indicator animations */
@@ -1249,7 +1292,7 @@ footer {
 
 #education .space-y-4>div:hover {
     transform: translateX(8px) scale(1.02);
-    box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 10px 30px -10px rgba(201, 149, 107, 0.15);
 }
 
 /* Volunteering cards */
@@ -1259,5 +1302,5 @@ footer {
 
 #volunteering>div>div>div:hover {
     transform: scale(1.03);
-    box-shadow: 0 15px 40px -10px rgba(79, 70, 229, 0.25);
+    box-shadow: 0 15px 40px -10px rgba(201, 149, 107, 0.15);
 }
