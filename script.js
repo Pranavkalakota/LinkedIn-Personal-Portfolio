@@ -1,180 +1,92 @@
 // Portfolio Website JavaScript
 
-// ===== NETWORK BACKGROUND ANIMATION =====
-(function initNetworkBackground() {
+// Subtle particle network background (visual only — no functionality impact)
+function initNetworkBackground() {
     const canvas = document.getElementById('network-canvas');
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    let animationId;
-    let nodes = [];
-    const nodeCount = 80;
-    const connectionDistance = 150;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-    // Resize canvas to fill window
-    function resizeCanvas() {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId;
+    const particleCount = 48;
+    const connectionDistance = 140;
+    const particleColor = 'rgba(148, 163, 184, 0.35)';
+    const lineColor = 'rgba(37, 99, 235, 0.08)';
+
+    function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
 
-    // Node class
-    class Node {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.radius = Math.random() * 2 + 1;
-            // Colors: blue, cyan, green variations
-            const colors = [
-                { r: 0, g: 150, b: 255 },    // Blue
-                { r: 0, g: 200, b: 200 },    // Cyan
-                { r: 0, g: 255, b: 150 },    // Green-cyan
-                { r: 0, g: 180, b: 230 },    // Light blue
-                { r: 0, g: 220, b: 180 },    // Teal
-            ];
-            this.color = colors[Math.floor(Math.random() * colors.length)];
-        }
-
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Bounce off edges
-            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-            // Keep in bounds
-            this.x = Math.max(0, Math.min(canvas.width, this.x));
-            this.y = Math.max(0, Math.min(canvas.height, this.y));
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0.8)`;
-            ctx.fill();
-
-            // Glow effect
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius * 3, 0, Math.PI * 2);
-            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
-            gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0.3)`);
-            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-            ctx.fillStyle = gradient;
-            ctx.fill();
-        }
+    function createParticles() {
+        particles = Array.from({ length: particleCount }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            radius: Math.random() * 1.2 + 0.6
+        }));
     }
 
-    // Initialize nodes
-    function initNodes() {
-        nodes = [];
-        for (let i = 0; i < nodeCount; i++) {
-            nodes.push(new Node());
-        }
-    }
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw connections between nearby nodes
-    function drawConnections() {
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const dx = nodes[i].x - nodes[j].x;
-                const dy = nodes[i].y - nodes[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+        particles.forEach((p, i) => {
+            p.x += p.vx;
+            p.y += p.vy;
 
-                if (distance < connectionDistance) {
-                    const opacity = (1 - distance / connectionDistance) * 0.5;
+            if (p.x <= 0 || p.x >= canvas.width) p.vx *= -1;
+            if (p.y <= 0 || p.y >= canvas.height) p.vy *= -1;
 
-                    // Gradient line
-                    const gradient = ctx.createLinearGradient(
-                        nodes[i].x, nodes[i].y,
-                        nodes[j].x, nodes[j].y
-                    );
-                    gradient.addColorStop(0, `rgba(${nodes[i].color.r}, ${nodes[i].color.g}, ${nodes[i].color.b}, ${opacity})`);
-                    gradient.addColorStop(1, `rgba(${nodes[j].color.r}, ${nodes[j].color.g}, ${nodes[j].color.b}, ${opacity})`);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = particleColor;
+            ctx.fill();
 
+            for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                const dx = p.x - p2.x;
+                const dy = p.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < connectionDistance) {
                     ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.strokeStyle = gradient;
-                    ctx.lineWidth = 1;
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = lineColor;
+                    ctx.lineWidth = 0.6;
                     ctx.stroke();
                 }
             }
-        }
-    }
-
-    // Draw grid pattern
-    function drawGrid() {
-        const gridSize = 60;
-        ctx.strokeStyle = 'rgba(0, 100, 150, 0.1)';
-        ctx.lineWidth = 0.5;
-
-        // Vertical lines
-        for (let x = 0; x < canvas.width; x += gridSize) {
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, canvas.height);
-            ctx.stroke();
-        }
-
-        // Horizontal lines
-        for (let y = 0; y < canvas.height; y += gridSize) {
-            ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(canvas.width, y);
-            ctx.stroke();
-        }
-
-        // Diagonal lines for geometric pattern
-        ctx.strokeStyle = 'rgba(0, 150, 200, 0.05)';
-        for (let x = -canvas.height; x < canvas.width + canvas.height; x += gridSize * 2) {
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x + canvas.height, canvas.height);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.moveTo(x + canvas.height, 0);
-            ctx.lineTo(x, canvas.height);
-            ctx.stroke();
-        }
-    }
-
-    // Animation loop
-    function animate() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Clear with slight fade for trail effect
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.95)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        drawGrid();
-        drawConnections();
-
-        nodes.forEach(node => {
-            node.update();
-            node.draw();
         });
 
-        animationId = requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(draw);
     }
 
-    // Handle resize
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initNodes();
-    });
+    resize();
+    createParticles();
+    draw();
 
-    // Start
-    resizeCanvas();
-    initNodes();
-    animate();
-})();
+    window.addEventListener('resize', debounce(() => {
+        resize();
+        createParticles();
+    }, 200));
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            cancelAnimationFrame(animationId);
+        } else {
+            draw();
+        }
+    });
+}
 
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function () {
+    initNetworkBackground();
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -695,7 +607,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Console message
-    console.log('%c👋 Hello! Welcome to my portfolio.', 'color: #4f46e5; font-size: 16px; font-weight: bold;');
+    console.log('%c👋 Hello! Welcome to my portfolio.', 'color: #2563EB; font-size: 16px; font-weight: bold;');
     console.log('%cInterested in collaborating? Reach out via the contact section!', 'color: #6b7280; font-size: 12px;');
 });
 

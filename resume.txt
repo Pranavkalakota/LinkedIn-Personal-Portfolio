@@ -1,83 +1,72 @@
 Pranav Kalakota
-West Lafayette, IN| +1 702-858-4117| pkalakot@purdue.edu|www.linkedin.com/in/pranav-kalakota
-EDUCATION
-Purdue University West Lafayette, IN
-Bachelor of Science Expected May 2029
-Major in Computer Science
-Relevant Coursework: Programming in C, The Data Mine Seminar II, Introduction to Statistics, Linear Algebra, Object-Oriented
-Programming, Discrete Mathematics
-WORK EXPERIENCE
-Southern Hills Hospital
-Las Vegas, NV
-Volunteer Medical Assistant August 2023– January 2025
-●
-Supported 50+ patients weekly by streamlining intake and assisting medical staff during peak hours.
-●
-Collaborated on community outreach initiatives, including child-centered health education events.
-Summer Business Institute Program (SBI) Las Vegas, NV
-Intern / Team Member June 2024– August 2024
-●
-Resolved 25+ IT issues for the City of Henderson across multiple departments, improving operational uptime.
-●
-Automated and organized datasets for Police & Fire Departments, improving data accessibility and efficiency.
-●
-Collaborated in daily stand-ups with a 10-member agile-style team, boosting productivity by 5%.
-Kumon North America Las Vegas, NV
-Center Assistant May 2025 – August 2025
-●
-Automated the grading system using database queries, increasing workflow efficiency by 10%.
-●
-Tutored 100+ students across math and reading, contributing to 5% higher progression rates.
-RESEARCH PROJECTS
-Experimental Equine Airway Dust Research Project - Vertically Integrated Projects August 2025 - December 2025
-Team Lead
-●
-Only Computer Science student selected from 10+ peers, bringing programming expertise to an engineering-focused fluid
-mechanics team.
-●
-Contributed to the design and development of a wind tunnel replicating equine respiratory pathways, integrating
-computational thinking into a mechanical engineering challenge.
-●
-Collaborated on aerodynamic data acquisition and analysis, ensuring results aligned with physiological accuracy and research
-standards.
-●
-Demonstrated ability to bridge CS with applied engineering, cross-disciplinary teamwork, and problem-solving in real-world
-research.
-UNLV Office Of Undergraduate Research Education Program
-October 2023– April 2024
-Researcher
-●
-●
-●
-Partnered with undergraduate researchers and a PhD mentor to perform data mining and analysis under strict deadlines.
-Conducted research about levels of GABA and Glutamate in Autistic vs. Allistic patients.
-Ensured research validity by applying computational methods to maintain academic rigor.
-PROJECTS
-Custom MCP Server January 2026– March 2026
-Creator
-● Shipped a fully custom MCP server built with TypeScript and JavaScript, featuring a JSON configuration and SQLite database.
-● Integrated ChatGPT into a complete web interface allowing users to chat with an AI, all running through a custom Model Context Protocol layer that can integrate with any IDE.
+West Lafayette, IN|github.com/Pranavkalakota| pkalakot@purdue.edu|www.linkedin.com/in/pranav-kalakota
 
-VEDA February 2026
-Creator
-● Developed a wearable-integrated application for real-time panic attack detection and management during a Purdue University mini-hackathon, earning 1st Place in the Healthcare Track.
-● Leveraged biometric data from an Apple Watch to identify physiological distress and trigger an immediate grounding sequence.
-● Implemented a low-friction interface with guided box breathing, positive affirmations, and AI-powered voice-to-text logging.
-● Built an automated messaging system that alerts designated contacts to provide a digital safety net during a crisis.
-VibeCheck
-Co-Founder
-August 2025– Present
-●
-Working to develop a software platform with peers that automatically scans source code for security vulnerabilities by
-integrating a custom-built library to detect insecure patterns, exposed secrets, unsafe functions, and weak configurations.
+EDUCATION	
+
+
+Purdue University	West Lafayette, IN
+Bachelor of Science	Expected May 2029
+Major in Computer Science 
+Relevant Coursework: Programming in C, The Data Mine Seminar II, Linear Algebra, Object-Oriented Programming, Discrete Mathematics
+
+WORK EXPERIENCE	
+
+
+Southern Hills Hospital									         Las Vegas, NV
+Volunteer Medical Assistant	August 2023– January 2025
+Supported 50+ patients weekly by streamlining intake and assisting medical staff during peak hours. 
+Collaborated on community outreach initiatives, including child-centered health education events. 
+Summer Business Institute Program (SBI) 	Las Vegas, NV
+Intern / Team Member	June 2024– August 2024
+Resolved 25+ IT issues for the City of Henderson across multiple departments, improving operational uptime.
+Automated and organized datasets for Police & Fire Departments, improving data accessibility and efficiency.
+Collaborated in daily stand-ups with a 10-member agile-style team, boosting productivity by 5%.
+Kumon North America	Las Vegas, NV
+Center Assistant	May 2025 – August 2025
+Automated the grading system using database queries, increasing workflow efficiency by 10%. 
+Tutored 100+ students across math and reading, contributing to 5% higher progression rates. 
+
+RESEARCH PROJECTS	
+
+
+Experimental Equine Airway Dust Research Project - Vertically Integrated Projects	Aug 2025-Dec 2025
+Team Lead
+Only Computer Science student selected from 10+ peers, bringing programming expertise to an engineering-focused fluid mechanics team. 
+Contributed to the design and development of a wind tunnel replicating equine respiratory pathways, integrating computational thinking into a mechanical engineering challenge.
+Collaborated on aerodynamic data acquisition and analysis, ensuring results aligned with physiological accuracy and research standards.
+Demonstrated ability to bridge CS with applied engineering, cross-disciplinary teamwork, and problem-solving in real-world research.
+
+UNLV Office Of Undergraduate Research Education Program 	October 2023– April 2024
+Researcher
+Partnered with undergraduate researchers and a PhD mentor to perform data mining and analysis under strict deadlines. 
+Conducted research about levels of GABA and Glutamate in Autistic vs. Allistic patients. 
+Ensured research validity by applying computational methods to maintain academic rigor. 
+
+
+PROJECTS	
+
+Orion		April 2026-Present
+Building a native macOS AI assistant in Swift with voice control, real-time gesture recognition, and full system automation. 
+Building a gesture recognition engine using Apple’s Vision framework and AVFoundation to classify hand poses into live system actions via CGEvent
+Implementing streaming LLM responses via SSE with sentence-chunked TTS, achieving sub-1.5s end-to-end voice response latency.
+
+MCP Server	January 2026-March 2026
+Engineered a dual-architecture task management system in TypeScript exposing 5 tools over the MCP via stdio transport, enabling direct integration with MCP clients alongside an Express web dashboard, backed by a shared SQLite database.
+Designed a graceful degradation layer that is functional without external dependencies, automatically falling back from the OpenAI API to a local regex-based parser with fuzzy typo tolerance, ensuring zero downtime during failures. 
+Structured prompts to return strict JSON for predictable parsing, and implemented confirmation safeguards to prevent accidental data loss. 
+
+VEDA		February 2026– February 2026
+Designed a multi-stage grounding sequence triggered by an SOS event, combining synchronized haptic feedback with body-awareness exercises, and text-to-speech cognitive reassurance. 
+
+
 HONORS & ACHIEVEMENTS
-Claude Builder Hackathon – 1st Place (Healthcare Track) – February 2026 – Won top honors for developing an innovative AI solution.
-Harvard Book Prize Nominee – recognized for academic excellence, leadership, and intellectual curiosity across disciplines.
-Science Olympiad, Astronomy – 3rd Place (State, Division C) – applied data analysis and critical problem-solving under
-competitive, time-constrained conditions.
-Science Olympiad, Ornithology – 5th Place (State, Division C) – demonstrated strong research, memory, and application
-skills in scientific domains.
-ADDITIONAL
-Technical Skills: Java, SQLite, R, Rapid Prototyping, Prompt Engineering
-Tools & Platforms: Git, Jupyter Notebook (basic)
-Concepts: Databases, Object-oriented programming, Simulations
+Deloitte Data Analytics Certificate - Conducted market research, consumer needs analysis and data analysis to create a
+client recommendation.
+Claude Builder Hackathon - Received 1st place in the healthcare track for VEDA
+
+ADDITIONAL	
+
+
+Technical Skills: Java, HTML, CSS, C, Python
+Tools & Platforms: Git, Jupyter Notebook (basic), Tableau, Matplotlib, Pandas
+Concepts: Databases, Object-oriented programming, Simulations, Data Analysis, Querying
