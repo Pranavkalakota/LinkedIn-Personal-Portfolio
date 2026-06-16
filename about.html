@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Pranav Kalakota - Computer Science student at Purdue University building meaningful software.">
+    <title>About — Pranav Kalakota</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="about">
+    <div id="animated-background" aria-hidden="true">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+        <canvas id="network-canvas"></canvas>
+    </div>
+    <div class="site-wrapper">
+        <header class="top-nav">
+            <a href="index.html" class="logo">PK</a>
+            <div class="nav-actions">
+                <a href="resume.html" target="_blank" class="btn-ghost" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Resume</a>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </header>
+        <nav id="mobile-menu" class="mobile-menu hidden" aria-label="Mobile navigation">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a>
+            <a href="projects.html">Projects</a><a href="research.html">Research</a><a href="skills.html">Skills</a>
+            <a href="education.html">Education</a><a href="contact.html">Contact</a>
+        </nav>
+        <div class="page-shell">
+            <aside class="sidebar" aria-label="Section navigation">
+                <ul class="sidebar-nav">
+                    <li><a href="index.html" class="sidebar-link">Home</a></li>
+                    <li><a href="about.html" class="sidebar-link">About</a></li>
+                    <li><a href="experience.html" class="sidebar-link">Experience</a></li>
+                    <li><a href="projects.html" class="sidebar-link">Projects</a></li>
+                    <li><a href="research.html" class="sidebar-link">Research</a></li>
+                    <li><a href="skills.html" class="sidebar-link">Skills</a></li>
+                    <li><a href="education.html" class="sidebar-link">Education</a></li>
+                    <li><a href="contact.html" class="sidebar-link">Contact</a></li>
+                </ul>
+            </aside>
+            <main class="page-main">
+                <div class="page-content">
+                    <header class="page-header">
+                        <p class="section-label">About</p>
+                        <h1>About Me</h1>
+                    </header>
+                    <div class="prose-block">
+                        <p>I'm a Computer Science student at Purdue University with a passion for building meaningful software solutions that bridge the gap between cutting-edge technology and real-world impact. My journey spans software development, data systems, AI/ML research, and interdisciplinary collaboration.</p>
+                        <p>Currently, I'm leading research initiatives, developing AI-powered applications, and working on security-focused projects that address real challenges. As the only Computer Science student on a 10+ member engineering research team, I've learned to translate complex computational problems into actionable solutions while collaborating across disciplines.</p>
+                        <p>What drives me is the opportunity to leverage technology to solve problems that matter—whether that's improving healthcare outcomes through data analysis, enhancing team productivity with AI tools, or securing applications against vulnerabilities. I'm always eager to take on new challenges and contribute to projects that make a difference.</p>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-card"><div class="stat-value">Purdue CS</div><div class="stat-label">Class of 2029</div></div>
+                        <div class="stat-card"><div class="stat-value">Research Lead</div><div class="stat-label">Purdue VIP Program</div></div>
+                        <div class="stat-card"><div class="stat-value">Claude Builder</div><div class="stat-label">35% Acceptance Rate</div></div>
+                        <div class="stat-card"><div class="stat-value">500+</div><div class="stat-label">Event Attendees</div></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="site-footer">
+            <p>&copy; 2026 Pranav Kalakota. All rights reserved.</p>
+            <p>Built with passion and attention to detail.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

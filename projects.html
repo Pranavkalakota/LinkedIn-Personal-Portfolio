@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Featured projects by Pranav Kalakota - Orion, MCP Server, VEDA and more.">
+    <title>Projects — Pranav Kalakota</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="projects">
+    <div id="animated-background" aria-hidden="true">
+        <div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div><div class="bg-orb bg-orb-3"></div>
+        <canvas id="network-canvas"></canvas>
+    </div>
+    <div class="site-wrapper">
+        <header class="top-nav">
+            <a href="index.html" class="logo">PK</a>
+            <div class="nav-actions">
+                <a href="resume.html" target="_blank" class="btn-ghost" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Resume</a>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </header>
+        <nav id="mobile-menu" class="mobile-menu hidden" aria-label="Mobile navigation">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a>
+            <a href="projects.html">Projects</a><a href="research.html">Research</a><a href="skills.html">Skills</a>
+            <a href="education.html">Education</a><a href="contact.html">Contact</a>
+        </nav>
+        <div class="page-shell">
+            <aside class="sidebar" aria-label="Section navigation">
+                <ul class="sidebar-nav">
+                    <li><a href="index.html" class="sidebar-link">Home</a></li>
+                    <li><a href="about.html" class="sidebar-link">About</a></li>
+                    <li><a href="experience.html" class="sidebar-link">Experience</a></li>
+                    <li><a href="projects.html" class="sidebar-link">Projects</a></li>
+                    <li><a href="research.html" class="sidebar-link">Research</a></li>
+                    <li><a href="skills.html" class="sidebar-link">Skills</a></li>
+                    <li><a href="education.html" class="sidebar-link">Education</a></li>
+                    <li><a href="contact.html" class="sidebar-link">Contact</a></li>
+                </ul>
+            </aside>
+            <main class="page-main">
+                <div class="page-content wide">
+                    <header class="page-header">
+                        <p class="section-label">Projects</p>
+                        <h1>Featured Projects</h1>
+                        <p>Software I've built at the intersection of AI, systems, and real-world impact.</p>
+                    </header>
+                    <div class="projects-grid">
+                        <article class="content-card project-card">
+                            <div class="card-meta">
+                                <h2 class="card-title">Orion</h2>
+                                <span class="tech-badge">April 2026-Present</span>
+                            </div>
+                            <p class="card-desc">Building a native macOS AI assistant in Swift with voice control, real-time gesture recognition, and full system automation.</p>
+                            <p class="card-detail" style="font-weight: 600; margin-bottom: 0.5rem;">Tech Stack:</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Swift / AppKit</span>
+                                <span class="tech-tag">Vision Framework</span>
+                                <span class="tech-tag">AVFoundation</span>
+                            </div>
+                            <p class="card-detail">Building a gesture recognition engine to classify hand poses into live system actions via CGEvent. Implementing streaming LLM responses via SSE with sentence-chunked TTS, achieving sub-1.5s end-to-end voice response latency.</p>
+                        </article>
+                        <article class="content-card project-card">
+                            <div class="card-meta">
+                                <h2 class="card-title">MCP Server</h2>
+                                <span class="tech-badge">Jan 2026 - Mar 2026</span>
+                            </div>
+                            <p class="card-desc">Engineered a dual-architecture task management system in TypeScript exposing 5 tools over the MCP via stdio transport.</p>
+                            <p class="card-detail" style="font-weight: 600; margin-bottom: 0.5rem;">Tech Stack:</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">SQLite</span>
+                                <span class="tech-tag">OpenAI API</span>
+                            </div>
+                            <p class="card-detail">Designed a graceful degradation layer that automatically falls back from the OpenAI API to a local regex-based parser with fuzzy typo tolerance. Structured prompts to return strict JSON and implemented confirmation safeguards.</p>
+                        </article>
+                        <article class="content-card project-card">
+                            <div class="card-meta">
+                                <h2 class="card-title">VEDA</h2>
+                                <span class="tech-badge">February 2026</span>
+                            </div>
+                            <p class="card-desc">Designed a multi-stage grounding sequence triggered by an SOS event for panic attack management.</p>
+                            <p class="card-detail" style="font-weight: 600; margin-bottom: 0.5rem;">Tech Stack:</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Wearable Tech</span>
+                                <span class="tech-tag">AI TTS</span>
+                            </div>
+                            <p class="card-detail">Combined synchronized haptic feedback with body-awareness exercises, and text-to-speech cognitive reassurance.</p>
+                        </article>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="site-footer">
+            <p>&copy; 2026 Pranav Kalakota. All rights reserved.</p>
+            <p>Built with passion and attention to detail.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

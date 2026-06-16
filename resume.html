@@ -36,7 +36,8 @@
                 class="text-sm md:text-base text-gray-300 print:text-black space-y-1 md:space-y-0 md:space-x-4 flex flex-col md:flex-row justify-center items-center flex-wrap">
                 <span>West Lafayette, IN</span>
                 <span class="hidden md:inline print:hidden">|</span>
-                <span>+1 702-858-4117</span>
+                <a href="https://github.com/Pranavkalakota"
+                    class="hover:text-cyan-400 no-underline text-inherit">github.com/Pranavkalakota</a>
                 <span class="hidden md:inline print:hidden">|</span>
                 <a href="mailto:pkalakot@purdue.edu"
                     class="hover:text-cyan-400 no-underline text-inherit">pkalakot@purdue.edu</a>
@@ -62,7 +63,7 @@
                 </div>
                 <p class="text-gray-700 text-sm">
                     <span class="font-semibold">Relevant Coursework:</span> Programming in C, The Data Mine Seminar II,
-                    Introduction to Statistics, Linear Algebra, Object-Oriented Programming, Discrete Mathematics
+                    Linear Algebra, Object-Oriented Programming, Discrete Mathematics
                 </p>
             </section>
 
@@ -72,21 +73,21 @@
                     class="text-xl font-bold text-gray-800 border-b-2 border-gray-200 pb-1 mb-3 uppercase tracking-wider">
                     Work Experience</h2>
 
-                <!-- Kumon -->
+                <!-- Southern Hills -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3 class="font-bold text-gray-900">Kumon North America</h3>
+                        <h3 class="font-bold text-gray-900">Southern Hills Hospital</h3>
                         <span class="text-gray-600 text-sm">Las Vegas, NV</span>
                     </div>
                     <div class="flex justify-between items-baseline mb-1">
-                        <div class="text-gray-800 italic">Center Assistant</div>
-                        <span class="text-gray-600 text-sm italic">May 2025 – August 2025</span>
+                        <div class="text-gray-800 italic">Volunteer Medical Assistant</div>
+                        <span class="text-gray-600 text-sm italic">August 2023 – January 2025</span>
                     </div>
                     <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
-                        <li>Automated the grading system using database queries, increasing workflow efficiency by 10%.
-                        </li>
-                        <li>Tutored 100+ students across math and reading, contributing to 5% higher progression rates.
-                        </li>
+                        <li>Supported 50+ patients weekly by streamlining intake and assisting medical staff during peak
+                            hours.</li>
+                        <li>Collaborated on community outreach initiatives, including child-centered health education
+                            events.</li>
                     </ul>
                 </div>
 
@@ -110,21 +111,21 @@
                     </ul>
                 </div>
 
-                <!-- Southern Hills -->
+                <!-- Kumon -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3 class="font-bold text-gray-900">Southern Hills Hospital</h3>
+                        <h3 class="font-bold text-gray-900">Kumon North America</h3>
                         <span class="text-gray-600 text-sm">Las Vegas, NV</span>
                     </div>
                     <div class="flex justify-between items-baseline mb-1">
-                        <div class="text-gray-800 italic">Volunteer Medical Assistant</div>
-                        <span class="text-gray-600 text-sm italic">August 2023 – January 2025</span>
+                        <div class="text-gray-800 italic">Center Assistant</div>
+                        <span class="text-gray-600 text-sm italic">May 2025 – August 2025</span>
                     </div>
                     <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
-                        <li>Supported 50+ patients weekly by streamlining intake and assisting medical staff during peak
-                            hours.</li>
-                        <li>Collaborated on community outreach initiatives, including child-centered health education
-                            events.</li>
+                        <li>Automated the grading system using database queries, increasing workflow efficiency by 10%.
+                        </li>
+                        <li>Tutored 100+ students across math and reading, contributing to 5% higher progression rates.
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -177,15 +178,33 @@
 
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3 class="font-bold text-gray-900">Custom MCP Server</h3>
+                        <h3 class="font-bold text-gray-900">Orion</h3>
+                        <span class="text-gray-600 text-sm italic">April 2026 – Present</span>
+                    </div>
+                    <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
+                        <li>Building a native macOS AI assistant in Swift with voice control, real-time gesture
+                            recognition, and full system automation.</li>
+                        <li>Building a gesture recognition engine using Apple's Vision framework and AVFoundation to
+                            classify hand poses into live system actions via CGEvent.</li>
+                        <li>Implementing streaming LLM responses via SSE with sentence-chunked TTS, achieving sub-1.5s
+                            end-to-end voice response latency.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-bold text-gray-900">MCP Server</h3>
                         <span class="text-gray-600 text-sm italic">January 2026 – March 2026</span>
                     </div>
-                    <div class="text-gray-800 italic mb-1">Creator</div>
                     <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
-                        <li>Shipped a fully custom MCP server built with TypeScript and JavaScript, featuring a JSON
-                            configuration and SQLite database.</li>
-                        <li>Integrated ChatGPT into a complete web interface allowing users to chat with an AI, all
-                            running through a custom Model Context Protocol layer that can integrate with any IDE.</li>
+                        <li>Engineered a dual-architecture task management system in TypeScript exposing 5 tools over the
+                            MCP via stdio transport, enabling direct integration with MCP clients alongside an Express
+                            web dashboard, backed by a shared SQLite database.</li>
+                        <li>Designed a graceful degradation layer that is functional without external dependencies,
+                            automatically falling back from the OpenAI API to a local regex-based parser with fuzzy typo
+                            tolerance, ensuring zero downtime during failures.</li>
+                        <li>Structured prompts to return strict JSON for predictable parsing, and implemented
+                            confirmation safeguards to prevent accidental data loss.</li>
                     </ul>
                 </div>
 
@@ -194,30 +213,9 @@
                         <h3 class="font-bold text-gray-900">VEDA</h3>
                         <span class="text-gray-600 text-sm italic">February 2026</span>
                     </div>
-                    <div class="text-gray-800 italic mb-1">Creator</div>
                     <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
-                        <li>Developed a wearable-integrated application for real-time panic attack detection and
-                            management during a Purdue University mini-hackathon, earning 1st Place in the Healthcare
-                            Track.</li>
-                        <li>Leveraged biometric data from an Apple Watch to identify physiological distress and trigger
-                            an immediate grounding sequence.</li>
-                        <li>Implemented a low-friction interface with guided box breathing, positive affirmations, and
-                            AI-powered voice-to-text logging.</li>
-                        <li>Built an automated messaging system that alerts designated contacts to provide a digital
-                            safety net during a crisis.</li>
-                    </ul>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex justify-between items-baseline">
-                        <h3 class="font-bold text-gray-900">VibeCheck</h3>
-                        <span class="text-gray-600 text-sm italic">August 2025 – Present</span>
-                    </div>
-                    <div class="text-gray-800 italic mb-1">Co-Founder</div>
-                    <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
-                        <li>Working to develop a software platform with peers that automatically scans source code for
-                            security vulnerabilities by integrating a custom-built library to detect insecure patterns,
-                            exposed secrets, unsafe functions, and weak configurations.</li>
+                        <li>Designed a multi-stage grounding sequence triggered by an SOS event, combining synchronized
+                            haptic feedback with body-awareness exercises, and text-to-speech cognitive reassurance.</li>
                     </ul>
                 </div>
             </section>
@@ -228,16 +226,10 @@
                     class="text-xl font-bold text-gray-800 border-b-2 border-gray-200 pb-1 mb-3 uppercase tracking-wider">
                     Honors & Achievements</h2>
                 <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
-                    <li><span class="font-semibold">Claude Builder Hackathon – 1st Place (Healthcare Track)</span> –
-                        February 2026 – Won top honors for developing an innovative AI solution in the healthcare
-                        domain.</li>
-                    <li><span class="font-semibold">Harvard Book Prize Nominee</span> – Recognized for academic
-                        excellence, leadership, and intellectual curiosity across disciplines.</li>
-                    <li><span class="font-semibold">Science Olympiad, Astronomy – 3rd Place (State, Division C)</span> –
-                        Applied data analysis and critical problem-solving under competitive, time-constrained
-                        conditions.</li>
-                    <li><span class="font-semibold">Science Olympiad, Ornithology – 5th Place (State, Division C)</span>
-                        – Demonstrated strong research, memory, and application skills in scientific domains.</li>
+                    <li><span class="font-semibold">Deloitte Data Analytics Certificate</span> – Conducted market
+                        research, consumer needs analysis, and data analysis to create a client recommendation.</li>
+                    <li><span class="font-semibold">Claude Builder Hackathon</span> – Received 1st place in the
+                        healthcare track for VEDA.</li>
                 </ul>
             </section>
 
@@ -247,12 +239,11 @@
                     class="text-xl font-bold text-gray-800 border-b-2 border-gray-200 pb-1 mb-3 uppercase tracking-wider">
                     Additional</h2>
                 <div class="grid grid-cols-1 md:grid-cols-1 gap-2 text-sm text-gray-700">
-                    <div><span class="font-bold text-gray-900">Technical Skills:</span> Java, SQLite, R, Rapid
-                        Prototyping, Prompt Engineering</div>
-                    <div><span class="font-bold text-gray-900">Tools & Platforms:</span> Git, Jupyter Notebook (basic)
-                    </div>
+                    <div><span class="font-bold text-gray-900">Technical Skills:</span> Java, HTML, CSS, C, Python</div>
+                    <div><span class="font-bold text-gray-900">Tools & Platforms:</span> Git, Jupyter Notebook (basic),
+                        Tableau, Matplotlib, Pandas</div>
                     <div><span class="font-bold text-gray-900">Concepts:</span> Databases, Object-oriented programming,
-                        Simulations</div>
+                        Simulations, Data Analysis, Querying</div>
                 </div>
             </section>
         </div>
