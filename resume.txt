@@ -12,10 +12,12 @@ Relevant Coursework: Programming in C, The Data Mine Seminar II, Linear Algebra,
 WORK EXPERIENCE	
 
 
-Southern Hills Hospital									         Las Vegas, NV
-Volunteer Medical Assistant	August 2023– January 2025
-Supported 50+ patients weekly by streamlining intake and assisting medical staff during peak hours. 
-Collaborated on community outreach initiatives, including child-centered health education events. 
+Crcle
+Hardware Engineer Intern	June 2026 – Present
+reimagining intelligence
+
+Pololu Corporation
+Software Engineering Intern	June 2026 – Present
 Summer Business Institute Program (SBI) 	Las Vegas, NV
 Intern / Team Member	June 2024– August 2024
 Resolved 25+ IT issues for the City of Henderson across multiple departments, improving operational uptime.
@@ -63,6 +65,8 @@ HONORS & ACHIEVEMENTS
 Deloitte Data Analytics Certificate - Conducted market research, consumer needs analysis and data analysis to create a
 client recommendation.
 Claude Builder Hackathon - Received 1st place in the healthcare track for VEDA
+Dean's List Award - Purdue University
+Generative AI Fundamentals Certificate - Databricks
 
 ADDITIONAL	
 
