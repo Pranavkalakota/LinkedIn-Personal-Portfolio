@@ -18,15 +18,15 @@ reimagining intelligence
 
 Pololu Corporation
 Software Engineering Intern	June 2026 – Present
+Kumon North America	Las Vegas, NV
+Center Assistant	May 2025 – August 2025
+Automated the grading system using database queries, increasing workflow efficiency by 10%. 
+Tutored 100+ students across math and reading, contributing to 5% higher progression rates. 
 Summer Business Institute Program (SBI) 	Las Vegas, NV
 Intern / Team Member	June 2024– August 2024
 Resolved 25+ IT issues for the City of Henderson across multiple departments, improving operational uptime.
 Automated and organized datasets for Police & Fire Departments, improving data accessibility and efficiency.
 Collaborated in daily stand-ups with a 10-member agile-style team, boosting productivity by 5%.
-Kumon North America	Las Vegas, NV
-Center Assistant	May 2025 – August 2025
-Automated the grading system using database queries, increasing workflow efficiency by 10%. 
-Tutored 100+ students across math and reading, contributing to 5% higher progression rates. 
 
 RESEARCH PROJECTS	
 
