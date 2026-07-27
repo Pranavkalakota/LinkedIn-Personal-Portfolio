@@ -1,0 +1,13 @@
+:root {
+  --color-terracotta: #C2694F;
+  --color-cream: #F5F0E8;
+  --color-olive: #6B7C5E;
+  --color-charcoal: #2E2A27;
+  --color-sand: #E8DDD0;
+
+  --font-heading: 'DM Serif Display', serif;
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --space: 8px;
+}
