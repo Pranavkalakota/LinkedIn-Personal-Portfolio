@@ -30,7 +30,12 @@ export function setupPanels(appEl) {
     closeBtn.className = 'panel-close'
     closeBtn.setAttribute('aria-label', `Close ${id} panel`)
     closeBtn.textContent = '×'
-    closeBtn.addEventListener('click', () => closePanel())
+    closeBtn.addEventListener('click', () => {
+      section.setAttribute('aria-hidden', 'true')
+      deactivateTrap()
+      activePanel = null
+      window.dispatchEvent(new CustomEvent('zone:close'))
+    })
 
     if (!isMobile) {
       section.appendChild(closeBtn)
@@ -43,8 +48,16 @@ export function setupPanels(appEl) {
 
   if (!isMobile) {
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && activePanel) {
-        closePanel()
+      if (e.key === 'Escape') {
+        for (const [id, panel] of Object.entries(panels)) {
+          if (panel.getAttribute('aria-hidden') === 'false') {
+            panel.setAttribute('aria-hidden', 'true')
+            deactivateTrap()
+            activePanel = null
+            window.dispatchEvent(new CustomEvent('zone:close'))
+            break
+          }
+        }
       }
     })
   }

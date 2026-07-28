@@ -54,8 +54,6 @@ build/
 *.min.js
 *.min.css
 
-.agent/
-.claude/
 # Dependencies
 node_modules/
 
