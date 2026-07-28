@@ -5,9 +5,7 @@ export const experience = [
     location: 'West Lafayette, IN',
     date: 'June 2026 – Present',
     bullets: [
-      'Architected a multimodal RAG pipeline fusing Whisper ASR, Llama 3.2 3B, LLaVA 7B, ArcFace, and ECAPA-TDNN with cosine-similarity gating over ChromaDB ONNX vector store, enabling zero-touch HCI via cross-app voice control with sub-20s latency and zero cloud dependency',
-      'Engineered a schema-constrained NLP intent router with 3-tier fuzzy/regex/LLM fallback and semantic vector search, achieving 95% deterministic routing across 500+ fuzz invariants and 12+ query types in production',
-      'Optimized always-on wearable ASR pipeline with adaptive windowing and CPU-routed Whisper inference, cutting transcription latency 50% (12s to 6s) and wake-word activation 90% (2s to <200ms) via offline-first ONNX detection with parallel ASR fallback',
+      'Building multimodal AI pipelines for voice-controlled wearable devices, including RAG systems, NLP intent routing, and real-time ASR optimization.',
     ],
     type: 'work',
   },
@@ -17,9 +15,7 @@ export const experience = [
     location: 'Las Vegas, NV',
     date: 'June 2026 – Aug. 2026',
     bullets: [
-      'Engineered an automated production test system in Arduino with serial CLI and fault handling, validating dual H-bridge MOSFET output, current thresholds, and fault flags across 15+ ADC channels, cutting QA cycle time by 10%',
-      'Designed a robot-arm-compatible DUT fixture for a dual motor driver carrier with current sensing, relay-multiplexed load switching, and mixed-decay PWM verification; modeled enclosure in SolidWorks',
-      'Refactored 500+ line legacy embedded codebase, resolved a critical timing race condition in PWM chopping logic, and validated power-on-reset sequencing for long-term maintainability',
+      'Developed automated production test systems and embedded tooling for motor driver hardware, including fixture design and legacy codebase refactoring.',
     ],
     type: 'work',
   },
@@ -29,8 +25,7 @@ export const experience = [
     location: 'Las Vegas, NV',
     date: 'June 2024 – Aug. 2024',
     bullets: [
-      'Resolved 25+ IT issues for the City of Henderson across multiple departments, improving operational uptime',
-      'Automated and organized datasets for Police & Fire Departments, improving data accessibility and efficiency',
+      'Resolved IT issues across city departments and automated dataset management for Police & Fire Departments.',
     ],
     type: 'work',
   },
@@ -43,9 +38,7 @@ export const research = [
     location: 'West Lafayette, IN',
     date: 'Aug. 2025 – Dec. 2025',
     bullets: [
-      'Led a cross-disciplinary team in designing a particle image velocimetry (PIV) experiment to visualize airflow and particle deposition in a life-sized PDMS negative-mold equine airway phantom for studying recurrent airway obstruction (RAO)',
-      'Conducted fluid dynamics simulations to extract velocity, pressure, and turbulence data, performing mesh independence studies and generating streamline/contour plots for validation against experimental PIV results',
-      'Applied Reynolds number scaling to replicate equine respiratory dynamics in a water-based flow system, enabling lower-velocity experiments with improved optical clarity for high-speed camera particle tracking',
+      'Led a cross-disciplinary team designing PIV experiments and fluid dynamics simulations to study airflow in equine respiratory models.',
     ],
   },
 ]
