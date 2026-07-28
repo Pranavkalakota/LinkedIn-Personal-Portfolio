@@ -14,6 +14,25 @@ export const COURT_BOUNDS = {
   maxZ: HALF + 4,
 }
 
+const COLLIDERS = []
+
+export function getColliders() { return COLLIDERS }
+
+function addCollider(cx, cz, hw, hd) {
+  COLLIDERS.push({ minX: cx - hw, maxX: cx + hw, minZ: cz - hd, maxZ: cz + hd })
+}
+
+export function checkCollision(x, z, radius) {
+  for (const c of COLLIDERS) {
+    const closestX = Math.max(c.minX, Math.min(x, c.maxX))
+    const closestZ = Math.max(c.minZ, Math.min(z, c.maxZ))
+    const dx = x - closestX
+    const dz = z - closestZ
+    if (dx * dx + dz * dz < radius * radius) return true
+  }
+  return false
+}
+
 export function createWorld(scene) {
   createSurroundings(scene)
   createCourt(scene)
@@ -22,6 +41,49 @@ export function createWorld(scene) {
   createNameText(scene)
   createStars(scene)
   createCourtSideProps(scene)
+  registerColliders()
+}
+
+function registerColliders() {
+  // Net (spans X at Z=0)
+  addCollider(0, 0, HALF_W + 1, 0.15)
+
+  // Benches
+  addCollider(-HALF_W - 2.5, -5, 0.7, 0.35)
+  addCollider(-HALF_W - 2.5, 5, 0.7, 0.35)
+  addCollider(HALF_W + 2.5, -5, 0.7, 0.35)
+  addCollider(HALF_W + 2.5, 5, 0.7, 0.35)
+
+  // Umpire chair
+  addCollider(0, -HALF - 2.5, 0.5, 0.4)
+
+  // Scoreboard legs
+  addCollider(0, HALF + 3, 2, 0.2)
+
+  // Floodlight poles
+  addCollider(-HALF_W - 1, -HALF - 1, 0.15, 0.15)
+  addCollider(HALF_W + 1, -HALF - 1, 0.15, 0.15)
+  addCollider(-HALF_W - 1, HALF + 1, 0.15, 0.15)
+  addCollider(HALF_W + 1, HALF + 1, 0.15, 0.15)
+
+  // Zone buildings
+  // Projects workshop (-10, -8): 3x2.5 box
+  addCollider(-10, -8, 1.8, 1.5)
+  // About Me cabin (10, -8): 2.8x2.5 box
+  addCollider(10, -8, 1.6, 1.5)
+  // Experience tower (-10, 8): 2.4x2.4 box
+  addCollider(-10, 8, 1.5, 1.5)
+  // Contact mail station (10, 8): ~1.6 radius platform
+  addCollider(10, 8, 1.8, 1.8)
+
+  // Robotic arm
+  addCollider(-HALF_W - 2.5, 3, 0.6, 0.6)
+
+  // Laptop bench area
+  addCollider(-HALF_W - 2.5, -3, 0.6, 0.4)
+
+  // Mailbox prop
+  addCollider(HALF_W + 2.5, 3, 0.4, 0.3)
 }
 
 function createSurroundings(scene) {

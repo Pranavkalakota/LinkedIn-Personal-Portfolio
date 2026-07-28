@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { createWorld, updateRoboticArm, COURT_BOUNDS } from './world.js'
+import { createWorld, updateRoboticArm, COURT_BOUNDS, checkCollision } from './world.js'
 import { createZoneStructures, ZONE_DEFS, checkZoneProximity, billboardLabels, updateZoneAnimations } from './zones.js'
 import { setupInput, getMovement, isKeyDown } from './input.js'
 import { showOnboarding } from './onboarding.js'
@@ -147,13 +147,24 @@ export async function createGame(appEl, onPanelOpen) {
       const { fwd, right } = getMovement()
       if (fwd !== 0 || right !== 0) {
         moving = true
-        playerX += right * MOVE_SPEED
-        playerZ -= fwd * MOVE_SPEED
+        const PLAYER_RADIUS = 0.4
 
-        playerX = Math.max(COURT_BOUNDS.minX, Math.min(COURT_BOUNDS.maxX, playerX))
-        playerZ = Math.max(COURT_BOUNDS.minZ, Math.min(COURT_BOUNDS.maxZ, playerZ))
+        let newX = playerX + right * MOVE_SPEED
+        let newZ = playerZ - fwd * MOVE_SPEED
 
-        // Face direction of movement
+        newX = Math.max(COURT_BOUNDS.minX, Math.min(COURT_BOUNDS.maxX, newX))
+        newZ = Math.max(COURT_BOUNDS.minZ, Math.min(COURT_BOUNDS.maxZ, newZ))
+
+        // Try full move, then slide along axes
+        if (!checkCollision(newX, newZ, PLAYER_RADIUS)) {
+          playerX = newX
+          playerZ = newZ
+        } else if (!checkCollision(newX, playerZ, PLAYER_RADIUS)) {
+          playerX = newX
+        } else if (!checkCollision(playerX, newZ, PLAYER_RADIUS)) {
+          playerZ = newZ
+        }
+
         const angle = Math.atan2(right, -fwd)
         player.mesh.rotation.y = angle
       }

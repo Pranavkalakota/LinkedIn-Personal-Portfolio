@@ -1,4 +1,4 @@
-import { experience, research } from '../content/experience.js'
+import { experience } from '../content/experience.js'
 
 export function createResumePanel(container) {
   const h2 = document.createElement('h2')
@@ -10,7 +10,6 @@ export function createResumePanel(container) {
   wrapper.style.maxWidth = '680px'
 
   appendSection(wrapper, 'Work', experience)
-  appendSection(wrapper, 'Research', research)
 
   container.appendChild(wrapper)
 }
