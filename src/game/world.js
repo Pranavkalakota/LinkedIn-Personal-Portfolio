@@ -1,18 +1,31 @@
 import * as THREE from 'three'
 
+// Real tennis court proportions: 78ft long x 36ft wide (doubles)
+// We scale to ~30 x 14 units for playable space
+const COURT_LENGTH = 30
+const COURT_WIDTH = 14
+const HALF = COURT_LENGTH / 2
+const HALF_W = COURT_WIDTH / 2
+
+export const COURT_BOUNDS = {
+  minX: -HALF_W - 4,
+  maxX: HALF_W + 4,
+  minZ: -HALF - 4,
+  maxZ: HALF + 4,
+}
+
 export function createWorld(scene) {
-  createGround(scene)
+  createSurroundings(scene)
   createCourt(scene)
   createTrees(scene)
-  createPaths(scene)
   createDecorations(scene)
   createNameText(scene)
   createStars(scene)
-  createZoneThematicProps(scene)
+  createCourtSideProps(scene)
 }
 
-function createGround(scene) {
-  const geo = new THREE.PlaneGeometry(80, 80, 40, 40)
+function createSurroundings(scene) {
+  const geo = new THREE.PlaneGeometry(100, 100, 40, 40)
   const positions = geo.attributes.position
   for (let i = 0; i < positions.count; i++) {
     positions.setZ(i, (Math.random() - 0.5) * 0.1)
@@ -22,9 +35,7 @@ function createGround(scene) {
   const mat = new THREE.MeshStandardMaterial({
     color: 0x1a3322,
     roughness: 0.95,
-    metalness: 0.0,
   })
-
   const ground = new THREE.Mesh(geo, mat)
   ground.rotation.x = -Math.PI / 2
   ground.receiveShadow = true
@@ -32,11 +43,11 @@ function createGround(scene) {
 }
 
 function createCourt(scene) {
-  const courtGeo = new THREE.PlaneGeometry(12, 6)
+  // Main court surface (clay)
+  const courtGeo = new THREE.PlaneGeometry(COURT_WIDTH + 2, COURT_LENGTH + 2)
   const courtMat = new THREE.MeshStandardMaterial({
     color: 0xA0522D,
     roughness: 0.85,
-    metalness: 0.0,
   })
   const court = new THREE.Mesh(courtGeo, courtMat)
   court.rotation.x = -Math.PI / 2
@@ -45,33 +56,32 @@ function createCourt(scene) {
   scene.add(court)
 
   const lineMat = new THREE.MeshBasicMaterial({ color: 0xF5F0E8 })
+  const LW = 0.08
 
-  const lines = [
-    [[-6, -3], [6, -3]],
-    [[-6, 3], [6, 3]],
-    [[-6, -3], [-6, 3]],
-    [[6, -3], [6, 3]],
-    [[0, -3], [0, 3]],
-    [[-6, -1.5], [6, -1.5]],
-    [[-6, 1.5], [6, 1.5]],
-  ]
+  // Court lines — proper tennis court layout
+  // The court is oriented along Z (long axis), X is short axis
+  // Baselines (short ends)
+  addLine(scene, lineMat, -HALF_W, -HALF, HALF_W, -HALF, LW)  // near baseline
+  addLine(scene, lineMat, -HALF_W, HALF, HALF_W, HALF, LW)     // far baseline
+  // Sidelines (long sides) — singles
+  const SW = 4.5  // singles court half-width
+  addLine(scene, lineMat, -SW, -HALF, -SW, HALF, LW)
+  addLine(scene, lineMat, SW, -HALF, SW, HALF, LW)
+  // Sidelines — doubles
+  addLine(scene, lineMat, -HALF_W, -HALF, -HALF_W, HALF, LW)
+  addLine(scene, lineMat, HALF_W, -HALF, HALF_W, HALF, LW)
+  // Service lines
+  const SL = 6.4  // service line distance from net
+  addLine(scene, lineMat, -SW, -SL, SW, -SL, LW)
+  addLine(scene, lineMat, -SW, SL, SW, SL, LW)
+  // Center service line (T)
+  addLine(scene, lineMat, 0, -SL, 0, SL, LW)
+  // Center marks on baselines
+  addLine(scene, lineMat, 0, -HALF, 0, -HALF + 0.6, LW)
+  addLine(scene, lineMat, 0, HALF, 0, HALF - 0.6, LW)
 
-  for (const [start, end] of lines) {
-    const dx = end[0] - start[0]
-    const dy = end[1] - start[1]
-    const len = Math.sqrt(dx * dx + dy * dy)
-    const isVertical = Math.abs(dx) < 0.01
-
-    const lineGeo = isVertical
-      ? new THREE.PlaneGeometry(0.08, len)
-      : new THREE.PlaneGeometry(len, 0.08)
-    const line = new THREE.Mesh(lineGeo, lineMat)
-    line.rotation.x = -Math.PI / 2
-    line.position.set((start[0] + end[0]) / 2, 0.03, (start[1] + end[1]) / 2)
-    scene.add(line)
-  }
-
-  const netGeo = new THREE.PlaneGeometry(12.5, 1.2)
+  // Net — across the short dimension (X axis), at center (Z=0)
+  const netGeo = new THREE.PlaneGeometry(COURT_WIDTH + 2, 1.2)
   const netMat = new THREE.MeshStandardMaterial({
     color: 0xeeeeee,
     transparent: true,
@@ -83,25 +93,72 @@ function createCourt(scene) {
   net.position.set(0, 0.6, 0)
   scene.add(net)
 
+  // Net posts
   const postGeo = new THREE.CylinderGeometry(0.06, 0.06, 1.3)
   const postMat = new THREE.MeshStandardMaterial({ color: 0x666666, metalness: 0.6 })
   const postL = new THREE.Mesh(postGeo, postMat)
-  postL.position.set(-6.3, 0.65, 0)
+  postL.position.set(-HALF_W - 0.5, 0.65, 0)
   postL.castShadow = true
   scene.add(postL)
   const postR = postL.clone()
-  postR.position.set(6.3, 0.65, 0)
+  postR.position.set(HALF_W + 0.5, 0.65, 0)
   scene.add(postR)
+
+  // Net cable
+  const cableGeo = new THREE.CylinderGeometry(0.015, 0.015, COURT_WIDTH + 2)
+  const cable = new THREE.Mesh(cableGeo, postMat)
+  cable.position.set(0, 1.2, 0)
+  cable.rotation.z = Math.PI / 2
+  scene.add(cable)
+
+  // Service box highlight overlays (subtle colored tint per zone)
+  const boxColors = [
+    { x: -SW / 2, z: -SL / 2, color: 0xC2694F, w: SW, h: SL },    // near-left: Projects
+    { x: SW / 2, z: -SL / 2, color: 0x6B7C5E, w: SW, h: SL },     // near-right: About
+    { x: -SW / 2, z: SL / 2, color: 0x8B7355, w: SW, h: SL },      // far-left: Experience
+    { x: SW / 2, z: SL / 2, color: 0x4a6a8a, w: SW, h: SL },       // far-right: Contact
+  ]
+  for (const box of boxColors) {
+    const geo = new THREE.PlaneGeometry(box.w, box.h)
+    const mat = new THREE.MeshBasicMaterial({
+      color: box.color,
+      transparent: true,
+      opacity: 0.06,
+      depthWrite: false,
+    })
+    const mesh = new THREE.Mesh(geo, mat)
+    mesh.rotation.x = -Math.PI / 2
+    mesh.position.set(box.x, 0.025, box.z)
+    scene.add(mesh)
+  }
+}
+
+function addLine(scene, mat, x1, z1, x2, z2, width) {
+  const dx = x2 - x1
+  const dz = z2 - z1
+  const len = Math.sqrt(dx * dx + dz * dz)
+  const isVertical = Math.abs(dx) < 0.01
+
+  const geo = isVertical
+    ? new THREE.PlaneGeometry(width, len)
+    : new THREE.PlaneGeometry(len, width)
+  const line = new THREE.Mesh(geo, mat)
+  line.rotation.x = -Math.PI / 2
+  line.position.set((x1 + x2) / 2, 0.03, (z1 + z2) / 2)
+  if (!isVertical && Math.abs(dz) > 0.01) {
+    line.rotation.z = -Math.atan2(dz, dx)
+  }
+  scene.add(line)
 }
 
 function createTrees(scene) {
   const treePositions = [
-    [-15, -8], [-18, -2], [-14, 5], [-17, 10],
-    [15, -8], [18, -3], [14, 6], [17, 11],
-    [-10, -15], [-3, -18], [5, -16], [12, -14],
-    [-10, 15], [-2, 18], [6, 16], [13, 14],
-    [-20, -15], [20, -15], [-20, 15], [20, 15],
-    [-22, 0], [22, 0], [0, -22], [0, 22],
+    [-12, -18], [-14, -10], [-12, 0], [-14, 10], [-12, 18],
+    [12, -18], [14, -10], [12, 0], [14, 10], [12, 18],
+    [-10, -22], [0, -24], [10, -22],
+    [-10, 22], [0, 24], [10, 22],
+    [-16, -16], [16, -16], [-16, 16], [16, 16],
+    [-18, 0], [18, 0],
   ]
 
   for (const [x, z] of treePositions) {
@@ -138,78 +195,70 @@ function createTree(scene, x, z, height, radius) {
   }
 }
 
-function createPaths(scene) {
-  const pathMat = new THREE.MeshStandardMaterial({ color: 0x3a3a4a, roughness: 0.92 })
-
-  const paths = [
-    { from: [0, 4], to: [-10, 10], width: 1.8 },
-    { from: [0, 4], to: [10, 10], width: 1.8 },
-    { from: [0, -4], to: [-10, -10], width: 1.8 },
-    { from: [0, -4], to: [10, -10], width: 1.8 },
-  ]
-
-  for (const p of paths) {
-    const dx = p.to[0] - p.from[0]
-    const dz = p.to[1] - p.from[1]
-    const len = Math.sqrt(dx * dx + dz * dz)
-
-    const geo = new THREE.PlaneGeometry(len, p.width)
-    const path = new THREE.Mesh(geo, pathMat)
-    path.rotation.x = -Math.PI / 2
-    path.position.set(
-      (p.from[0] + p.to[0]) / 2,
-      0.01,
-      (p.from[1] + p.to[1]) / 2
-    )
-    path.rotation.z = -Math.atan2(dz, dx)
-    path.receiveShadow = true
-    scene.add(path)
-  }
-}
-
 function createDecorations(scene) {
+  // Floodlights at the four corners of the court
   const lampPositions = [
-    [-7, -4], [7, -4], [-7, 4], [7, 4],
-    [-3, -7], [3, -7], [-3, 7], [3, 7],
+    [-HALF_W - 1, -HALF - 1],
+    [HALF_W + 1, -HALF - 1],
+    [-HALF_W - 1, HALF + 1],
+    [HALF_W + 1, HALF + 1],
   ]
 
   const poleMat = new THREE.MeshStandardMaterial({ color: 0x555555, metalness: 0.5 })
   const lightMat = new THREE.MeshStandardMaterial({ color: 0xffdd88, emissive: 0xffbb44, emissiveIntensity: 0.6 })
 
   for (const [x, z] of lampPositions) {
-    const poleGeo = new THREE.CylinderGeometry(0.04, 0.04, 3)
+    const poleGeo = new THREE.CylinderGeometry(0.06, 0.08, 5)
     const pole = new THREE.Mesh(poleGeo, poleMat)
-    pole.position.set(x, 1.5, z)
+    pole.position.set(x, 2.5, z)
     pole.castShadow = true
     scene.add(pole)
 
-    const bulbGeo = new THREE.SphereGeometry(0.15, 8, 8)
+    const bulbGeo = new THREE.BoxGeometry(0.5, 0.15, 0.5)
     const bulb = new THREE.Mesh(bulbGeo, lightMat)
-    bulb.position.set(x, 3.1, z)
+    bulb.position.set(x, 5.1, z)
     scene.add(bulb)
 
-    const light = new THREE.PointLight(0xffdd88, 0.5, 10)
-    light.position.set(x, 3, z)
+    const light = new THREE.PointLight(0xffdd88, 0.6, 20)
+    light.position.set(x, 5, z)
     scene.add(light)
   }
 
+  // Benches along the sides
   const benchMat = new THREE.MeshStandardMaterial({ color: 0x6a4a2a, roughness: 0.9 })
-  const benchPositions = [[-7.5, -1], [-7.5, 1], [7.5, -1], [7.5, 1]]
+  const benchPositions = [
+    [-HALF_W - 2.5, -5], [-HALF_W - 2.5, 5],
+    [HALF_W + 2.5, -5], [HALF_W + 2.5, 5],
+  ]
   for (const [x, z] of benchPositions) {
-    const seatGeo = new THREE.BoxGeometry(0.5, 0.08, 1.2)
+    const seatGeo = new THREE.BoxGeometry(1.2, 0.08, 0.5)
     const seat = new THREE.Mesh(seatGeo, benchMat)
     seat.position.set(x, 0.5, z)
     seat.castShadow = true
     scene.add(seat)
 
     const legGeo = new THREE.BoxGeometry(0.06, 0.5, 0.06)
-    for (const lx of [-0.2, 0.2]) {
-      for (const lz of [-0.5, 0.5]) {
+    for (const lx of [-0.5, 0.5]) {
+      for (const lz of [-0.2, 0.2]) {
         const leg = new THREE.Mesh(legGeo, benchMat)
         leg.position.set(x + lx, 0.25, z + lz)
         scene.add(leg)
       }
     }
+  }
+
+  // Umpire chair (behind baseline, centered)
+  const chairMat = new THREE.MeshStandardMaterial({ color: 0x445566, metalness: 0.4 })
+  const chairSeat = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.06, 0.6), chairMat)
+  chairSeat.position.set(0, 3, -HALF - 2.5)
+  scene.add(chairSeat)
+  const chairBack = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.06), chairMat)
+  chairBack.position.set(0, 3.4, -HALF - 2.8)
+  scene.add(chairBack)
+  for (const lx of [-0.35, 0.35]) {
+    const chairLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 3), chairMat)
+    chairLeg.position.set(lx, 1.5, -HALF - 2.5)
+    scene.add(chairLeg)
   }
 }
 
@@ -227,7 +276,7 @@ function createNameText(scene) {
   ctx.fillText('KALAKOTA', 512, 190)
 
   const texture = new THREE.CanvasTexture(canvas)
-  const geo = new THREE.PlaneGeometry(20, 5)
+  const geo = new THREE.PlaneGeometry(16, 4)
   const mat = new THREE.MeshBasicMaterial({
     map: texture,
     transparent: true,
@@ -235,7 +284,7 @@ function createNameText(scene) {
   })
   const textMesh = new THREE.Mesh(geo, mat)
   textMesh.rotation.x = -Math.PI / 2
-  textMesh.position.set(0, 0.04, 0)
+  textMesh.position.set(0, 0.035, 0)
   scene.add(textMesh)
 }
 
@@ -261,91 +310,42 @@ function createStars(scene) {
   scene.add(stars)
 }
 
-function createZoneThematicProps(scene) {
-  createRobot(scene, -13, 10)
-  createLaptop(scene, 13, -10)
-  createTennisBalls(scene, -10, -13)
-  createMailbox(scene, 13, 10)
-}
+// Thematic props near each service box / zone
+function createCourtSideProps(scene) {
+  // Near Projects zone (near-left service box): laptop on bench
+  createLaptop(scene, -HALF_W - 2.5, -3)
 
-function createRobot(scene, x, z) {
-  const metalMat = new THREE.MeshStandardMaterial({ color: 0x889999, metalness: 0.7, roughness: 0.3 })
-  const darkMat = new THREE.MeshStandardMaterial({ color: 0x334444, metalness: 0.5, roughness: 0.4 })
-  const eyeMat = new THREE.MeshStandardMaterial({ color: 0x44ff88, emissive: 0x22cc66, emissiveIntensity: 0.8 })
+  // Near About zone (near-right service box): tennis balls + racket
+  createTennisBalls(scene, HALF_W + 2.5, -3)
 
-  const body = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.0, 0.5), metalMat)
-  body.position.set(x, 0.8, z)
-  body.castShadow = true
-  scene.add(body)
+  // Near Experience zone (far-left service box): animated robotic arm
+  createAnimatedRoboticArm(scene, -HALF_W - 2.5, 3)
 
-  const head = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.5, 0.4), metalMat)
-  head.position.set(x, 1.6, z)
-  head.castShadow = true
-  scene.add(head)
+  // Near Contact zone (far-right service box): mailbox with phone
+  createMailbox(scene, HALF_W + 2.5, 3)
 
-  const eye1 = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), eyeMat)
-  eye1.position.set(x - 0.12, 1.65, z + 0.21)
-  scene.add(eye1)
-  const eye2 = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), eyeMat)
-  eye2.position.set(x + 0.12, 1.65, z + 0.21)
-  scene.add(eye2)
-
-  const antennaGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.4)
-  const antenna = new THREE.Mesh(antennaGeo, darkMat)
-  antenna.position.set(x, 2.05, z)
-  scene.add(antenna)
-  const antennaTip = new THREE.Mesh(new THREE.SphereGeometry(0.06, 6, 6), eyeMat)
-  antennaTip.position.set(x, 2.25, z)
-  scene.add(antennaTip)
-
-  const armGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.6)
-  const leftArm = new THREE.Mesh(armGeo, darkMat)
-  leftArm.position.set(x - 0.55, 0.7, z)
-  leftArm.rotation.z = 0.3
-  scene.add(leftArm)
-  const rightArm = new THREE.Mesh(armGeo, darkMat)
-  rightArm.position.set(x + 0.55, 0.7, z)
-  rightArm.rotation.z = -0.3
-  scene.add(rightArm)
-
-  const legGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.5)
-  const leftLeg = new THREE.Mesh(legGeo, darkMat)
-  leftLeg.position.set(x - 0.2, 0.25, z)
-  scene.add(leftLeg)
-  const rightLeg = new THREE.Mesh(legGeo, darkMat)
-  rightLeg.position.set(x + 0.2, 0.25, z)
-  scene.add(rightLeg)
-
-  const light = new THREE.PointLight(0x44ff88, 0.3, 5)
-  light.position.set(x, 1.5, z)
-  scene.add(light)
+  // Scoreboard behind far baseline
+  createScoreboard(scene, 0, HALF + 3)
 }
 
 function createLaptop(scene, x, z) {
   const baseMat = new THREE.MeshStandardMaterial({ color: 0x333344, metalness: 0.6, roughness: 0.3 })
   const screenMat = new THREE.MeshStandardMaterial({ color: 0x2244aa, emissive: 0x1133aa, emissiveIntensity: 0.5 })
 
-  const deskGeo = new THREE.BoxGeometry(1.5, 0.8, 1)
-  const deskMat = new THREE.MeshStandardMaterial({ color: 0x6a4a2a, roughness: 0.9 })
-  const desk = new THREE.Mesh(deskGeo, deskMat)
-  desk.position.set(x, 0.4, z)
-  desk.castShadow = true
-  scene.add(desk)
-
   const baseGeo = new THREE.BoxGeometry(0.9, 0.04, 0.6)
   const base = new THREE.Mesh(baseGeo, baseMat)
-  base.position.set(x, 0.82, z)
+  base.position.set(x, 0.52, z)
   scene.add(base)
 
   const lidGeo = new THREE.BoxGeometry(0.9, 0.6, 0.03)
   const lid = new THREE.Mesh(lidGeo, baseMat)
-  lid.position.set(x, 1.12, z - 0.28)
+  lid.position.set(x, 0.82, z - 0.28)
   lid.rotation.x = 0.15
   scene.add(lid)
 
   const screenGeo = new THREE.PlaneGeometry(0.7, 0.45)
   const screen = new THREE.Mesh(screenGeo, screenMat)
-  screen.position.set(x, 1.14, z - 0.265)
+  screen.position.set(x, 0.84, z - 0.265)
   screen.rotation.x = 0.15
   scene.add(screen)
 
@@ -354,27 +354,23 @@ function createLaptop(scene, x, z) {
     const lineWidth = 0.1 + Math.random() * 0.3
     const codeLineGeo = new THREE.PlaneGeometry(lineWidth, 0.02)
     const codeLine = new THREE.Mesh(codeLineGeo, codeMat)
-    codeLine.position.set(x - 0.15 + lineWidth / 2, 1.14 + 0.15 - i * 0.07, z - 0.26)
+    codeLine.position.set(x - 0.15 + lineWidth / 2, 0.84 + 0.15 - i * 0.07, z - 0.26)
     codeLine.rotation.x = 0.15
     scene.add(codeLine)
   }
 
   const light = new THREE.PointLight(0x2244aa, 0.3, 5)
-  light.position.set(x, 1.2, z)
+  light.position.set(x, 1, z)
   scene.add(light)
 }
 
 function createTennisBalls(scene, x, z) {
   const ballMat = new THREE.MeshStandardMaterial({ color: 0xccdd44, roughness: 0.6 })
-
   const positions = [
     [x, 0.15, z],
     [x + 0.5, 0.15, z + 0.3],
     [x - 0.3, 0.15, z + 0.5],
-    [x + 0.2, 0.15, z - 0.4],
-    [x - 0.6, 0.15, z - 0.2],
   ]
-
   for (const [bx, by, bz] of positions) {
     const ball = new THREE.Mesh(new THREE.SphereGeometry(0.15, 12, 12), ballMat)
     ball.position.set(bx, by, bz)
@@ -382,24 +378,121 @@ function createTennisBalls(scene, x, z) {
     scene.add(ball)
   }
 
-  const hoopMat = new THREE.MeshStandardMaterial({ color: 0x6a4a2a, roughness: 0.85 })
-  const hoop = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.4, 12, 1, true), hoopMat)
-  hoop.position.set(x, 0.2, z)
-  scene.add(hoop)
-
+  // Racket leaning against bench
   const racketMat = new THREE.MeshStandardMaterial({ color: 0xC2694F, roughness: 0.5 })
   const handleGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.8)
   const handle = new THREE.Mesh(handleGeo, racketMat)
-  handle.position.set(x + 1, 0.4, z - 0.5)
+  handle.position.set(x + 0.8, 0.4, z)
   handle.rotation.z = -0.8
   handle.rotation.x = 0.2
   scene.add(handle)
 
   const headGeo = new THREE.RingGeometry(0.15, 0.22, 12)
   const headMesh = new THREE.Mesh(headGeo, racketMat)
-  headMesh.position.set(x + 1.4, 0.75, z - 0.5)
+  headMesh.position.set(x + 1.2, 0.75, z)
   headMesh.rotation.y = 0.3
   scene.add(headMesh)
+}
+
+// Animated robotic arm for Pololu / Experience zone
+let roboticArmParts = null
+
+export function createAnimatedRoboticArm(scene, x, z) {
+  const metalMat = new THREE.MeshStandardMaterial({ color: 0x889999, metalness: 0.8, roughness: 0.2 })
+  const jointMat = new THREE.MeshStandardMaterial({ color: 0xC2694F, metalness: 0.6, roughness: 0.3 })
+  const gripMat = new THREE.MeshStandardMaterial({ color: 0x44ff88, emissive: 0x22cc66, emissiveIntensity: 0.4 })
+
+  // Base platform
+  const basePlat = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.2, 8), metalMat)
+  basePlat.position.set(x, 0.1, z)
+  basePlat.castShadow = true
+  scene.add(basePlat)
+
+  // Rotating base
+  const baseRotor = new THREE.Group()
+  baseRotor.position.set(x, 0.2, z)
+  scene.add(baseRotor)
+
+  // Lower arm segment
+  const lowerArm = new THREE.Group()
+  const lowerGeo = new THREE.BoxGeometry(0.12, 1.0, 0.12)
+  const lowerMesh = new THREE.Mesh(lowerGeo, metalMat)
+  lowerMesh.position.y = 0.5
+  lowerMesh.castShadow = true
+  lowerArm.add(lowerMesh)
+
+  const joint1 = new THREE.Mesh(new THREE.SphereGeometry(0.1, 8, 8), jointMat)
+  joint1.position.y = 0
+  lowerArm.add(joint1)
+
+  baseRotor.add(lowerArm)
+
+  // Upper arm segment
+  const upperArm = new THREE.Group()
+  upperArm.position.y = 1.0
+  const upperGeo = new THREE.BoxGeometry(0.1, 0.8, 0.1)
+  const upperMesh = new THREE.Mesh(upperGeo, metalMat)
+  upperMesh.position.y = 0.4
+  upperMesh.castShadow = true
+  upperArm.add(upperMesh)
+
+  const joint2 = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), jointMat)
+  joint2.position.y = 0
+  upperArm.add(joint2)
+
+  lowerArm.add(upperArm)
+
+  // Gripper / end effector
+  const gripper = new THREE.Group()
+  gripper.position.y = 0.8
+  const gripJoint = new THREE.Mesh(new THREE.SphereGeometry(0.06, 6, 6), gripMat)
+  gripper.add(gripJoint)
+
+  const finger1 = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.15, 0.06), gripMat)
+  finger1.position.set(-0.05, 0.1, 0)
+  gripper.add(finger1)
+  const finger2 = finger1.clone()
+  finger2.position.set(0.05, 0.1, 0)
+  gripper.add(finger2)
+
+  upperArm.add(gripper)
+
+  // Glow light
+  const armLight = new THREE.PointLight(0x44ff88, 0.4, 5)
+  armLight.position.set(x, 1.5, z)
+  scene.add(armLight)
+
+  // "POLOLU" label plate on base
+  const labelCanvas = document.createElement('canvas')
+  labelCanvas.width = 128
+  labelCanvas.height = 32
+  const lctx = labelCanvas.getContext('2d')
+  lctx.fillStyle = '#889999'
+  lctx.fillRect(0, 0, 128, 32)
+  lctx.font = 'bold 16px "Space Grotesk", sans-serif'
+  lctx.fillStyle = '#0a0a14'
+  lctx.textAlign = 'center'
+  lctx.fillText('POLOLU', 64, 22)
+  const labelTex = new THREE.CanvasTexture(labelCanvas)
+  const labelGeo = new THREE.PlaneGeometry(0.6, 0.15)
+  const labelMesh = new THREE.Mesh(labelGeo, new THREE.MeshBasicMaterial({ map: labelTex }))
+  labelMesh.position.set(x, 0.25, z + 0.35)
+  scene.add(labelMesh)
+
+  roboticArmParts = { baseRotor, lowerArm, upperArm, gripper, finger1, finger2 }
+}
+
+export function updateRoboticArm(time) {
+  if (!roboticArmParts) return
+  const { baseRotor, lowerArm, upperArm, gripper, finger1, finger2 } = roboticArmParts
+
+  baseRotor.rotation.y = Math.sin(time * 0.5) * 1.2
+  lowerArm.rotation.z = Math.sin(time * 0.7) * 0.3 + 0.2
+  upperArm.rotation.z = Math.sin(time * 0.9 + 1) * 0.4 - 0.3
+
+  const grip = Math.sin(time * 2) * 0.03
+  finger1.position.x = -0.05 - grip
+  finger2.position.x = 0.05 + grip
 }
 
 function createMailbox(scene, x, z) {
@@ -430,20 +523,49 @@ function createMailbox(scene, x, z) {
   const flag = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.08, 0.02), flagMat)
   flag.position.set(x + 0.32, 1.75, z)
   scene.add(flag)
+}
 
-  const phoneMat = new THREE.MeshStandardMaterial({ color: 0x222233, metalness: 0.5, roughness: 0.3 })
-  const phone = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.35, 0.02), phoneMat)
-  phone.position.set(x - 0.8, 0.6, z)
-  phone.rotation.z = -0.3
-  phone.rotation.y = 0.5
-  scene.add(phone)
+function createScoreboard(scene, x, z) {
+  const frameMat = new THREE.MeshStandardMaterial({ color: 0x2a2a3a, metalness: 0.5, roughness: 0.4 })
+  const frame = new THREE.Mesh(new THREE.BoxGeometry(4, 2.5, 0.15), frameMat)
+  frame.position.set(x, 2.5, z)
+  frame.castShadow = true
+  scene.add(frame)
 
-  const phonScreen = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.15, 0.25),
-    new THREE.MeshStandardMaterial({ color: 0x3366cc, emissive: 0x2244aa, emissiveIntensity: 0.4 })
-  )
-  phonScreen.position.set(x - 0.8, 0.6, z + 0.015)
-  phonScreen.rotation.z = -0.3
-  phonScreen.rotation.y = 0.5
-  scene.add(phonScreen)
+  // Screen
+  const canvas = document.createElement('canvas')
+  canvas.width = 512
+  canvas.height = 256
+  const ctx = canvas.getContext('2d')
+  ctx.fillStyle = '#0a0a14'
+  ctx.fillRect(0, 0, 512, 256)
+  ctx.font = 'bold 28px "Space Grotesk", sans-serif'
+  ctx.fillStyle = '#C2694F'
+  ctx.textAlign = 'center'
+  ctx.fillText('PRANAV KALAKOTA', 256, 50)
+  ctx.font = '18px "Space Grotesk", sans-serif'
+  ctx.fillStyle = '#F5F0E8'
+  ctx.fillText('CS @ Purdue University', 256, 90)
+  ctx.fillText('AI + Hardware + Software', 256, 120)
+  ctx.font = '14px "JetBrains Mono", monospace'
+  ctx.fillStyle = 'rgba(232, 221, 208, 0.4)'
+  ctx.fillText('Java  |  Python  |  C  |  Swift  |  TypeScript', 256, 170)
+  ctx.fillText('Git  |  Tableau  |  Pandas  |  Matplotlib', 256, 195)
+  ctx.font = '12px "Space Grotesk", sans-serif'
+  ctx.fillStyle = 'rgba(194, 105, 79, 0.5)'
+  ctx.fillText('Walk into a service box to explore', 256, 235)
+
+  const tex = new THREE.CanvasTexture(canvas)
+  const screenGeo = new THREE.PlaneGeometry(3.6, 2.1)
+  const screenMesh = new THREE.Mesh(screenGeo, new THREE.MeshBasicMaterial({ map: tex }))
+  screenMesh.position.set(x, 2.5, z - 0.08)
+  scene.add(screenMesh)
+
+  // Support legs
+  for (const lx of [-1.5, 1.5]) {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 2.5), frameMat)
+    leg.position.set(x + lx, 1.25, z + 0.1)
+    leg.rotation.x = 0.05
+    scene.add(leg)
+  }
 }

@@ -6,6 +6,7 @@ export function createSplash(appEl, onStart) {
       <h1 class="splash-name">PRANAV KALAKOTA</h1>
       <p class="splash-sub">INTERACTIVE PORTFOLIO</p>
       <button class="splash-btn" id="splash-start">CLICK TO START</button>
+      <p class="splash-hint">Explore the court and find hidden keys to unlock all areas.<br>Some sections are locked until you discover their secrets.</p>
     </div>
   `
   appEl.appendChild(splash)
@@ -80,6 +81,15 @@ style.textContent = `
   border-color: rgba(194, 105, 79, 0.6);
   color: #F5F0E8;
   background: rgba(194, 105, 79, 0.08);
+}
+
+.splash-hint {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(194, 105, 79, 0.6);
+  margin-top: 32px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
 }
 `
 document.head.appendChild(style)

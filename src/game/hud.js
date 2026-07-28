@@ -1,6 +1,6 @@
 import { ZONE_DEFS } from './zones.js'
 
-const WORLD_SIZE = 50
+const WORLD_SIZE = 44
 
 export function createHUD(appEl) {
   const hud = document.createElement('div')
@@ -69,7 +69,7 @@ export function createHUD(appEl) {
 
       ctx.strokeStyle = 'rgba(232, 221, 208, 0.15)'
       ctx.lineWidth = 0.5
-      ctx.strokeRect(half - 6 * scale, half - 3 * scale, 12 * scale, 6 * scale)
+      ctx.strokeRect(half - 7 * scale, half - 15 * scale, 14 * scale, 30 * scale)
 
       const ax = half + playerX * scale
       const ay = half + playerZ * scale

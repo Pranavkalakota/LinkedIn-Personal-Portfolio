@@ -94,16 +94,21 @@ function showReadme() {
       <h3 class="file-detail-title">README.md</h3>
       <pre class="file-readme"># Pranav Kalakota
 
-CS @ Purdue University | Software Engineer
+CS @ Purdue University | AI + Hardware + Software
 
 ## About
-I build things that solve real problems.
-Tennis player. Code writer. Problem solver.
+Interested in the integration of AI with hardware
+and software fields. Building things that ship and matter.
 
 ## Currently Working On
 - AI-powered macOS assistant (Orion)
-- MCP Server for task management
+- Embedded systems & robotics at Pololu
+- Reimagining intelligence at Crcle
 - This portfolio (you're exploring it right now!)
+
+## Skills
+Java, Python, C, Swift, TypeScript
+Git, Tableau, Pandas, Matplotlib
 
 ## Contact
 Email: pkalakot@purdue.edu
@@ -180,7 +185,7 @@ export function isDesktopOpen() {
   return isOpen
 }
 
-const LAPTOP_POS = { x: 13, z: -10 }
+const LAPTOP_POS = { x: -9.5, z: -3 }
 const LAPTOP_RADIUS = 3
 
 export function checkLaptopProximity(px, pz) {

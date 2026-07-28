@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { createWorld } from './world.js'
+import { createWorld, updateRoboticArm, COURT_BOUNDS } from './world.js'
 import { createPlayer } from './player.js'
 import { createZoneStructures, ZONE_DEFS, checkZoneProximity, billboardLabels, checkBuildingCollision } from './zones.js'
 import { setupInput, getDirection } from './input.js'
@@ -9,8 +9,8 @@ import { createInteractables, updateInteractables, hasKey } from './interactable
 import { createDesktopUI, openDesktop, closeDesktop as closeDesktopUI, isDesktopOpen, checkLaptopProximity } from './desktop-ui.js'
 
 const SPEED = 0.12
-const CAM_HEIGHT = 14
-const CAM_DIST = 18
+const CAM_HEIGHT = 16
+const CAM_DIST = 22
 const CAM_ANGLE = Math.PI / 6
 
 export async function createGame(appEl, onPanelOpen, onPanelClose) {
@@ -20,7 +20,7 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
 
   const scene = new THREE.Scene()
   scene.background = new THREE.Color(0x0d1117)
-  scene.fog = new THREE.FogExp2(0x0d1117, 0.006)
+  scene.fog = new THREE.FogExp2(0x0d1117, 0.005)
 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200)
 
@@ -35,7 +35,7 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
 
   renderer.domElement.setAttribute('role', 'img')
   renderer.domElement.setAttribute('aria-label',
-    'Interactive 3D tennis world. Walk your character with WASD or arrow keys to explore zones containing portfolio information. All content is also accessible via keyboard.'
+    'Interactive 3D tennis court. Walk your character with WASD or arrow keys to explore service boxes containing portfolio information. All content is also accessible via keyboard.'
   )
 
   const ambientLight = new THREE.AmbientLight(0x6677aa, 2.0)
@@ -79,6 +79,7 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
   let gracePeriod = 90
   let closedZone = null
   let lockedHintVisible = false
+  let gameTime = 0
 
   const lockedHint = document.createElement('div')
   lockedHint.className = 'interact-hint locked-hint'
@@ -132,9 +133,12 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
   function animate() {
     requestAnimationFrame(animate)
 
+    gameTime += 0.016
+
     if (gracePeriod > 0) {
       gracePeriod--
       updateCamera()
+      updateRoboticArm(gameTime)
       renderer.render(scene, camera)
       hud.updateMinimap(player.mesh.position.x, player.mesh.position.z)
       return
@@ -161,8 +165,8 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
           player.mesh.position.z = newZ
         }
 
-        player.mesh.position.x = Math.max(-25, Math.min(25, player.mesh.position.x))
-        player.mesh.position.z = Math.max(-25, Math.min(25, player.mesh.position.z))
+        player.mesh.position.x = Math.max(COURT_BOUNDS.minX, Math.min(COURT_BOUNDS.maxX, player.mesh.position.x))
+        player.mesh.position.z = Math.max(COURT_BOUNDS.minZ, Math.min(COURT_BOUNDS.maxZ, player.mesh.position.z))
 
         const targetAngle = Math.atan2(mx, mz)
         player.mesh.rotation.y = targetAngle
@@ -202,6 +206,7 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
     ePrompt.style.display = (nearLaptop && !panelOpen) ? 'block' : 'none'
 
     updateInteractables(player.mesh.position.x, player.mesh.position.z)
+    updateRoboticArm(gameTime)
     updateCamera()
     billboardLabels(camera)
     hud.updateMinimap(player.mesh.position.x, player.mesh.position.z)

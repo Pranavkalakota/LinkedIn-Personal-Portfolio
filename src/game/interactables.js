@@ -6,11 +6,12 @@ let collectedKeys = new Set()
 let hintEl = null
 
 export function createInteractables(scene) {
-  createCollectibleKey(scene, 5, -15, 'projects-key', 0xC2694F)
-  createCollectibleKey(scene, -5, 15, 'resume-key', 0x8B7355)
+  // Key for Projects zone — hidden behind far baseline
+  createCollectibleKey(scene, 5, 17, 'projects-key', 0xC2694F)
+  // Key for Experience zone — tucked near trees on the left
+  createCollectibleKey(scene, -10, -12, 'resume-key', 0x8B7355)
 
   createEasterEggs(scene)
-
   createHintUI()
 }
 
@@ -79,10 +80,12 @@ function createCollectibleKey(scene, x, z, id, color) {
 }
 
 function createEasterEggs(scene) {
-  createTennisTrophy(scene, -18, -18)
-  createHiddenMessage(scene, 20, -20)
-  createBouncingBall(scene, 0, -12)
-  createMusicNote(scene, 18, 0)
+  createTennisTrophy(scene, 2, -17)
+  createHiddenMessage(scene, -13, 0)
+  createBouncingBall(scene, 0, -13)
+  createMusicNote(scene, 12, 14)
+  createWindTunnel(scene, -8, 18)
+  createHackathonBadge(scene, 8, -16)
 }
 
 function createTennisTrophy(scene, x, z) {
@@ -122,11 +125,7 @@ function createTennisTrophy(scene, x, z) {
   light.position.set(x, 1.2, z)
   scene.add(light)
 
-  const group = new THREE.Group()
-  group.position.set(x, 0, z)
-  group.userData.type = 'easter-egg'
-  group.userData.message = 'You found the Grand Slam trophy! 🏆'
-  interactables.push({ x, z, radius: 2, message: 'You found the Grand Slam trophy!' })
+  interactables.push({ x, z, radius: 2, message: 'Grand Slam trophy! Every champion starts somewhere.' })
 }
 
 function createHiddenMessage(scene, x, z) {
@@ -145,11 +144,7 @@ function createHiddenMessage(scene, x, z) {
 
   const texture = new THREE.CanvasTexture(canvas)
   const geo = new THREE.PlaneGeometry(3, 1.5)
-  const mat = new THREE.MeshBasicMaterial({
-    map: texture,
-    transparent: true,
-    side: THREE.DoubleSide,
-  })
+  const mat = new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide })
   const sign = new THREE.Mesh(geo, mat)
   sign.position.set(x, 1.5, z)
   scene.add(sign)
@@ -205,10 +200,75 @@ function createMusicNote(scene, x, z) {
   light.position.set(x, 0.8, z)
   scene.add(light)
 
-  interactables.push({ x, z, radius: 2, message: 'A floating music note! Pranav codes with lo-fi beats.' })
+  interactables.push({ x, z, radius: 2, message: 'Pranav codes with lo-fi beats on repeat.' })
 }
 
-export function updateInteractables(playerX, playerZ, dt) {
+function createWindTunnel(scene, x, z) {
+  const tubeMat = new THREE.MeshStandardMaterial({
+    color: 0x667788,
+    metalness: 0.6,
+    roughness: 0.3,
+    transparent: true,
+    opacity: 0.7,
+  })
+  const tube = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 1.5, 16, 1, true), tubeMat)
+  tube.position.set(x, 0.75, z)
+  tube.rotation.z = Math.PI / 2
+  scene.add(tube)
+
+  const fanMat = new THREE.MeshStandardMaterial({ color: 0xaabbcc, metalness: 0.7 })
+  for (let i = 0; i < 4; i++) {
+    const blade = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.25, 0.06), fanMat)
+    blade.position.set(x - 0.75, 0.75, z)
+    blade.rotation.x = (i * Math.PI) / 2
+    scene.add(blade)
+  }
+
+  const supportMat = new THREE.MeshStandardMaterial({ color: 0x444455 })
+  const support1 = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.75, 0.06), supportMat)
+  support1.position.set(x - 0.5, 0.375, z)
+  scene.add(support1)
+  const support2 = support1.clone()
+  support2.position.set(x + 0.5, 0.375, z)
+  scene.add(support2)
+
+  interactables.push({ x, z, radius: 2.5, message: 'A miniature wind tunnel — from Purdue\'s equine airway research project!' })
+}
+
+function createHackathonBadge(scene, x, z) {
+  const badgeMat = new THREE.MeshStandardMaterial({
+    color: 0xC2694F,
+    metalness: 0.7,
+    roughness: 0.2,
+    emissive: 0xC2694F,
+    emissiveIntensity: 0.2,
+  })
+
+  const badge = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.08, 6), badgeMat)
+  badge.position.set(x, 0.8, z)
+  badge.castShadow = true
+  scene.add(badge)
+
+  const inner = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.25, 0.25, 0.09, 6),
+    new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.9, roughness: 0.1 })
+  )
+  inner.position.set(x, 0.81, z)
+  scene.add(inner)
+
+  const stemGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.8)
+  const stem = new THREE.Mesh(stemGeo, new THREE.MeshStandardMaterial({ color: 0x555555 }))
+  stem.position.set(x, 0.4, z)
+  scene.add(stem)
+
+  const light = new THREE.PointLight(0xC2694F, 0.3, 4)
+  light.position.set(x, 1, z)
+  scene.add(light)
+
+  interactables.push({ x, z, radius: 2, message: '1st place — Claude Builder Hackathon, Healthcare track (VEDA)!' })
+}
+
+export function updateInteractables(playerX, playerZ) {
   for (const item of interactables) {
     if (item.mesh && item.mesh.userData.bounce) {
       item.mesh.userData.phase += 0.05

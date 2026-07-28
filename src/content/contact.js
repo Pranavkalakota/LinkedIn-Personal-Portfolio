@@ -1,5 +1,5 @@
 export const contact = {
-  headline: "Let's rally.",
+  headline: "Let's connect.",
   links: [
     { label: 'pkalakot@purdue.edu', href: 'mailto:pkalakot@purdue.edu' },
     { label: 'LinkedIn', href: 'https://linkedin.com/in/pranav-kalakota' },

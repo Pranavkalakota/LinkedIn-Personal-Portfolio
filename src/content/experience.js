@@ -4,7 +4,7 @@ export const experience = [
     company: 'Crcle',
     location: '',
     date: 'June 2026 – Present',
-    summary: 'Working on reimagining intelligence at a fast-moving startup building the next generation of AI-powered tools.',
+    summary: 'Reimagining intelligence.',
     type: 'work',
   },
   {
@@ -20,7 +20,7 @@ export const experience = [
     company: 'Purdue VIP Program',
     location: 'West Lafayette, IN',
     date: 'August – December 2025',
-    summary: 'Only CS student selected from 10+ peers for a fluid mechanics research team. Contributed to wind tunnel design replicating equine respiratory pathways, bridging computational thinking with mechanical engineering.',
+    summary: 'Only CS student selected from 10+ peers for a fluid mechanics research team. Contributed to the design and development of a wind tunnel replicating equine respiratory pathways, integrating computational thinking into a mechanical engineering challenge.',
     type: 'research',
   },
   {
@@ -36,7 +36,7 @@ export const experience = [
     company: 'UNLV Office of Undergraduate Research',
     location: '',
     date: 'October 2023 – April 2024',
-    summary: 'Partnered with a PhD mentor to perform data mining and analysis on GABA and Glutamate levels in Autistic vs. Allistic patients, applying computational methods to maintain academic rigor.',
+    summary: 'Partnered with undergraduate researchers and a PhD mentor to perform data mining and analysis on GABA and Glutamate levels in Autistic vs. Allistic patients, applying computational methods to maintain academic rigor.',
     type: 'research',
   },
   {
@@ -44,15 +44,7 @@ export const experience = [
     company: 'Summer Business Institute Program',
     location: 'Las Vegas, NV',
     date: 'June – August 2024',
-    summary: 'Resolved 25+ IT issues for the City of Henderson across multiple departments. Automated and organized datasets for Police and Fire Departments, improving data accessibility. Collaborated in daily stand-ups with a 10-member agile-style team.',
-    type: 'work',
-  },
-  {
-    role: 'Volunteer Medical Assistant',
-    company: 'Southern Hills Hospital',
-    location: 'Las Vegas, NV',
-    date: 'August 2023 – January 2025',
-    summary: 'Supported 50+ patients weekly in a hospital environment, gaining firsthand experience in healthcare operations and community outreach.',
+    summary: 'Resolved 25+ IT issues for the City of Henderson across multiple departments, improving operational uptime. Automated and organized datasets for Police & Fire Departments, improving data accessibility and efficiency. Collaborated in daily stand-ups with a 10-member agile-style team, boosting productivity by 5%.',
     type: 'work',
   },
 ]
