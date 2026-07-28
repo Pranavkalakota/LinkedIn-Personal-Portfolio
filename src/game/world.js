@@ -550,10 +550,10 @@ function createScoreboard(scene, x, z) {
   ctx.font = '14px "JetBrains Mono", monospace'
   ctx.fillStyle = 'rgba(232, 221, 208, 0.4)'
   ctx.fillText('Java  |  Python  |  C  |  Swift  |  TypeScript', 256, 170)
-  ctx.fillText('Git  |  Tableau  |  Pandas  |  Matplotlib', 256, 195)
+  ctx.fillText('Arduino  |  ONNX  |  ChromaDB  |  Express', 256, 195)
   ctx.font = '12px "Space Grotesk", sans-serif'
   ctx.fillStyle = 'rgba(194, 105, 79, 0.5)'
-  ctx.fillText('Walk into a service box to explore', 256, 235)
+  ctx.fillText('Find keys to unlock each building', 256, 235)
 
   const tex = new THREE.CanvasTexture(canvas)
   const screenGeo = new THREE.PlaneGeometry(3.6, 2.1)

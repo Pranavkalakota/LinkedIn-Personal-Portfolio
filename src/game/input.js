@@ -2,7 +2,7 @@ const keys = {}
 
 export function setupInput() {
   window.addEventListener('keydown', (e) => {
-    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', 'e'].includes(e.key)) {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', 'e', ' '].includes(e.key)) {
       e.preventDefault()
       keys[e.key] = true
     }
@@ -13,24 +13,16 @@ export function setupInput() {
   })
 }
 
-export function getDirection() {
-  let dx = 0
-  let dy = 0
-
-  if (keys['ArrowUp'] || keys['w']) dy = -1
-  if (keys['ArrowDown'] || keys['s']) dy = 1
-  if (keys['ArrowLeft'] || keys['a']) dx = -1
-  if (keys['ArrowRight'] || keys['d']) dx = 1
-
-  if (dx !== 0 && dy !== 0) {
-    const inv = 1 / Math.SQRT2
-    dx *= inv
-    dy *= inv
-  }
-
-  return { dx, dy }
+export function getMovement() {
+  let fwd = 0
+  let right = 0
+  if (keys['w'] || keys['ArrowUp']) fwd = 1
+  if (keys['s'] || keys['ArrowDown']) fwd = -1
+  if (keys['a'] || keys['ArrowLeft']) right = -1
+  if (keys['d'] || keys['ArrowRight']) right = 1
+  return { fwd, right }
 }
 
-export function anyKeyPressed() {
-  return Object.values(keys).some(Boolean)
+export function isKeyDown(key) {
+  return !!keys[key]
 }

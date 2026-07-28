@@ -4,12 +4,17 @@ const interactables = []
 let collectibles = []
 let collectedKeys = new Set()
 let hintEl = null
+let hintTimer = null
+let shownHints = new Set()
+
+const TOTAL_KEYS = 4
 
 export function createInteractables(scene) {
-  // Key for Projects zone — hidden behind far baseline
-  createCollectibleKey(scene, 5, 17, 'projects-key', 0xC2694F)
-  // Key for Experience zone — tucked near trees on the left
-  createCollectibleKey(scene, -10, -12, 'resume-key', 0x8B7355)
+  // 4 keys — one per zone, hidden around the court surroundings
+  createCollectibleKey(scene, -10, -12, 'projects-key', 0xC2694F)
+  createCollectibleKey(scene, 10, -10, 'about-key', 0x6B7C5E)
+  createCollectibleKey(scene, -8, 12, 'resume-key', 0x8B7355)
+  createCollectibleKey(scene, 12, 8, 'contact-key', 0x4a6a8a)
 
   createEasterEggs(scene)
   createHintUI()
@@ -24,7 +29,7 @@ function createHintUI() {
   const collectUI = document.createElement('div')
   collectUI.id = 'collect-counter'
   collectUI.className = 'collect-counter'
-  collectUI.textContent = '0 / 2 keys'
+  collectUI.textContent = `0 / ${TOTAL_KEYS} keys`
   document.getElementById('app').appendChild(collectUI)
 }
 
@@ -34,7 +39,6 @@ function createCollectibleKey(scene, x, z, id, color) {
   group.userData.id = id
   group.userData.type = 'key'
 
-  const handleGeo = new THREE.TorusGeometry(0.2, 0.04, 8, 16)
   const keyMat = new THREE.MeshStandardMaterial({
     color,
     metalness: 0.8,
@@ -42,6 +46,8 @@ function createCollectibleKey(scene, x, z, id, color) {
     emissive: color,
     emissiveIntensity: 0.3,
   })
+
+  const handleGeo = new THREE.TorusGeometry(0.2, 0.04, 8, 16)
   const handle = new THREE.Mesh(handleGeo, keyMat)
   handle.position.y = 0.8
   handle.rotation.x = Math.PI / 2
@@ -80,12 +86,12 @@ function createCollectibleKey(scene, x, z, id, color) {
 }
 
 function createEasterEggs(scene) {
-  createTennisTrophy(scene, 2, -17)
+  createTennisTrophy(scene, 0, -17)
   createHiddenMessage(scene, -13, 0)
-  createBouncingBall(scene, 0, -13)
-  createMusicNote(scene, 12, 14)
+  createBouncingBall(scene, 8, -14)
+  createMusicNote(scene, -12, 14)
   createWindTunnel(scene, -8, 18)
-  createHackathonBadge(scene, 8, -16)
+  createHackathonBadge(scene, 10, 16)
 }
 
 function createTennisTrophy(scene, x, z) {
@@ -171,7 +177,7 @@ function createBouncingBall(scene, x, z) {
   ball.userData.bounce = true
   ball.userData.phase = 0
 
-  interactables.push({ x, z, radius: 2, message: 'A magical tennis ball! It never stops bouncing.', mesh: ball })
+  interactables.push({ x, z, radius: 2, message: 'Try to catch it! This ball has a mind of its own.', mesh: ball })
 }
 
 function createMusicNote(scene, x, z) {
@@ -288,37 +294,37 @@ export function updateInteractables(playerX, playerZ) {
 
       const counter = document.getElementById('collect-counter')
       if (counter) {
-        counter.textContent = `${collectedKeys.size} / 2 keys`
+        counter.textContent = `${collectedKeys.size} / ${TOTAL_KEYS} keys`
         counter.classList.add('collect-flash')
         setTimeout(() => counter.classList.remove('collect-flash'), 600)
       }
 
-      showHint(`Found a key! (${collectedKeys.size}/2)`)
+      showHint(`Found a key! (${collectedKeys.size}/${TOTAL_KEYS})`)
     }
   }
 
-  let nearInteractable = null
   for (const item of interactables) {
     const dist = Math.hypot(playerX - item.x, playerZ - item.z)
-    if (dist < item.radius) {
-      nearInteractable = item
+    if (dist < item.radius && !shownHints.has(item.message)) {
+      shownHints.add(item.message)
+      showHint(item.message)
       break
     }
-  }
-
-  if (nearInteractable && hintEl) {
-    hintEl.textContent = nearInteractable.message
-    hintEl.style.display = 'block'
-  } else if (hintEl) {
-    hintEl.style.display = 'none'
   }
 }
 
 function showHint(text) {
   if (!hintEl) return
+  if (hintTimer) clearTimeout(hintTimer)
   hintEl.textContent = text
   hintEl.style.display = 'block'
-  setTimeout(() => { if (hintEl) hintEl.style.display = 'none' }, 3000)
+  hintEl.style.opacity = '1'
+  hintTimer = setTimeout(() => {
+    if (hintEl) {
+      hintEl.style.opacity = '0'
+      setTimeout(() => { if (hintEl) hintEl.style.display = 'none' }, 400)
+    }
+  }, 5000)
 }
 
 export function hasKey(keyId) {
@@ -345,6 +351,7 @@ style.textContent = `
   pointer-events: none;
   text-align: center;
   max-width: 400px;
+  transition: opacity 0.4s;
 }
 
 .collect-counter {

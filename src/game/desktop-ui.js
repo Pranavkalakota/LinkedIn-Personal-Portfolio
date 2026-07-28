@@ -79,7 +79,7 @@ function showProjectDetail(project) {
       <p class="file-detail-date">${project.date}</p>
       <p class="file-detail-desc">${project.description}</p>
       <p class="file-detail-tech">${project.tech}</p>
-      ${project.github ? `<a class="file-detail-link" href="${project.github}" target="_blank" rel="noopener">Open on GitHub →</a>` : ''}
+      ${project.link ? `<a class="file-detail-link" href="${project.link}" target="_blank" rel="noopener">Open on GitHub →</a>` : ''}
     </div>
   `
 

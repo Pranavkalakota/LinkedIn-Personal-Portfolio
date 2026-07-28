@@ -1,58 +1,58 @@
 import * as THREE from 'three'
 import { createWorld, updateRoboticArm, COURT_BOUNDS } from './world.js'
-import { createPlayer } from './player.js'
-import { createZoneStructures, ZONE_DEFS, checkZoneProximity, billboardLabels, checkBuildingCollision } from './zones.js'
-import { setupInput, getDirection } from './input.js'
+import { createZoneStructures, ZONE_DEFS, checkZoneProximity, billboardLabels, updateZoneAnimations } from './zones.js'
+import { setupInput, getMovement, isKeyDown } from './input.js'
 import { showOnboarding } from './onboarding.js'
-import { createHUD } from './hud.js'
+import { createPlayer } from './player.js'
 import { createInteractables, updateInteractables, hasKey } from './interactables.js'
-import { createDesktopUI, openDesktop, closeDesktop as closeDesktopUI, isDesktopOpen, checkLaptopProximity } from './desktop-ui.js'
+import { createDesktopUI, openDesktop, isDesktopOpen, checkLaptopProximity } from './desktop-ui.js'
+import { createHUD } from './hud.js'
 
-const SPEED = 0.12
-const CAM_HEIGHT = 16
-const CAM_DIST = 22
-const CAM_ANGLE = Math.PI / 6
+const MOVE_SPEED = 0.09
+const CAM_HEIGHT = 12
+const CAM_DISTANCE = 14
+const CAM_ANGLE = Math.PI / 5
 
-export async function createGame(appEl, onPanelOpen, onPanelClose) {
+export async function createGame(appEl, onPanelOpen) {
   const gameRoot = document.createElement('div')
   gameRoot.id = 'game-root'
   appEl.appendChild(gameRoot)
 
   const scene = new THREE.Scene()
   scene.background = new THREE.Color(0x0d1117)
-  scene.fog = new THREE.FogExp2(0x0d1117, 0.005)
+  scene.fog = new THREE.FogExp2(0x0d1117, 0.012)
 
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200)
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200)
+  scene.add(camera)
 
   const renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   renderer.shadowMap.enabled = true
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap
+  renderer.shadowMap.type = THREE.PCFShadowMap
   renderer.toneMapping = THREE.ACESFilmicToneMapping
   renderer.toneMappingExposure = 2.2
   gameRoot.appendChild(renderer.domElement)
 
   renderer.domElement.setAttribute('role', 'img')
   renderer.domElement.setAttribute('aria-label',
-    'Interactive 3D tennis court. Walk your character with WASD or arrow keys to explore service boxes containing portfolio information. All content is also accessible via keyboard.'
+    'Interactive 3D tennis court. Use WASD or arrow keys to walk around and explore portfolio sections.'
   )
 
-  const ambientLight = new THREE.AmbientLight(0x6677aa, 2.0)
-  scene.add(ambientLight)
+  // Lighting
+  scene.add(new THREE.AmbientLight(0x6677aa, 2.0))
 
-  const moonLight = new THREE.DirectionalLight(0xaabbdd, 2.5)
-  moonLight.position.set(15, 25, 10)
-  moonLight.castShadow = true
-  moonLight.shadow.mapSize.width = 2048
-  moonLight.shadow.mapSize.height = 2048
-  moonLight.shadow.camera.near = 0.5
-  moonLight.shadow.camera.far = 80
-  moonLight.shadow.camera.left = -40
-  moonLight.shadow.camera.right = 40
-  moonLight.shadow.camera.top = 40
-  moonLight.shadow.camera.bottom = -40
-  scene.add(moonLight)
+  const sunLight = new THREE.DirectionalLight(0xaabbdd, 2.5)
+  sunLight.position.set(15, 25, 10)
+  sunLight.castShadow = true
+  sunLight.shadow.mapSize.set(2048, 2048)
+  sunLight.shadow.camera.near = 0.5
+  sunLight.shadow.camera.far = 80
+  sunLight.shadow.camera.left = -40
+  sunLight.shadow.camera.right = 40
+  sunLight.shadow.camera.top = 40
+  sunLight.shadow.camera.bottom = -40
+  scene.add(sunLight)
 
   const fillLight = new THREE.DirectionalLight(0x445566, 1.0)
   fillLight.position.set(-10, 15, -10)
@@ -62,41 +62,43 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
   warmLight.position.set(0, 5, 0)
   scene.add(warmLight)
 
+  // World
   createWorld(scene)
   createZoneStructures(scene)
   createInteractables(scene)
   createDesktopUI()
 
+  // Player
   const player = createPlayer(scene)
+  let playerX = 0
+  let playerZ = 8
 
+  // Input & HUD
   setupInput()
   showOnboarding()
-
   const hud = createHUD(appEl)
 
-  let currentZone = null
-  let panelOpen = false
-  let gracePeriod = 90
-  let closedZone = null
-  let lockedHintVisible = false
-  let gameTime = 0
+  // Interact prompt
+  const interactPrompt = document.createElement('div')
+  interactPrompt.className = 'interact-prompt'
+  interactPrompt.style.display = 'none'
+  appEl.appendChild(interactPrompt)
 
+  // Locked hint
+  let lockedHintVisible = false
   const lockedHint = document.createElement('div')
   lockedHint.className = 'interact-hint locked-hint'
   lockedHint.style.display = 'none'
-  document.getElementById('app').appendChild(lockedHint)
+  appEl.appendChild(lockedHint)
 
+  // State
+  let panelOpen = false
+  let gameTime = 0
   let nearLaptop = false
-  const ePrompt = document.createElement('div')
-  ePrompt.className = 'interact-prompt'
-  ePrompt.textContent = 'Press E to use computer'
-  ePrompt.style.display = 'none'
-  document.getElementById('app').appendChild(ePrompt)
 
+  // Events
   window.addEventListener('zone:close', () => {
     panelOpen = false
-    closedZone = currentZone
-    currentZone = null
   })
 
   window.addEventListener('desktop:closed', () => {
@@ -104,10 +106,27 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
   })
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'e' || e.key === 'E') {
-      if (nearLaptop && !panelOpen && !isDesktopOpen()) {
+    if ((e.key === 'e' || e.key === 'E') && !panelOpen && !isDesktopOpen()) {
+      // Check laptop proximity
+      if (nearLaptop) {
         panelOpen = true
         openDesktop()
+        return
+      }
+      // Check zone proximity
+      const zone = checkZoneProximity(playerX, playerZ)
+      if (zone) {
+        if (!hasKey(zone.keyId)) {
+          if (!lockedHintVisible) {
+            lockedHintVisible = true
+            lockedHint.textContent = `Locked! Find the ${zone.label} key first.`
+            lockedHint.style.display = 'block'
+            setTimeout(() => { lockedHint.style.display = 'none'; lockedHintVisible = false }, 2500)
+          }
+        } else {
+          panelOpen = true
+          onPanelOpen(zone.id)
+        }
       }
     }
   })
@@ -118,98 +137,69 @@ export async function createGame(appEl, onPanelOpen, onPanelClose) {
     renderer.setSize(window.innerWidth, window.innerHeight)
   })
 
-  function updateCamera() {
-    const px = player.mesh.position.x
-    const pz = player.mesh.position.z
-
-    camera.position.set(
-      px - Math.sin(CAM_ANGLE) * CAM_DIST,
-      CAM_HEIGHT,
-      pz + Math.cos(CAM_ANGLE) * CAM_DIST
-    )
-    camera.lookAt(px, 1, pz)
-  }
-
   function animate() {
     requestAnimationFrame(animate)
-
     gameTime += 0.016
 
-    if (gracePeriod > 0) {
-      gracePeriod--
-      updateCamera()
-      updateRoboticArm(gameTime)
-      renderer.render(scene, camera)
-      hud.updateMinimap(player.mesh.position.x, player.mesh.position.z)
-      return
+    // Movement
+    let moving = false
+    if (!panelOpen && !isDesktopOpen()) {
+      const { fwd, right } = getMovement()
+      if (fwd !== 0 || right !== 0) {
+        moving = true
+        playerX += right * MOVE_SPEED
+        playerZ -= fwd * MOVE_SPEED
+
+        playerX = Math.max(COURT_BOUNDS.minX, Math.min(COURT_BOUNDS.maxX, playerX))
+        playerZ = Math.max(COURT_BOUNDS.minZ, Math.min(COURT_BOUNDS.maxZ, playerZ))
+
+        // Face direction of movement
+        const angle = Math.atan2(right, -fwd)
+        player.mesh.rotation.y = angle
+      }
     }
 
-    if (!panelOpen) {
-      const { dx, dy } = getDirection()
+    // Update player position & animation
+    player.mesh.position.set(playerX, 0, playerZ)
+    player.animate(moving)
 
-      if (dx !== 0 || dy !== 0) {
-        const angle = CAM_ANGLE
-        const forwardX = Math.sin(angle)
-        const forwardZ = -Math.cos(angle)
-        const rightX = Math.cos(angle)
-        const rightZ = Math.sin(angle)
+    // Camera follows player (isometric)
+    camera.position.set(
+      playerX,
+      CAM_HEIGHT,
+      playerZ + CAM_DISTANCE
+    )
+    camera.lookAt(playerX, 0, playerZ)
+    camera.rotation.x = -CAM_ANGLE
 
-        let mx = (dx * rightX + dy * forwardX) * SPEED
-        let mz = (dx * rightZ + dy * forwardZ) * SPEED
+    // Zone proximity
+    nearLaptop = checkLaptopProximity(playerX, playerZ)
+    const activeZone = checkZoneProximity(playerX, playerZ)
 
-        const newX = player.mesh.position.x + mx
-        const newZ = player.mesh.position.z + mz
-
-        if (!checkBuildingCollision(newX, newZ)) {
-          player.mesh.position.x = newX
-          player.mesh.position.z = newZ
-        }
-
-        player.mesh.position.x = Math.max(COURT_BOUNDS.minX, Math.min(COURT_BOUNDS.maxX, player.mesh.position.x))
-        player.mesh.position.z = Math.max(COURT_BOUNDS.minZ, Math.min(COURT_BOUNDS.maxZ, player.mesh.position.z))
-
-        const targetAngle = Math.atan2(mx, mz)
-        player.mesh.rotation.y = targetAngle
-
-        player.animate(true)
+    if (nearLaptop && !panelOpen && !isDesktopOpen()) {
+      interactPrompt.textContent = 'Press E to use computer'
+      interactPrompt.style.display = 'block'
+    } else if (activeZone && !panelOpen) {
+      if (hasKey(activeZone.keyId)) {
+        interactPrompt.textContent = `Press E to open ${activeZone.label}`
+        interactPrompt.style.display = 'block'
       } else {
-        player.animate(false)
+        interactPrompt.textContent = `${activeZone.label} — key required`
+        interactPrompt.style.display = 'block'
+        interactPrompt.style.borderColor = 'rgba(200, 80, 60, 0.6)'
       }
-
-      const zone = checkZoneProximity(player.mesh.position.x, player.mesh.position.z)
-
-      if (zone && zone !== currentZone && zone !== closedZone) {
-        if (zone === 'projects' && !hasKey('projects-key')) {
-          if (!lockedHintVisible) {
-            lockedHintVisible = true
-            lockedHint.textContent = 'This zone is locked. Find the key to enter!'
-            lockedHint.style.display = 'block'
-            setTimeout(() => {
-              lockedHint.style.display = 'none'
-              lockedHintVisible = false
-            }, 2500)
-          }
-          closedZone = zone
-        } else {
-          currentZone = zone
-          panelOpen = true
-          closedZone = null
-          onPanelOpen(zone)
-        }
-      } else if (!zone) {
-        currentZone = null
-        closedZone = null
-      }
+    } else {
+      interactPrompt.style.display = 'none'
+      interactPrompt.style.borderColor = ''
     }
 
-    nearLaptop = checkLaptopProximity(player.mesh.position.x, player.mesh.position.z)
-    ePrompt.style.display = (nearLaptop && !panelOpen) ? 'block' : 'none'
-
-    updateInteractables(player.mesh.position.x, player.mesh.position.z)
+    // Update world
+    updateInteractables(playerX, playerZ)
     updateRoboticArm(gameTime)
-    updateCamera()
+    updateZoneAnimations(0.016)
     billboardLabels(camera)
-    hud.updateMinimap(player.mesh.position.x, player.mesh.position.z)
+    hud.updateMinimap(playerX, playerZ)
+
     renderer.render(scene, camera)
   }
 
