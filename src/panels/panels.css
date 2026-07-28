@@ -46,14 +46,6 @@
   margin-bottom: 32px;
 }
 
-.fun-facts {
-  font-size: 0.88rem;
-  color: rgba(232, 221, 208, 0.45);
-  line-height: 1.8;
-  padding-top: 20px;
-  border-top: 1px solid rgba(232, 221, 208, 0.08);
-}
-
 /* Projects panel — horizontal strips */
 .project-strip {
   display: grid;
@@ -220,42 +212,6 @@
   font-size: 1rem;
   font-weight: 600;
   color: #F5F0E8;
-}
-
-.edu-meta {
-  font-size: 0.8rem;
-  color: rgba(232, 221, 208, 0.4);
-  margin-bottom: 8px;
-}
-
-.edu-coursework {
-  font-size: 0.85rem;
-  color: rgba(232, 221, 208, 0.5);
-}
-
-.honors-list {
-  list-style: none;
-  padding: 0;
-}
-
-.honors-list li {
-  padding: 8px 0;
-  font-size: 0.85rem;
-  color: rgba(232, 221, 208, 0.6);
-  border-bottom: 1px solid rgba(232, 221, 208, 0.05);
-}
-
-.honors-list li:last-child {
-  border-bottom: none;
-}
-
-.resume-download {
-  display: inline-block;
-  margin-top: 32px;
-  font-size: 0.85rem;
-  color: #C2694F;
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 /* Contact panel — sparse */

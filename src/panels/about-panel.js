@@ -25,11 +25,6 @@ export function createAboutPanel(container) {
     bio.appendChild(p)
   }
 
-  const facts = document.createElement('p')
-  facts.className = 'fun-facts'
-  facts.textContent = about.funFacts
-  bio.appendChild(facts)
-
   layout.appendChild(bio)
   container.appendChild(layout)
 }
