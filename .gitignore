@@ -54,10 +54,7 @@ build/
 *.min.js
 *.min.css
 
-# Agent skills (ui-ux-pro-max) — keep private, don't publish to GitHub
-.agent/skills/ui-ux-pro-max/
-
-# Claude Code
+.agent/
 .claude/
 # Dependencies
 node_modules/

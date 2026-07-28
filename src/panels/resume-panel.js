@@ -1,4 +1,4 @@
-import { experience, education, honors } from '../content/experience.js'
+import { experience, research, education, honors } from '../content/experience.js'
 
 export function createResumePanel(container) {
   const h2 = document.createElement('h2')
@@ -9,37 +9,8 @@ export function createResumePanel(container) {
   const wrapper = document.createElement('div')
   wrapper.style.maxWidth = '680px'
 
-  const label = document.createElement('p')
-  label.className = 'resume-section-label'
-  label.textContent = 'Experience'
-  wrapper.appendChild(label)
-
-  const timeline = document.createElement('ol')
-  timeline.className = 'timeline'
-
-  for (const entry of experience) {
-    const li = document.createElement('li')
-    li.className = `timeline-entry${entry.type === 'research' ? ' timeline-entry--research' : ''}`
-
-    const role = document.createElement('p')
-    role.className = 'entry-role'
-    role.textContent = entry.role
-    li.appendChild(role)
-
-    const meta = document.createElement('p')
-    meta.className = 'entry-meta'
-    meta.textContent = [entry.company, entry.location, entry.date].filter(Boolean).join(' · ')
-    li.appendChild(meta)
-
-    const summary = document.createElement('p')
-    summary.className = 'entry-summary'
-    summary.textContent = entry.summary
-    li.appendChild(summary)
-
-    timeline.appendChild(li)
-  }
-
-  wrapper.appendChild(timeline)
+  appendSection(wrapper, 'Experience', experience)
+  appendSection(wrapper, 'Research', research)
 
   const eduLabel = document.createElement('p')
   eduLabel.className = 'resume-section-label'
@@ -68,7 +39,7 @@ export function createResumePanel(container) {
 
   const honorsLabel = document.createElement('p')
   honorsLabel.className = 'resume-section-label'
-  honorsLabel.textContent = 'Honors'
+  honorsLabel.textContent = 'Honors & Awards'
   wrapper.appendChild(honorsLabel)
 
   const honorsList = document.createElement('ul')
@@ -88,4 +59,44 @@ export function createResumePanel(container) {
   wrapper.appendChild(dl)
 
   container.appendChild(wrapper)
+}
+
+function appendSection(wrapper, title, entries) {
+  const label = document.createElement('p')
+  label.className = 'resume-section-label'
+  label.textContent = title
+  wrapper.appendChild(label)
+
+  const timeline = document.createElement('ol')
+  timeline.className = 'timeline'
+
+  for (const entry of entries) {
+    const li = document.createElement('li')
+    li.className = 'timeline-entry'
+
+    const role = document.createElement('p')
+    role.className = 'entry-role'
+    role.textContent = entry.role
+    li.appendChild(role)
+
+    const meta = document.createElement('p')
+    meta.className = 'entry-meta'
+    meta.textContent = [entry.company, entry.location, entry.date].filter(Boolean).join(' · ')
+    li.appendChild(meta)
+
+    if (entry.bullets && entry.bullets.length) {
+      const ul = document.createElement('ul')
+      ul.className = 'entry-bullets'
+      for (const b of entry.bullets) {
+        const bLi = document.createElement('li')
+        bLi.textContent = b
+        ul.appendChild(bLi)
+      }
+      li.appendChild(ul)
+    }
+
+    timeline.appendChild(li)
+  }
+
+  wrapper.appendChild(timeline)
 }
