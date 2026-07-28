@@ -4,7 +4,7 @@ export function createSplash(appEl, onStart) {
   splash.innerHTML = `
     <div class="splash-content">
       <h1 class="splash-name">PRANAV KALAKOTA</h1>
-      <p class="splash-sub">INTERACTIVE PORTFOLIO</p>
+      <p class="splash-sub">SOFTWARE ENGINEER</p>
       <button class="splash-btn" id="splash-start">CLICK TO START</button>
       <p class="splash-hint">Explore the court and find hidden keys to unlock all areas.<br>Some sections are locked until you discover their secrets.</p>
     </div>
