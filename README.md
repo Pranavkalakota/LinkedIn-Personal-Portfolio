@@ -1,87 +1,20 @@
-# Pranav Kalakota - Personal Portfolio
+# Pranav Kalakota — Portfolio
 
+An interactive 3D portfolio built with Three.js and Vite. Walk around a tennis court, find hidden keys, and explore different sections.
 
-## 🌟 Features
+## Stack
 
-- **Responsive Design**: Mobile-first approach that works seamlessly on all devices
-- **Modern UI**: Clean, professional design with smooth animations
-- **Smooth Scrolling**: Enhanced navigation with animated section transitions
+- Three.js
+- Vite
+- Vanilla JS
 
+## Running locally
 
-## 📝 Customization
+```bash
+npm install
+npm run dev
+```
 
-### Updating Content
+## Live
 
-1. **Profile Information**: Edit the Hero section in `index.html`
-2. **Projects**: Update the Projects section with your latest work
-3. **Experience**: Modify the Experience section with your roles
-4. **Skills**: Adjust the Skills section to reflect your expertise
-
-### Changing Colors
-
-The site uses Tailwind CSS with a custom color scheme. You can modify colors by:
-- Updating Tailwind classes in HTML
-- Modifying CSS variables in `styles.css`
-- Using Tailwind's configuration (if using Tailwind CLI)
-
-### Adding Images
-
-1. Place images in the `assets/` folder
-2. Update image paths in `index.html`
-3. Ensure images are optimized (WebP format, compressed)
-
-## 🎨 Design System
-
-- **Primary Color**: Indigo (#4f46e5)
-- **Secondary Color**: Dark Gray (#1f2937)
-- **Typography**: Inter (headings and body), JetBrains Mono (code)
-- **Spacing**: Consistent spacing using Tailwind's spacing scale
-- **Breakpoints**: Mobile-first responsive design
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## ⚡ Performance
-
-- Lighthouse score target: >90 on all metrics
-- Page load time: <3 seconds on 4G
-- Optimized images and assets
-- Minimal JavaScript footprint
-
-## 🔒 Security
-
-- External links use `rel="noopener noreferrer"`
-- No inline scripts (CSP friendly)
-- Secure form handling (if added)
-
-## 📄 License
-
-This portfolio is personal work. Feel free to use it as inspiration for your own portfolio.
-
-## 👤 Contact
-
-- **Email**: pkalakot@purdue.edu
-- **LinkedIn**: [pranav-kalakota](https://www.linkedin.com/in/pranav-kalakota)
-- **GitHub**: [pranavkalakota](https://github.com/pranavkalakota)
-
-## 🛠️ Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- Tailwind CSS (via CDN)
-- Google Fonts
-
-## Contact Me Form
-- Accomplished by connecting Formspree to website
-
-**Website:**
-pranavkalakota-portfolio.vercel.app
-
-
----
-
+[pranavkalakota-portfolio.vercel.app](https://pranavkalakota-portfolio.vercel.app)
