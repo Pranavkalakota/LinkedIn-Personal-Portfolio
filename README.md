@@ -1,4 +1,4 @@
-# Pranav Kalakota — Portfolio
+# Personal Portfolio
 
 An interactive 3D portfolio built with Three.js and Vite. Walk around a tennis court, find hidden keys, and explore different sections.
 
