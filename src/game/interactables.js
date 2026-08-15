@@ -14,7 +14,7 @@ export function createInteractables(scene) {
   createCollectibleKey(scene, -10, -12, 'projects-key', 0xC2694F)
   createCollectibleKey(scene, 10, -10, 'about-key', 0x6B7C5E)
   createCollectibleKey(scene, -8, 12, 'resume-key', 0x8B7355)
-  createCollectibleKey(scene, 12, 8, 'contact-key', 0x4a6a8a)
+  createCollectibleKey(scene, 8, 12, 'contact-key', 0x4a6a8a)
 
   createEasterEggs(scene)
   createHintUI()
