@@ -1,5 +1,15 @@
 export const experience = [
   {
+    role: 'Data Science Researcher',
+    company: 'Johnson & Johnson',
+    location: 'West Lafayette, IN',
+    date: 'Aug. 2026 – Present',
+    bullets: [
+      'Building Copilot Studio agents over Power Automate cloud flows and designing multi-agent architectures to automate enterprise booking workflows.',
+    ],
+    type: 'work',
+  },
+  {
     role: 'Software Engineering Intern',
     company: 'Crcle',
     location: 'West Lafayette, IN',

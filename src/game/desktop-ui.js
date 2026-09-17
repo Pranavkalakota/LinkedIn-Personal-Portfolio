@@ -220,6 +220,21 @@ function showResume() {
           <h4 class="resume-heading">Experience</h4>
           <div class="resume-entry">
             <div class="resume-entry-header">
+              <strong>Data Science Researcher</strong>
+              <span>Aug. 2026 – Present</span>
+            </div>
+            <div class="resume-entry-header">
+              <em>Johnson & Johnson</em>
+              <span>West Lafayette, IN</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Building a Copilot Studio agent over Power Automate cloud flows to automate JJ's 45-minute, 10-step booking process, using Microsoft Graph for calendar availability and attendee resolution</li>
+              <li>Designing a multi-agent Copilot Studio architecture within an 8,000-character context window, compressing instructions into Word doc references to reclaim 2,000+ characters for scheduling logic</li>
+              <li>Sandboxing JJ's Microsoft environment across a 12-person team, using Power BI to benchmark prompt reliability and reduce Copilot's 10% template-adherence failure rate</li>
+            </ul>
+          </div>
+          <div class="resume-entry">
+            <div class="resume-entry-header">
               <strong>Software Engineering Intern</strong>
               <span>June 2026 – Present</span>
             </div>
@@ -244,41 +259,8 @@ function showResume() {
               <span>Las Vegas, NV</span>
             </div>
             <ul class="resume-bullets">
-              <li>Engineered an automated production test system in Arduino with serial CLI and fault handling, validating dual H-bridge MOSFET output across 15+ ADC channels</li>
-              <li>Designed a robot-arm-compatible DUT fixture for a dual motor driver carrier with current sensing and relay-multiplexed load switching</li>
+              <li>Engineered an automated production test system in Arduino with serial CLI and fault handling, validating dual H-bridge MOSFET output across 15+ ADC channels, cutting QA cycle time by 10%</li>
               <li>Refactored 500+ line legacy embedded codebase, resolved a critical timing race condition in PWM chopping logic</li>
-            </ul>
-          </div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <strong>Software Engineering Intern</strong>
-              <span>June 2024 – Aug. 2024</span>
-            </div>
-            <div class="resume-entry-header">
-              <em>Summer Business Institute Program (SBI)</em>
-              <span>Las Vegas, NV</span>
-            </div>
-            <ul class="resume-bullets">
-              <li>Improved system uptime by resolving 25+ infrastructure and endpoint issues across Police, Fire, and Public Works departments</li>
-              <li>Automated 3 cross-departmental reporting workflows, cutting weekly manual data entry by ~5 hrs</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="resume-section">
-          <h4 class="resume-heading">Research</h4>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <strong>Team Lead – Equine Airway Fluid Mechanics</strong>
-              <span>Aug. 2025 – Dec. 2025</span>
-            </div>
-            <div class="resume-entry-header">
-              <em>Vertically Integrated Projects, Purdue University</em>
-              <span>West Lafayette, IN</span>
-            </div>
-            <ul class="resume-bullets">
-              <li>Led a cross-disciplinary team designing a PIV experiment to visualize airflow and particle deposition in a life-sized PDMS equine airway phantom</li>
-              <li>Conducted fluid dynamics simulations to extract velocity, pressure, and turbulence data with mesh independence studies</li>
             </ul>
           </div>
         </div>
@@ -287,13 +269,13 @@ function showResume() {
           <h4 class="resume-heading">Projects</h4>
           <div class="resume-entry">
             <div class="resume-entry-header">
-              <strong>Orion</strong>
-              <span>Apr. 2026 – Present</span>
+              <strong>LSM-Tree Storage Engine</strong>
+              <span>Present</span>
             </div>
-            <p class="resume-tech">Swift, Vision Framework, SSE</p>
+            <p class="resume-tech">Java</p>
             <ul class="resume-bullets">
-              <li>Building a native macOS AI assistant with voice control, real-time gesture recognition via Apple's Vision framework</li>
-              <li>Implemented streaming LLM responses via SSE with sentence-chunked TTS, achieving sub-1.5s end-to-end latency</li>
+              <li>Building an LSM-tree storage engine with MemTable, write-ahead log, SST files, bloom filters, and multi-level compaction targeting 50K+ writes/sec</li>
+              <li>Implementing bloom filter-gated SST reads and background compaction targeting 3x read speedup and sub-5ms p99 latency across 100K+ keys</li>
             </ul>
           </div>
           <div class="resume-entry">
@@ -319,7 +301,7 @@ function showResume() {
         <div class="resume-section">
           <h4 class="resume-heading">Technical Skills</h4>
           <p class="resume-bullet"><strong>Languages:</strong> Java, Python, C, Swift, TypeScript, HTML/CSS</p>
-          <p class="resume-bullet"><strong>Tools & Platforms:</strong> Git, Arduino, SolidWorks, ONNX Runtime, ChromaDB, Jupyter Notebook, Tableau</p>
+          <p class="resume-bullet"><strong>Tools & Platforms:</strong> Git, Arduino, SolidWorks, ONNX Runtime, ChromaDB, Power Automate, Jupyter Notebook, Tableau</p>
           <p class="resume-bullet"><strong>Libraries & Frameworks:</strong> Matplotlib, Pandas, Express, Whisper, LLaVA, Vision Framework</p>
           <p class="resume-bullet"><strong>Concepts:</strong> Object-Oriented Programming, Databases, Simulations, Data Analysis, Embedded Systems, RAG Pipelines</p>
         </div>
