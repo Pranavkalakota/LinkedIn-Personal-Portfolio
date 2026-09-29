@@ -272,10 +272,11 @@ function showResume() {
               <strong>LSM-Tree Storage Engine</strong>
               <span>Present</span>
             </div>
-            <p class="resume-tech">Java</p>
+            <p class="resume-tech">Java, Maven, Guava</p>
             <ul class="resume-bullets">
-              <li>Building an LSM-tree storage engine with MemTable, write-ahead log, SST files, bloom filters, and multi-level compaction targeting 50K+ writes/sec</li>
-              <li>Implementing bloom filter-gated SST reads and background compaction targeting 3x read speedup and sub-5ms p99 latency across 100K+ keys</li>
+              <li>Built an LSM-tree storage engine in Java, achieving 455K writes/sec and 1.9M reads/sec at 2.13&micro;s p99 across 100K keys</li>
+              <li>Amortized fsync via group commit by moving durability off the write lock, achieving 3.2&times; synced throughput (263&rarr;854/sec) under 8-way concurrency</li>
+              <li>Cut read amplification to one SSTable per level with leveled compaction, k-way merge, tombstone GC, and bloom filters; reclaimed 84% of disk</li>
             </ul>
           </div>
           <div class="resume-entry">
@@ -300,10 +301,10 @@ function showResume() {
 
         <div class="resume-section">
           <h4 class="resume-heading">Technical Skills</h4>
-          <p class="resume-bullet"><strong>Languages:</strong> Java, Python, C, Swift, TypeScript, HTML/CSS</p>
-          <p class="resume-bullet"><strong>Tools & Platforms:</strong> Git, Arduino, SolidWorks, ONNX Runtime, ChromaDB, Power Automate, Jupyter Notebook, Tableau</p>
-          <p class="resume-bullet"><strong>Libraries & Frameworks:</strong> Matplotlib, Pandas, Express, Whisper, LLaVA, Vision Framework</p>
-          <p class="resume-bullet"><strong>Concepts:</strong> Object-Oriented Programming, Databases, Simulations, Data Analysis, Embedded Systems, RAG Pipelines</p>
+          <p class="resume-bullet"><strong>Languages:</strong> Java, Python, C, TypeScript, Swift, HTML/CSS</p>
+          <p class="resume-bullet"><strong>Tools & Platforms:</strong> Maven, Arduino, ChromaDB, Copilot Studio, Power Automate, Power BI, Microsoft Graph</p>
+          <p class="resume-bullet"><strong>Libraries & Frameworks:</strong> Guava, Express, MCP, Whisper, Llama 3.2, LLaVA, ArcFace, ECAPA-TDNN</p>
+          <p class="resume-bullet"><strong>Concepts:</strong> Object-Oriented Programming, Embedded Systems, RAG Pipelines, LSM Trees, Write-Ahead Logging</p>
         </div>
       </div>
       <a class="file-detail-link" href="/Pranav_Kalakota_Resume.pdf" target="_blank" rel="noopener">Download PDF →</a>
