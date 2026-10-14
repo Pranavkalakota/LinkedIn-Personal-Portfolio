@@ -210,7 +210,7 @@ function showResume() {
             </div>
             <div class="resume-entry-header">
               <em>Bachelor of Science in Computer Science</em>
-              <span>Aug. 2025 – May 2029</span>
+              <span>Aug. 2025 – May 2028</span>
             </div>
             <p class="resume-bullet">Coursework: Programming in C, Object-Oriented Programming, Linear Algebra, Discrete Mathematics, Statistical Methods</p>
           </div>
@@ -243,10 +243,10 @@ function showResume() {
               <span>West Lafayette, IN</span>
             </div>
             <ul class="resume-bullets">
-              <li>Architected a multimodal RAG pipeline fusing Whisper ASR, Llama 3.2 3B, LLaVA 7B, ArcFace, and ECAPA-TDNN with cosine-similarity gating over ChromaDB ONNX vector store</li>
-              <li>Engineered a schema-constrained NLP intent router with 3-tier fuzzy/regex/LLM fallback achieving 95% deterministic routing across 500+ fuzz invariants</li>
-              <li>Optimized always-on wearable ASR pipeline cutting transcription latency 50% and wake-word activation 90%</li>
-              <li>Built a cross-platform vision-based GUI automation system achieving sub-2s latency and 90%+ element localization accuracy</li>
+              <li>Architected a multimodal RAG pipeline fusing Whisper ASR, Llama 3.2 3B, LLaVA 7B, ArcFace, and ECAPA-TDNN with cosine-similarity gating over ChromaDB ONNX vector store, enabling zero-touch HCI via cross-app voice control with sub-20s latency and zero cloud dependency</li>
+              <li>Engineered a schema-constrained NLP intent router with 3-tier fuzzy/regex/LLM fallback and semantic vector search, achieving 95% deterministic routing across 500+ fuzz invariants and 12+ query types in production</li>
+              <li>Optimized always-on wearable ASR pipeline with adaptive windowing and CPU-routed Whisper inference, cutting transcription latency 50% (12s to 6s) and wake-word activation 90% (2s to &lt;200ms)</li>
+              <li>Built a cross-platform vision-based GUI automation system achieving sub-2s latency and 90%+ element localization accuracy across arbitrary applications via Gemini multimodal LLM inference</li>
             </ul>
           </div>
           <div class="resume-entry">
@@ -270,13 +270,13 @@ function showResume() {
           <div class="resume-entry">
             <div class="resume-entry-header">
               <strong>LSM-Tree Storage Engine</strong>
-              <span>Present</span>
+              <span>Aug. 2026 – Oct. 2026</span>
             </div>
             <p class="resume-tech">Java, Maven, Guava</p>
             <ul class="resume-bullets">
-              <li>Built an LSM-tree storage engine in Java, achieving 455K writes/sec and 1.9M reads/sec at 2.13&micro;s p99 across 100K keys</li>
-              <li>Amortized fsync via group commit by moving durability off the write lock, achieving 3.2&times; synced throughput (263&rarr;854/sec) under 8-way concurrency</li>
-              <li>Cut read amplification to one SSTable per level with leveled compaction, k-way merge, tombstone GC, and bloom filters; reclaimed 84% of disk</li>
+              <li>Built a crash-safe LSM-tree engine in Java sustaining 481K buffered writes/sec and 2.46M random reads/sec at 0.88&micro;s p99 across 100K keys</li>
+              <li>Amortized fsync (3.8ms) via group commit off the write lock: synced throughput 263&rarr;829/sec at 8 writers, 3.2&times; with durability unchanged</li>
+              <li>Cut reads to one SSTable per level via leveled compaction, reclaiming 84% of disk; LZ4 shrank repetitive blocks 87% and lifted cold reads 968K&rarr;1,063K/sec</li>
             </ul>
           </div>
           <div class="resume-entry">

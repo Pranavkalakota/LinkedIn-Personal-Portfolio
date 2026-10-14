@@ -1,10 +1,10 @@
 export const projects = [
   {
-    title: 'Orion',
-    date: 'April 2026 – Present',
-    description: 'Building a native macOS AI assistant with voice control, real-time gesture recognition via Apple\'s Vision framework, and full system automation through CGEvent. Implemented streaming LLM responses via SSE with sentence-chunked TTS, achieving sub-1.5s end-to-end voice response latency.',
-    tech: 'Swift · Vision Framework · SSE · CGEvent',
-    link: 'https://github.com/Pranavkalakota/Orion',
+    title: 'LSM-Tree Storage Engine',
+    date: 'August – October 2026',
+    description: 'Built a crash-safe LSM-tree engine in Java sustaining 481K buffered writes/sec and 2.46M random reads/sec at 0.88µs p99 across 100K keys. Amortized fsync via group commit off the write lock, lifting synced throughput 263→829/sec at 8 writers. Leveled compaction cut reads to one SSTable per level and reclaimed 84% of disk, while LZ4 shrank repetitive blocks 87%.',
+    tech: 'Java · Maven · Guava · LZ4',
+    link: 'https://github.com/Pranavkalakota/lsm-tree',
   },
   {
     title: 'MCP Task Manager',

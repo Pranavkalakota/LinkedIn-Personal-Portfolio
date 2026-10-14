@@ -57,7 +57,7 @@ export const education = {
   school: 'Purdue University',
   location: 'West Lafayette, IN',
   degree: 'Bachelor of Science in Computer Science',
-  date: 'Aug. 2025 – May 2029',
+  date: 'Aug. 2025 – May 2028',
   coursework: 'Programming in C, Object-Oriented Programming, Linear Algebra, Discrete Mathematics',
 }
 
